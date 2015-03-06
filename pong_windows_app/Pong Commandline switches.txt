@@ -1,0 +1,94 @@
+Commandline switches:
+
+	-opengl=[0,1] (default: 0)
+
+	Uses OpenGL for rendering (makes everything a bit smoother). 
+	Example:
+		-opengl=1
+
+
+
+
+	-fullscreen=<screen number> (default: N/A)
+
+	Uses fullscreen mode, and displays the game on the specified monitor.
+	Example:
+		-fullscreen=0
+
+
+
+
+	-res=<width>,<height> (default: 640,480)
+
+	Sets the size used for the game window.
+	Example:
+		-res=1680,1050
+
+
+
+
+	-ballinitialspeed=<initialspeed> (default: 200.0)
+
+	Sets the initial speed of the ball.
+	Example:
+		-res=314.1592
+
+
+
+
+	-speedincreasefactor=<factor> (default: 1.05)
+
+	Sets the factor that the current ball speed is multiplied with everytime a bat is hit.
+	Example:
+		-speedincreasefactor=1.1
+
+
+
+
+	-leftbatspeed=<speed> (default: 500)
+
+	Sets the speed of the left bat.
+	Example:
+		-leftbatspeed=1000
+
+
+
+
+	-rightbatspeed=<speed> (default: 500)
+
+	Sets the speed of the right bat.
+	Example:
+		-rightbatspeed=1000
+
+
+
+
+	-leftbatcontrollertype=[a,k,c] (default: a)
+
+	Sets the controller for the left bat. Possibilities are:
+		a: Uses AI
+		k: Uses keyboard ('W' for up, 'S' for down)
+		c: Uses a COM port. You should NOT set both bat controllers to this!
+	Example:
+		-leftbatcontrollertype=k
+
+
+
+
+	-rightbatcontrollertype=[a,k,c] (default: a)
+
+	Sets the controller for the right bat. Possibilities are:
+		a: Uses AI
+		k: Uses keyboard ('UpArrow' for up, 'DownArrow' for down)
+		c: Uses a COM port. You should NOT set both bat controllers to this!
+	Example:
+		-rightbatcontrollertype=k
+
+
+
+
+	-serialport=<serialport> (default: N/A)
+
+	Sets the serial port to use for the controller. 
+	Example:
+		-serialport=COM1
