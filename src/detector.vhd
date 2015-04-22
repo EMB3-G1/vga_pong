@@ -36,7 +36,13 @@ entity detector is
 		bar_left_o : out std_logic_vector (9 downto 0);
 		bar_right_o : out std_logic_vector (9 downto 0);
 		ball_x_o : out std_logic_vector (9 downto 0);
-		ball_y_o : out std_logic_vector (9 downto 0)
+		ball_y_o : out std_logic_vector (9 downto 0);
+		
+		hs_o : out std_logic;
+		vs_o : out std_logic;
+		r_o : out std_logic_vector (G_COLOR_WIDTH-1 downto 0);
+		g_o : out std_logic_vector (G_COLOR_WIDTH-1 downto 0);
+		b_o : out std_logic_vector (G_COLOR_WIDTH-1 downto 0)
 	);
 end detector;
 
@@ -156,6 +162,12 @@ architecture Behavioral of detector is
 	signal bar_right_detected : std_logic := '0';
 	signal ball_detected : std_logic := '0';
 	signal pixel_current_empty : std_logic := '1';
+	signal ball_x : std_logic_vector (9 downto 0) := (others=>'0');
+	signal bar_left : std_logic_vector (9 downto 0) := (others=>'0');
+	signal bar_right : std_logic_vector (9 downto 0) := (others=>'0');
+	signal r : std_logic_vector (G_COLOR_WIDTH-1 downto 0) := (others=>'0');
+	signal g : std_logic_vector (G_COLOR_WIDTH-1 downto 0) := (others=>'0');
+	signal b : std_logic_vector (G_COLOR_WIDTH-1 downto 0) := (others=>'0');
 	--MUAHAHAHA
 
 begin
@@ -187,45 +199,66 @@ begin
 	vs_o <= '0' when line_cnt_reg < C_V_SP else '1';
 	
 	-- left bat output
-	g_o <= (others=>'1') when (pixel_cnt_reg >= (C_LBAT_X1+C_HS_OFFSET) and 
+	g <= (others=>'1') when (pixel_cnt_reg >= (C_LBAT_X1+C_HS_OFFSET) and 
 										pixel_cnt_reg <= (C_LBAT_X2+C_HS_OFFSET) and 
 										line_cnt_reg  >= (C_LBAT_Y1+C_VS_OFFSET) and 
 										line_cnt_reg  <= (C_LBAT_Y2+C_VS_OFFSET)) else
 			 (others=>'0');
 
 	-- ball bat output
-	r_o <= (others=>'1') when (pixel_cnt_reg >= (C_BALL_X1+C_HS_OFFSET) and 
+	r <= (others=>'1') when (pixel_cnt_reg >= (C_BALL_X1+C_HS_OFFSET) and 
 										pixel_cnt_reg <= (C_BALL_X2+C_HS_OFFSET) and 
 										line_cnt_reg  >= (C_BALL_Y1+C_VS_OFFSET) and 
 										line_cnt_reg  <= (C_BALL_Y2+C_VS_OFFSET)) else
 			 (others=>'0');
 
 	-- right bat output
-	b_o <= (others=>'1') when (pixel_cnt_reg >= (C_RBAT_X1+C_HS_OFFSET) and 
+	b <= (others=>'1') when (pixel_cnt_reg >= (C_RBAT_X1+C_HS_OFFSET) and 
 										pixel_cnt_reg <= (C_RBAT_X2+C_HS_OFFSET) and 
 										line_cnt_reg  >= (C_RBAT_Y1+C_VS_OFFSET) and 
 										line_cnt_reg  <= (C_RBAT_Y2+C_VS_OFFSET)) else
 			 (others=>'0');
+			 
+	r_o <= r;
+	g_o <= g;
+	b_o <= b;
+	
 
 
 	-- enable flag if there is something in the pixel
-	pixel_current_empty <= '1' when g_o = '0' or r_o = '0' or b_o = '0';
+	pixel_current_empty <= '1' when g = "0000000000" or r = "0000000000" or b = "0000000000";
 	
 	-- updates 
-	bar_left_o <= line_cnt_reg when (bar_left_detected = '0' and pixel_cnt_reg = C_HS_OFFSET + C_LBAT_X1 + 1
-					and pixel_current_empty = '0';
+	bar_left_o <= std_logic_vector(line_cnt_reg) when (bar_left_detected = '0' and pixel_cnt_reg = C_HS_OFFSET + C_LBAT_X1 + 1
+					and pixel_current_empty = '0');
+	bar_left_detected <= '1' when (bar_left_detected = '0' and pixel_cnt_reg = C_HS_OFFSET + C_LBAT_X1 + 1
+					and pixel_current_empty = '0');
 
-	bar_right_o <= line_cnt_reg when (bar_right_detected = '0' and pixel_cnt_reg = C_HS_OFFSET + C_RBAT_X1 - 1
-					and pixel_current_empty = '0';
+	bar_right_o <= std_logic_vector(line_cnt_reg) when (bar_right_detected = '0' and pixel_cnt_reg = C_HS_OFFSET + C_RBAT_X1 - 1
+					and pixel_current_empty = '0');
+	bar_right_detected <= '1' when (bar_right_detected = '0' and pixel_cnt_reg = C_HS_OFFSET + C_RBAT_X1 - 1
+					and pixel_current_empty = '0');
 
-	process
-	begin
-		if (C_HS_OFFSET + C_LBAT_X1 + 1 < pixel_cnt_reg and pixel_cnt_reg < C_HS_OFFSET + C_RBAT_X1 - 1
-			and ball_detected = '0' and pixel_current_empty = '0') then
-			ball_x_o <= pixel_cnt_reg;
-			ball_y_o <= line_cnt_reg;
-		end if;
-	end process;
+	ball_x_o <= std_logic_vector(pixel_cnt_reg) when ((C_HS_OFFSET + C_LBAT_X1 + 1) < pixel_cnt_reg and pixel_cnt_reg < (C_HS_OFFSET + C_RBAT_X1 - 1)
+					and ball_detected = '0' and pixel_current_empty = '0');
+	ball_y_o <= std_logic_vector(line_cnt_reg) when ((C_HS_OFFSET + C_LBAT_X1 + 1) < pixel_cnt_reg and pixel_cnt_reg < (C_HS_OFFSET + C_RBAT_X1 - 1)
+					and ball_detected = '0' and pixel_current_empty = '0');
+	ball_detected <= '1' when ((C_HS_OFFSET + C_LBAT_X1 + 1) < pixel_cnt_reg and pixel_cnt_reg < (C_HS_OFFSET + C_RBAT_X1 - 1)
+					and ball_detected = '0' and pixel_current_empty = '0') and ((C_HS_OFFSET + C_LBAT_X1 + 1) < pixel_cnt_reg
+					and pixel_cnt_reg < (C_HS_OFFSET + C_RBAT_X1 - 1));
+
+	bar_left_detected <= '0' when (hs_i = '1' and vs_i = '1');
+	bar_right_detected <= '0' when (hs_i = '1' and vs_i = '1');
+	ball_detected <= '0' when (hs_i = '1' and vs_i = '1');
+	
+	--process
+	--begin
+		--if (C_HS_OFFSET + C_LBAT_X1 + 1 < pixel_cnt_reg and pixel_cnt_reg < C_HS_OFFSET + C_RBAT_X1 - 1
+			--and ball_detected = '0' and pixel_current_empty = '0') then
+			--ball_x_o <= pixel_cnt_reg;
+			--ball_y_o <= line_cnt_reg;
+		--end if;
+	--end process;
 
 
 end Behavioral;
