@@ -1,0 +1,7 @@
+#!/bin/bash
+
+xrandr --output LVDS --mode 640x480
+xrandr --output VGA-0 --mode 640x480 --same-as LVDS
+wine pong.exe -opengl=1 -fullscreen=1 -leftbatcontrollertype=com1
+xrandr --output LVDS --auto
+xrandr --output VGA-0 --off
