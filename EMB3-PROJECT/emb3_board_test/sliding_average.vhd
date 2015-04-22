@@ -21,7 +21,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
-entity sliding_average is
+entity sliding_average is 
 	port (	
 		filter_clk			: in	std_logic;
 		filter_reset		: in	std_logic;

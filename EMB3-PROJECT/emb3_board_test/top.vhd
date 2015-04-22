@@ -71,7 +71,7 @@ entity top is
 		fx2_vga_blue_i			: inout 		std_logic_vector (9 downto 0)		
 	);
 end top;
-
+ 
 architecture Behavioral of top is
 
 	signal clk_100M7  	  : std_logic; -- pipeline clock @ 4x pixel clock
