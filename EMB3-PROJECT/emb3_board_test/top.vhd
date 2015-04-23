@@ -20,6 +20,9 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
+--use ieee.std_logic_arith.all;
+--use work.common.all;
+ 
 
 Library UNISIM;
 use UNISIM.vcomponents.all;
@@ -62,13 +65,13 @@ entity top is
 		fx2_vga_vsync_i		: in		std_logic;
 		  
 		fx2_vga_red_clk_o		: out		std_logic;
-		fx2_vga_red_i			: inout 		std_logic_vector (9 downto 0);
+		fx2_vga_red_i			: inout 	std_logic_vector (9 downto 0);
 		
 		fx2_vga_green_clk_o	: out		std_logic;
-		fx2_vga_green_i		: inout 		std_logic_vector (9 downto 0);
+		fx2_vga_green_i		: inout 	std_logic_vector (9 downto 0);
 
 		fx2_vga_blue_clk_o	: out		std_logic;
-		fx2_vga_blue_i			: inout 		std_logic_vector (9 downto 0)		
+		fx2_vga_blue_i			: inout 	std_logic_vector (9 downto 0)		
 	);
 end top;
  
@@ -76,6 +79,8 @@ architecture Behavioral of top is
 
 	signal clk_100M7  	  : std_logic; -- pipeline clock @ 4x pixel clock
 	signal clk_100M7_180	  : std_logic; -- pipeline clock @ 4x pixel clock 180 degrees phase shifted
+	signal clk25M  	  : std_logic; -- pipeline clock pixel clock
+	signal clk25M_180	  : std_logic; -- pipeline clock pixel clock 180 degrees phase shifted
 	
 --	signal clk_100M7_pxlce : std_logic; -- clock-enable signal synchronous to 'vga_pxl_pseudo_clk' but only one clk_100M7'period wide
 --	signal clk_100M7_ce_cnt_reg : unsigned(1 downto 0) := "00";	
@@ -96,7 +101,12 @@ architecture Behavioral of top is
 	signal hsync_sreg : std_logic_vector(4 downto 0) := (others=>'0');
 	signal vsync_sreg : std_logic_vector(4 downto 0) := (others=>'0');
 	
+	-- For the preprocessor 
+	signal h_sync_pre_o : std_logic:= '1';
+	signal v_sync_pre_o : std_logic:= '1';
+	signal rgb_pre : std_logic_vector(3*3-1 downto 0) := (others=>'0');
 	
+	-- VGA generator
 	signal hs_vga_gen : std_logic;
 	signal vs_vga_gen : std_logic;
 	signal r_vga_gen	: std_logic_vector(2 downto 0);
@@ -134,31 +144,43 @@ architecture Behavioral of top is
 	component ps2_wrapper is
 		port ( 
 			clk_100M_i 	: in  	std_logic;
-			
 			ps2_clk_io	: inout  std_logic;
 			ps2_data_io	: inout  std_logic;
-			
 			up_o 			: out 	std_logic;
 			stop_o		: out 	std_logic;
 			down_o		: out 	std_logic
 		);
 	end component;
 	
-	-- Signals to connect the filter modulesx to the VGA-output
+	-- Signals to connect the filter modules to the VGA-output
 	signal red_filtered : std_logic_vector(9 downto 0);
 	signal green_filtered : std_logic_vector(9 downto 0);
 	signal blue_filtered : std_logic_vector(9 downto 0);
-	--signal pixel_clk : std_logic;
-	--shared variable hola : integer 0 to 100;
+	
+	COMPONENT preprocessor
+	PORT(
+		clk25M_i : IN std_logic;
+		clk100M_i : IN std_logic;
+		rst_i : IN std_logic;
+		r_i : IN std_logic_vector(9 downto 0);
+		g_i : IN std_logic_vector(9 downto 0);
+		b_i : IN std_logic_vector(9 downto 0);
+		h_sync_i : IN std_logic;
+		v_sync_i : IN std_logic;          
+		rgb_o : OUT std_logic_vector(8 downto 0);
+		h_sync_o : OUT std_logic;
+		v_sync_o : OUT std_logic
+	);
+	END COMPONENT;
+	
 
 begin
 
-	
 	-- RED FILTER
 	filter_inst_red: sliding_average
 	port map (
 		filter_clk 			=> clk_100M7,
-		filter_reset		=> '0',
+		filter_reset		=> NOT resetn,
 		adc_i					=> fx2_vga_red_i,		
 		dac_o					=> red_filtered,
 		adc_clk_o			=> open,				
@@ -169,7 +191,7 @@ begin
 	filter_inst_green: sliding_average
 	port map (
 		filter_clk 			=> clk_100M7,
-		filter_reset		=> '0',
+		filter_reset		=> NOT resetn,
 		adc_i					=> fx2_vga_green_i,	
 		dac_o					=> green_filtered,
 		adc_clk_o			=> open,
@@ -180,12 +202,29 @@ begin
 	filter_inst_blue: sliding_average
 	port map (
 		filter_clk 			=> clk_100M7,
-		filter_reset		=> '0',
+		filter_reset		=> NOT resetn,
 		adc_i					=> fx2_vga_blue_i,	
 		dac_o					=> blue_filtered,
 		adc_clk_o			=> open,
 		dac_clk_o			=> open
 	);
+	
+	-- preprocessor
+	preprocessor_inst : preprocessor
+	port map (
+		clk25M_i => clk25M,
+		clk100M_i => clk_100M7,
+		rst_i => resetn, 	
+		r_i => fx2_vga_red_i,
+		g_i => fx2_vga_green_i,
+		b_i => fx2_vga_blue_i,
+		h_sync_i => fx2_vga_hsync_i,
+		v_sync_i => fx2_vga_vsync_i,
+		rgb_o => rgb_pre,
+		h_sync_o => h_sync_pre_o,
+		v_sync_o => v_sync_pre_o
+	);
+	-- end preprocessor
 		
 	-- Clock generator to condition the 200MHz clock from the onboard oscillator.
 	-- In this case it is configured to generate two 100.7MHz clocks!
@@ -196,8 +235,7 @@ begin
 			CLKFX_MD_MAX		=> 0.251748,  	-- Specify maximum M/D ratio for timing anlysis
 			CLKFX_MULTIPLY 	=> 72,       	-- Multiply value - M - (2-256)
 			CLKIN_PERIOD 		=> 5.0,       	-- Input clock period specified in nS
-			SPREAD_SPECTRUM 	=> "NONE", 		-- Spread Spectrum mode "NONE", "CENTER_LOW_SPREAD", "CENTER_HIGH_SPREAD",
-														-- "VIDEO_LINK_M0", "VIDEO_LINK_M1" or "VIDEO_LINK_M2" 
+			SPREAD_SPECTRUM 	=> "NONE", 		-- Spread Spectrum mode "NONE", "CENTER_LOW_SPREAD", "CENTER_HIGH_SPREAD", "VIDEO_LINK_M0", "VIDEO_LINK_M1" or "VIDEO_LINK_M2" 
 			STARTUP_WAIT 		=> FALSE      	-- Delay config DONE until DCM_CLKGEN LOCKED (TRUE/FALSE)
 		)
 		port map (
@@ -213,6 +251,32 @@ begin
 			PROGDATA 	=> '0',   		-- 1-bit input: Serial data input for M/D reconfiguration
 			PROGEN 		=> '0',     	-- 1-bit input: Active high program enable
 			RST 			=> '0'         -- 1-bit input: Reset input pin
+		);	
+		
+		-- Generation of the 25MHz clock signal
+		DCM_CLKGEN_inst25 : DCM_CLKGEN
+		generic map (
+			CLKFXDV_DIVIDE => 2,
+			CLKFX_DIVIDE => 143,
+			CLKFX_MD_MAX => 0.251748,
+			CLKFX_MULTIPLY => 18,
+			CLKIN_PERIOD => 5.0,
+			SPREAD_SPECTRUM => "NONE",
+			STARTUP_WAIT => FALSE
+		)
+		port map (
+			CLKFX => 	clk25M,
+			CLKFX180 => clk25M_180,
+			CLKFXDV => 		open,
+			LOCKED => 		open,
+			PROGDONE => 	open,
+			STATUS =>	 	open,
+			CLKIN => 	clk_200M_i,
+			FREEZEDCM => 	'0',
+			PROGCLK => 		'0',
+			PROGDATA => 	'0',
+			PROGEN => 		'0',
+			RST => 			'0'
 		);
 
 		-- 100.7MHz ADC sample clock generation
@@ -221,9 +285,8 @@ begin
 			--vga_sample_g_pseudo_clk <= clk_100M7;
 			--vga_sample_b_pseudo_clk <= clk_100M7;
 
-			-- ODDR2: Output Double Data Rate Output Register with Set, Reset
-			--        and Clock Enable. 
-			--        Spartan-6
+			-- ODDR2: Output Double Data Rate Output Register with Set, Reset and Clock Enable. 
+			-- Spartan-6
 			-- Xilinx HDL Language Template, version 14.7
 			
 			ODDR2_inst_R : ODDR2
@@ -310,11 +373,8 @@ begin
 		begin
 			if rising_edge(clk_100M7) then					
 				if resetn='0' then			
-
 					led_o <= (others=>'0');
-					
 				else
-				
 					if j7_btn_i(0)='1' then
 						led_o(3 downto 0) <= one_hot_sum((dip_sw_i & j7_dip_sw_i));
 					else
@@ -344,22 +404,18 @@ begin
 		ps2_wrapper_inst0 : ps2_wrapper
 		port map( 
 			clk_100M_i	=> clk_100M7,
-			
 			ps2_clk_io	=> j7_ps2_clk_io,
 			ps2_data_io	=> j7_ps2_data_io,
-			
 			up_o 			=> up,
 			stop_o		=> stop,
 			down_o		=> down
 		);	
 	
 	
-	-- VGA output MUX (passthrough OR vga_generator) process
-		
+	-- VGA output MUX (passthrough OR vga_generator) process	
 		fx2_vga_red_clk_o		<= vga_sample_r_pseudo_clk;	-- RED color channel ADC "clock" output (a real clock i not used because the FPGA pin used is not a clock pin!)
 		fx2_vga_green_clk_o	<= vga_sample_g_pseudo_clk;	-- GREEN color channel ADC "clock" output (a real clock i not used because the FPGA pin used is not a clock pin!)
 		fx2_vga_blue_clk_o	<= vga_sample_b_pseudo_clk;	-- BLUE color channel ADC "clock" output (a real clock i not used because the FPGA pin used is not a clock pin!)
-		
 		
 		vga_generator_inst : entity work.vga_generator
 			generic map(
@@ -379,24 +435,28 @@ begin
 		begin
 			if rising_edge(clk_100M7) then
 				if resetn='0' then
-				
 					j8_vga_hsync_o <= '0';
 					j8_vga_vsync_o <= '0';				
 					j8_vga_red_o	<= (others=>'0');
 					j8_vga_green_o	<= (others=>'0');
 					j8_vga_blue_o	<= (others=>'0');
-					
 				else
 					
 					hsync_sreg <= hsync_sreg(hsync_sreg'left-1 downto 0) & fx2_vga_hsync_i;
 					vsync_sreg <= vsync_sreg(vsync_sreg'left-1 downto 0) & fx2_vga_vsync_i;
-					
+
 					if j7_dip_sw_i(7) = '0' then
+						--j8_vga_hsync_o <= h_sync_pre_o;
+						--j8_vga_vsync_o <= v_sync_pre_o;
 						j8_vga_hsync_o <= hsync_sreg(hsync_sreg'left);
 						j8_vga_vsync_o <= vsync_sreg(vsync_sreg'left); 
-						j8_vga_red_o	<= red_filtered(9 downto 7);		
-						j8_vga_green_o	<= green_filtered(9 downto 7);
+						--j8_vga_red_o	<= red_filtered(9 downto 7);		
+						--j8_vga_green_o	<= green_filtered(9 downto 7);
 						j8_vga_blue_o	<= blue_filtered(9 downto 7);
+						--blue_filtered(9 downto 7);
+						j8_vga_red_o <= red_filtered(9 downto 7);
+						j8_vga_green_o <= green_filtered(9 downto 7);
+						--green_filtered(9 downto 7);
 					else
 						j8_vga_hsync_o <= hs_vga_gen;
 						j8_vga_vsync_o <= vs_vga_gen;

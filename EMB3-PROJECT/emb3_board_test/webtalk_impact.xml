@@ -3,9 +3,9 @@
 <!--The data in this file is primarily intended for consumption by Xilinx tools.
 The structure and the elements are likely to change over the next few releases.
 This means code written to parse this file will need to be revisited each subsequent release.-->
-<application name="impact" timeStamp="Wed Apr 22 10:48:55 2015">
+<application name="impact" timeStamp="Thu Apr 23 11:24:53 2015">
 <section name="Project Information" visible="false">
-<property name="ProjectID" value="c093d125e1e74eb7b41e6c2d6f25029e"/>
+<property name="ProjectID" value="1115de371baf4066ab0dee314154c9f0"/>
 <property name="ProjectIteration" value="1"/>
 </section>
 <section name="iMPACT Project Info" visible="true">
@@ -15,7 +15,7 @@ This means code written to parse this file will need to be revisited each subseq
 <property name="OS Release" value="Ubuntu 14.04.2 LTS"/>
 <property name="User Lic. Info" value="210779069_174157381_210595800_667"/>
 </section>
-<section name="iMPACT One Step SVF File Mode" visible="true">
+<section name="iMPACT Boundary Scan Mode" visible="true">
 <item name="Chain Summary">
 <property name="Number of device" value="1"/>
 <property name="Number of Xilinx device" value="1"/>
@@ -30,9 +30,9 @@ This means code written to parse this file will need to be revisited each subseq
 "/>
 </item>
 <item name="Cable Summary">
-<property name="Cable Type" value="Platform Cable USB"/>
-<property name="Cable Speed" value="6 MHz"/>
-<property name="Port" value="usb-hs"/>
+<property name="Cable Type" value=""/>
+<property name="Cable Speed" value="0"/>
+<property name="Port" value="NULL"/>
 <property name="Local_Server_Mode" value="Local"/>
 </item>
 </section>

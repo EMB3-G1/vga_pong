@@ -21,6 +21,7 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
+
 entity sliding_average is 
 	port (	
 		filter_clk			: in	std_logic;
@@ -37,7 +38,7 @@ architecture Behavioral of sliding_average is
 	----------------------------------------------------------------
 	-- constant declarations
 	----------------------------------------------------------------
-		constant C_DATA_CNT 	: integer := 11;
+		constant C_DATA_CNT 	: integer := 21;
 	----------------------------------------------------------------
 	
 	----------------------------------------------------------------
@@ -96,25 +97,43 @@ begin
 	----------------------------------------------------------------
 	
 	----------------------------------------------------------------
-	-- Sliding Average logic
+	-- Sliding Average logic 
 	----------------------------------------------------------------
 		process(filter_clk)
-			variable sum	: unsigned(13 downto 0) := (others => '0');
+			--variable sum	: unsigned(13 downto 0) := (others => '0');
+			variable counter_black : integer range 0 to C_DATA_CNT+1:=C_DATA_CNT;
+			variable counter_white : integer range 0 to C_DATA_CNT+1:=0;
+
 		begin
 			if rising_edge(filter_clk) then
 				if(filter_reset = '1') then
 					sum_sig <= (others => '0');
 				else
+					
 					slav_delay(0) <= unsigned(adc_i);
 					
-					sum := resize(slav_delay(0),14)+sum_sig-resize(slav_delay(C_DATA_CNT-1),14);
+					if(slav_delay(0)>128) then
+						counter_white:=counter_white+1;
+					else 
+						counter_black:= counter_black+1;
+					end if;
+					
+					if(slav_delay(C_DATA_CNT-1)>128) then
+						counter_white:=counter_white-1;
+					else 
+						counter_black:= counter_black-1;
+					end if;
 					
 					for i in 1 to C_DATA_CNT-1 loop				
 						slav_delay(i) <= slav_delay(i-1);
 					end loop;
-					sum_sig <= sum;
-															
-					dac_o <= std_logic_vector(resize(division_quotient, 10));
+					
+					if (counter_white>(C_DATA_CNT+1)/2 or counter_white=(C_DATA_CNT+1)/2) then
+						dac_o <= "1111111111";
+					else
+						dac_o <= "0000000000";
+					end if;									
+
 				end if;
 			end if;
 		end process;
@@ -123,4 +142,3 @@ begin
 	----------------------------------------------------------------
 
 end Behavioral;
-

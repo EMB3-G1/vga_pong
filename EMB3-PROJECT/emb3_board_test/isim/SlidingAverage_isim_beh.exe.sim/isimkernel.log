@@ -1,0 +1,28 @@
+Command line:
+   SlidingAverage_isim_beh.exe
+     -simmode  gui
+     -simrunnum  0
+     -socket  42591
+
+Thu Apr 23 17:15:23 2015
+
+
+ Elaboration Time: 0.06 sec
+
+ Current Memory Usage: 232.763 Meg
+
+ Total Signals          : 2965
+ Total Nets             : 1235
+ Total Signal Drivers   : 1027
+ Total Blocks           : 629
+ Total Primitive Blocks : 626
+ Total Processes        : 1023
+ Total Traceable Variables  : 614
+ Total Scalar Nets and Variables : 7270
+
+ Total Simulation Time: 25.16 sec
+
+ Current Memory Usage: 308.265 Meg
+
+Thu Apr 23 17:16:57 2015
+
