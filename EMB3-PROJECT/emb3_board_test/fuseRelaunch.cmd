@@ -1,1 +1,1 @@
--intstyle "ise" -incremental -lib "secureip" -o "/home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/SlidingAverage_isim_beh.exe" -prj "/home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/SlidingAverage_beh.prj" "work.SlidingAverage" 
+-intstyle "ise" -incremental -lib "secureip" -o "/home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/interpreter_tb_isim_beh.exe" -prj "/home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/interpreter_tb_beh.prj" "work.interpreter_tb" 

@@ -20,8 +20,7 @@
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
---use ieee.std_logic_arith.all;
---use work.common.all;
+use work.common.all;
  
 
 Library UNISIM;
@@ -31,6 +30,9 @@ library utility_v01_00_a;
 use utility_v01_00_a.log_pkg.all;
 
 entity top is
+	generic(
+		COL_DATA_WIDTH : integer := 10
+	);
    port ( 
 		-- onboard clock input
 		clk_200M_i 				: in  	std_logic;
@@ -113,49 +115,36 @@ architecture Behavioral of top is
 	signal g_vga_gen	: std_logic_vector(2 downto 0);
 	signal b_vga_gen  : std_logic_vector(2 downto 0);
 	
+	-- Signals to connect the filter module to the VGA-output
+	signal red_filtered : std_logic_vector(9 downto 0);
+	signal green_filtered : std_logic_vector(9 downto 0);
+	signal blue_filtered : std_logic_vector(9 downto 0);
+	
+	-- Interpreter-Microblaze-Color_adder connections
+	signal bat_l_pos : std_logic_vector(9 downto 0);
+	signal bat_r_pos : std_logic_vector (9 downto 0);
+	signal ball_X_pos : std_logic_vector(9 downto 0);
+	signal ball_Y_pos : std_logic_vector(9 downto 0);
+	signal usr_buttons : std_logic_vector (1 downto 0);
+	signal ai_enable : std_logic_vector (3 downto 0);
+	
+	-- Color_adder signals
+	signal H_counter : std_logic_vector(9 downto 0);
+	signal V_counter : std_logic_vector(9 downto 0);
+	signal rgb_o_colAdder : std_logic_vector(8 downto 0);
 	
 	-- function definition (one way to implement combinatorial logic... allowing great code-reuse!!!)
 	function one_hot_sum(data : std_logic_vector) return std_logic_vector is
 		variable sum : unsigned(log2i(data'length)-1 downto 0);
 	begin		
 		sum := (others=>'0');
-		
 		for i in 0 to data'length-1 loop
 			if data(i)='1' then
 				sum := sum + 1;
 			end if;
 		end loop;
-		
 		return std_logic_vector(sum);
 	end one_hot_sum;
-	
-	COMPONENT sliding_average is
-	port (	
-		filter_clk 			: in	std_logic;
-		filter_reset		: in	std_logic;
-		adc_i					: in	std_logic_vector(9 downto 0);
-		dac_o					: out	std_logic_vector(9 downto 0);
-		adc_clk_o			: out	std_logic;
-		dac_clk_o			: out	std_logic		
-		);
-	END COMPONENT;
-	
-	-- component declaration (library style, inside module)
-	component ps2_wrapper is
-		port ( 
-			clk_100M_i 	: in  	std_logic;
-			ps2_clk_io	: inout  std_logic;
-			ps2_data_io	: inout  std_logic;
-			up_o 			: out 	std_logic;
-			stop_o		: out 	std_logic;
-			down_o		: out 	std_logic
-		);
-	end component;
-	
-	-- Signals to connect the filter modules to the VGA-output
-	signal red_filtered : std_logic_vector(9 downto 0);
-	signal green_filtered : std_logic_vector(9 downto 0);
-	signal blue_filtered : std_logic_vector(9 downto 0);
 	
 	COMPONENT preprocessor
 	PORT(
@@ -173,42 +162,53 @@ architecture Behavioral of top is
 	);
 	END COMPONENT;
 	
-
+	COMPONENT median_filter 
+	port(
+		clk_100M_i : in std_logic;
+		rst_i	: in std_logic;
+		red_i	: in std_logic_vector (COL_DATA_WIDTH-1 downto 0);
+		green_i	: in std_logic_vector (COL_DATA_WIDTH-1 downto 0);
+		blue_i	: in std_logic_vector (COL_DATA_WIDTH-1 downto 0);
+		red_o	: out std_logic_vector (COL_DATA_WIDTH-1 downto 0);
+		blue_o: out std_logic_vector (COL_DATA_WIDTH-1 downto 0);
+		green_o: out std_logic_vector (COL_DATA_WIDTH-1 downto 0)
+	);
+	END COMPONENT;
+	
+	COMPONENT interpreter
+	port (
+		clk_i 	: in std_logic;
+		rst_i 	: in std_logic;
+		h_sync_i : in std_logic;
+		v_sync_i : in std_logic;
+		rgb_i 	: in std_logic_vector(8 downto 0);
+		bat_r_o 	: out std_logic_vector(9 downto 0);
+		bat_l_o 	: out std_logic_vector(9 downto 0);
+		ball_x_o : out std_logic_vector(9 downto 0);
+		ball_y_o : out std_logic_vector(9 downto 0);
+		ball_speed_o : out std_logic_vector(9 downto 0)
+	);
+	END COMPONENT;
+	
+	COMPONENT color_adder
+	port (
+		clk_i 	: in std_logic;
+		rst_i 	: in std_logic;
+		ball_x_i : in std_logic_vector(9 downto 0);
+		ball_y_i : in std_logic_vector(9 downto 0);
+		col_counter : in std_logic_vector(9 downto 0);
+		row_counter : in std_logic_vector(9 downto 0);
+		bat_r_i 	: in std_logic_vector(9 downto 0);
+		bat_l_i 	: in std_logic_vector(9 downto 0);
+		
+		rgb_output : out std_logic_vector (8 downto 0)
+	);
+	END COMPONENT;
+	
 begin
 
-	-- RED FILTER
-	filter_inst_red: sliding_average
-	port map (
-		filter_clk 			=> clk_100M7,
-		filter_reset		=> NOT resetn,
-		adc_i					=> fx2_vga_red_i,		
-		dac_o					=> red_filtered,
-		adc_clk_o			=> open,				
-		dac_clk_o			=> open
-	);
-	
-	-- GREEN FILTER
-	filter_inst_green: sliding_average
-	port map (
-		filter_clk 			=> clk_100M7,
-		filter_reset		=> NOT resetn,
-		adc_i					=> fx2_vga_green_i,	
-		dac_o					=> green_filtered,
-		adc_clk_o			=> open,
-		dac_clk_o			=> open
-	);
-	
-	-- BLUE FILTER
-	filter_inst_blue: sliding_average
-	port map (
-		filter_clk 			=> clk_100M7,
-		filter_reset		=> NOT resetn,
-		adc_i					=> fx2_vga_blue_i,	
-		dac_o					=> blue_filtered,
-		adc_clk_o			=> open,
-		dac_clk_o			=> open
-	);
-	
+	-------COMPONENTS INSTANTIATION-------
+		
 	-- preprocessor
 	preprocessor_inst : preprocessor
 	port map (
@@ -224,8 +224,69 @@ begin
 		h_sync_o => h_sync_pre_o,
 		v_sync_o => v_sync_pre_o
 	);
-	-- end preprocessor
-		
+	
+	-- Filters
+	filter_inst : median_filter
+	port map(
+		clk_100M_i 	=>	clk_100M7,
+		rst_i			=> resetn,
+		red_i			=> fx2_vga_red_i,
+		green_i		=> fx2_vga_green_i,
+		blue_i		=> fx2_vga_blue_i, 
+		red_o			=> red_filtered,
+		blue_o		=> blue_filtered,
+		green_o		=> green_filtered
+	);
+	
+	-- Postprocessor
+	interpreter_inst : interpreter
+	port map(
+		clk_i 	=>	clk25M,
+		rst_i 	=>	resetn,
+		h_sync_i =>	h_sync_pre_o,
+		v_sync_i =>	v_sync_pre_o,
+		rgb_i 	=>	red_filtered(9 downto 7) & green_filtered(9 downto 7) & blue_filtered(9 downto 7),
+		bat_r_o 	=> bat_r_pos,
+		bat_l_o 	=> bat_l_pos,
+		ball_x_o => ball_X_pos, 
+		ball_y_o => ball_Y_pos,
+		ball_speed_o => open
+	); 
+
+	color_adder_inst : color_adder
+	port map(
+		clk_i 	=> clk25M,
+		rst_i 	=>	resetn,
+		ball_x_i => ball_X_pos,
+		ball_y_i =>	ball_Y_pos,
+		col_counter => H_counter,
+		row_counter => V_counter,
+		bat_r_i 	=> bat_r_pos,
+		bat_l_i 	=> bat_l_pos,
+		rgb_output => rgb_o_colAdder
+	);
+	
+	fx2_vga_red_clk_o		<= vga_sample_r_pseudo_clk;	-- RED color channel ADC "clock" output (a real clock i not used because the FPGA pin used is not a clock pin!)
+	fx2_vga_green_clk_o	<= vga_sample_g_pseudo_clk;	-- GREEN color channel ADC "clock" output (a real clock i not used because the FPGA pin used is not a clock pin!)
+	fx2_vga_blue_clk_o	<= vga_sample_b_pseudo_clk;	-- BLUE color channel ADC "clock" output (a real clock i not used because the FPGA pin used is not a clock pin!)
+	
+	-- VGA generator
+	vga_generator_inst : entity work.vga_generator
+	generic map(
+		G_COLOR_WIDTH  => 3,
+		G_CLK_DIV		=> 4		-- input clock is 100.7 MHz (4x faster than the desired pixel clock)
+	)
+	port map( 
+		clk_i	=> clk_100M7,
+		r_o   => r_vga_gen,
+		g_o   => g_vga_gen,
+		b_o   => b_vga_gen,
+		hs_o  => hs_vga_gen,
+		vs_o  => vs_vga_gen
+	);	
+	
+	-------COMPONENTS INSTANTIATION END-------
+	
 	-- Clock generator to condition the 200MHz clock from the onboard oscillator.
 	-- In this case it is configured to generate two 100.7MHz clocks!
 		DCM_CLKGEN_inst : DCM_CLKGEN 
@@ -355,20 +416,9 @@ begin
 --					clk_100M7_ce_cnt_reg <= clk_100M7_ce_cnt_reg+1;					
 --				end if;
 --			end if;
---		end process;			
+--		end process;
 
-
-	-- UART
-	
-		-- ft232h_acbus7_i needs to be a high-impedance input => external pull-up powered by USB-power will pull this pin high when a the FT232H chip is connected to a PC
-		-- ft232h_rst_o is an active low reset, with external pull-up connected to VCC = 3.3V, piping the logic value of ft232h_acbus7_i to ft232h_rst_o will reset the FT232IC when it is not connected to a PC!
-		ft232h_rst_o <= ft232h_acbus7_i;	
-	
-		-- simple loop-through UART test logic
-		ft232h_rs232_tx_o <= ft232h_rs232_rx_i;
-		
-			
-	-- clocked LED register process
+		-- clocked LED register process
 		process(clk_100M7)
 		begin
 			if rising_edge(clk_100M7) then					
@@ -399,37 +449,16 @@ begin
 			end if;
 		end process;
 
-		
-	-- component instantiation (library style)
-		ps2_wrapper_inst0 : ps2_wrapper
-		port map( 
-			clk_100M_i	=> clk_100M7,
-			ps2_clk_io	=> j7_ps2_clk_io,
-			ps2_data_io	=> j7_ps2_data_io,
-			up_o 			=> up,
-			stop_o		=> stop,
-			down_o		=> down
-		);	
+
+	-- UART
 	
-	
-	-- VGA output MUX (passthrough OR vga_generator) process	
-		fx2_vga_red_clk_o		<= vga_sample_r_pseudo_clk;	-- RED color channel ADC "clock" output (a real clock i not used because the FPGA pin used is not a clock pin!)
-		fx2_vga_green_clk_o	<= vga_sample_g_pseudo_clk;	-- GREEN color channel ADC "clock" output (a real clock i not used because the FPGA pin used is not a clock pin!)
-		fx2_vga_blue_clk_o	<= vga_sample_b_pseudo_clk;	-- BLUE color channel ADC "clock" output (a real clock i not used because the FPGA pin used is not a clock pin!)
+		-- ft232h_acbus7_i needs to be a high-impedance input => external pull-up powered by USB-power will pull this pin high when a the FT232H chip is connected to a PC
+		-- ft232h_rst_o is an active low reset, with external pull-up connected to VCC = 3.3V, piping the logic value of ft232h_acbus7_i to ft232h_rst_o will reset the FT232IC when it is not connected to a PC!
+		ft232h_rst_o <= ft232h_acbus7_i;
+			
+		-- simple loop-through UART test logic
+		ft232h_rs232_tx_o <= ft232h_rs232_rx_i;
 		
-		vga_generator_inst : entity work.vga_generator
-			generic map(
-				G_COLOR_WIDTH  => 3,
-				G_CLK_DIV		=> 4		-- input clock is 100.7 MHz (4x faster than the desired pixel clock)
-			)
-			port map( 
-				clk_i	=> clk_100M7,
-				r_o   => r_vga_gen,
-				g_o   => g_vga_gen,
-				b_o   => b_vga_gen,
-				hs_o  => hs_vga_gen,
-				vs_o  => vs_vga_gen
-			);		
 		
 		process(clk_100M7)
 		begin
@@ -441,28 +470,21 @@ begin
 					j8_vga_green_o	<= (others=>'0');
 					j8_vga_blue_o	<= (others=>'0');
 				else
-					
-					hsync_sreg <= hsync_sreg(hsync_sreg'left-1 downto 0) & fx2_vga_hsync_i;
-					vsync_sreg <= vsync_sreg(vsync_sreg'left-1 downto 0) & fx2_vga_vsync_i;
 
+					-- Multiplexer (passthrough OR vga_generator) process	
 					if j7_dip_sw_i(7) = '0' then
-						--j8_vga_hsync_o <= h_sync_pre_o;
-						--j8_vga_vsync_o <= v_sync_pre_o;
-						j8_vga_hsync_o <= hsync_sreg(hsync_sreg'left);
-						j8_vga_vsync_o <= vsync_sreg(vsync_sreg'left); 
-						--j8_vga_red_o	<= red_filtered(9 downto 7);		
-						--j8_vga_green_o	<= green_filtered(9 downto 7);
+						j8_vga_hsync_o <= h_sync_pre_o;
+						j8_vga_vsync_o <= v_sync_pre_o;
 						j8_vga_blue_o	<= blue_filtered(9 downto 7);
-						--blue_filtered(9 downto 7);
 						j8_vga_red_o <= red_filtered(9 downto 7);
 						j8_vga_green_o <= green_filtered(9 downto 7);
-						--green_filtered(9 downto 7);
+						
 					else
 						j8_vga_hsync_o <= hs_vga_gen;
 						j8_vga_vsync_o <= vs_vga_gen;
 						j8_vga_red_o	<= r_vga_gen;
 						j8_vga_green_o	<= g_vga_gen;
-						j8_vga_blue_o	<= b_vga_gen;						
+						j8_vga_blue_o	<= b_vga_gen;					
 					end if;
 					
 				end if;

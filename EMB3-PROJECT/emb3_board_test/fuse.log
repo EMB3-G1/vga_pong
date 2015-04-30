@@ -1,40 +1,33 @@
-Running: /opt/Xilinx/14.7/ISE_DS/ISE/bin/lin64/unwrapped/fuse -intstyle ise -incremental -lib secureip -o /home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/SlidingAverage_isim_beh.exe -prj /home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/SlidingAverage_beh.prj work.SlidingAverage 
+Running: /opt/Xilinx/14.7/ISE_DS/ISE/bin/lin64/unwrapped/fuse -intstyle ise -incremental -lib secureip -o /home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/interpreter_tb_isim_beh.exe -prj /home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/interpreter_tb_beh.prj work.interpreter_tb 
 ISim P.20131013 (signature 0xfbc00daa)
 Number of CPUs detected in this system: 4
 Turning on mult-threading, number of parallel sub-compilation jobs: 8 
 Determining compilation order of HDL files
-Parsing VHDL file "/home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/ipcore_dir/divider.vhd" into library work
-Parsing VHDL file "/home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/sliding_average.vhd" into library work
-Parsing VHDL file "/home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/SlidingAverage.vhd" into library work
+Parsing VHDL file "/home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/common.vhd" into library work
+Parsing VHDL file "/home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/pixel_ptr.vhd" into library work
+Parsing VHDL file "/home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/ot.vhd" into library work
+Parsing VHDL file "/home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/bs.vhd" into library work
+Parsing VHDL file "/home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/interpreter.vhd" into library work
+Parsing VHDL file "/home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/interpreter_tb.vhd" into library work
+WARNING:HDLCompiler:946 - "/home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/interpreter_tb.vhd" Line 158: Actual for formal port rgb_i is neither a static name nor a globally static expression
 Starting static elaboration
 Completed static elaboration
-Fuse Memory Usage: 117716 KB
-Fuse CPU Usage: 1880 ms
+Fuse Memory Usage: 97248 KB
+Fuse CPU Usage: 2590 ms
 Compiling package standard
 Compiling package std_logic_1164
 Compiling package numeric_std
-Compiling package vcomponents
-Compiling package textio
-Compiling package vital_timing
-Compiling package vital_primitives
-Compiling package vpkg
-Compiling architecture vcc_v of entity VCC [vcc_default]
-Compiling architecture gnd_v of entity GND [gnd_default]
-Compiling architecture inv_v of entity INV [inv_default]
-Compiling architecture lut3_v of entity LUT3 [\LUT3("01101010")(0,7)\]
-Compiling architecture lut2_v of entity LUT2 [\LUT2("1001")(0,3)\]
-Compiling architecture lut1_v of entity LUT1 [\LUT1("0001")(0,3)\]
-Compiling architecture fd_v of entity FD [\FD('0')\]
-Compiling architecture mult_and_v of entity MULT_AND [mult_and_default]
-Compiling architecture muxcy_v of entity MUXCY [muxcy_default]
-Compiling architecture xorcy_v of entity XORCY [xorcy_default]
-Compiling architecture structure of entity divider [divider_default]
-Compiling architecture behavioral of entity sliding_average [sliding_average_default]
-Compiling architecture behavior of entity slidingaverage
+Compiling package math_real
+Compiling package common
+Compiling architecture behavioral of entity pixel_ptr [pixel_ptr_default]
+Compiling architecture behavioral of entity ot [ot_default]
+Compiling architecture behavioral of entity bs [bs_default]
+Compiling architecture behavioral of entity interpreter [interpreter_default]
+Compiling architecture behavior of entity interpreter_tb
 Time Resolution for simulation is 1ps.
-Waiting for 8 sub-compilation(s) to finish...
-Compiled 37 VHDL Units
-Built simulation executable /home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/SlidingAverage_isim_beh.exe
-Fuse Memory Usage: 704148 KB
-Fuse CPU Usage: 2330 ms
-GCC CPU Usage: 2320 ms
+Waiting for 1 sub-compilation(s) to finish...
+Compiled 14 VHDL Units
+Built simulation executable /home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/interpreter_tb_isim_beh.exe
+Fuse Memory Usage: 673272 KB
+Fuse CPU Usage: 2860 ms
+GCC CPU Usage: 1140 ms

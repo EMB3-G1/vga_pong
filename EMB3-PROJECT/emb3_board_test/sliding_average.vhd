@@ -38,7 +38,7 @@ architecture Behavioral of sliding_average is
 	----------------------------------------------------------------
 	-- constant declarations: length of the mask
 	----------------------------------------------------------------
-		constant C_DATA_CNT 	: integer := 21;
+		constant C_DATA_CNT 	: integer := 31;
 	----------------------------------------------------------------
 	
 	----------------------------------------------------------------
@@ -50,7 +50,7 @@ architecture Behavioral of sliding_average is
 	----------------------------------------------------------------
 	-- signal declarations
 	----------------------------------------------------------------
-		signal slav_delay					: slav_array_type(0 to C_DATA_CNT-1) := (others=>(others=>'0'));
+		signal slav_delay: slav_array_type(0 to C_DATA_CNT-1) := (others=>(others=>'0'));
 		
 begin
 	

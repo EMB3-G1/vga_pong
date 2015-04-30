@@ -23,23 +23,28 @@ use ieee.numeric_std.all;
 
 entity detector is
 	generic(
-		G_COLOR_WIDTH  : integer := 10
+		G_COLOR_WIDTH  : integer := 3
 		--G_PXL_CLK_PRD	: time := 39721946 fs
 	);
 	port ( 
 
-		clk_i : in std_logic;
+		clk_i	: in std_logic;		--25MHz
 
 		r_i  : in std_logic_vector (G_COLOR_WIDTH-1 downto 0);
 		g_i  : in std_logic_vector (G_COLOR_WIDTH-1 downto 0);
 		b_i  : in std_logic_vector (G_COLOR_WIDTH-1 downto 0);
 		hs_i : in std_logic;
-		vs_i : in std_logic
+		vs_i : in std_logic;
 		
-		--left_bar_Y : out std_logic_vector (9 downto 0);
-		--right_bar_Y : out std_logic_vector (9 downto 0);
-		--ballX : out std_logic_vector (9 downto 0);
-		--ballY : out std_logic_vector (9 downto 0)
+		--left_bar_Y_o : out std_logic_vector (9 downto 0);
+		--right_bar_Y_o : out std_logic_vector (9 downto 0);
+		--ball_X_o : out std_logic_vector (9 downto 0);
+		--ball_Y_o : out std_logic_vector (9 downto 0);
+
+		r_o   : out std_logic_vector (G_COLOR_WIDTH-1 downto 0);
+		g_o   : out std_logic_vector (G_COLOR_WIDTH-1 downto 0);
+		b_o   : out std_logic_vector (G_COLOR_WIDTH-1 downto 0)
+		
 	);
 end detector;
 
@@ -51,10 +56,12 @@ architecture Behavioral of detector is
 
 	constant left_bar_X : integer := 20;
 	signal left_bar_Y : integer range 35 to 515 := 240;
+
 	constant right_bar_X : integer := 600;
 	signal right_bar_Y : integer range 35 to 515 := 240;
 
 	constant BAT_WIDHT : integer := 20;
+	constant BAT_LENGHT : integer := 100;
 
 
 	-- if we count pixels from the falling edge of the HS then there is 144 blank pixels before the first visible pixel
@@ -87,16 +94,22 @@ architecture Behavioral of detector is
 	signal line_cnt_reg : unsigned(9 downto 0) := (others=>'0');
 	signal line_cnt_nxt : unsigned(9 downto 0);
 	
-	signal right_not_yet : std_logic := '0';
-	signal left_not_yet : std_logic := '0';
-	signal ball_not_yet : std_logic := '0';
+	--signal right_not_yet : std_logic := '0';
+	--signal left_not_yet : std_logic := '0';
+	--signal ball_not_yet : std_logic := '0';
 
+	signal red : std_logic_vector (G_COLOR_WIDTH-1 downto 0);
+	signal green : std_logic_vector (G_COLOR_WIDTH-1 downto 0);
+	signal blue : std_logic_vector (G_COLOR_WIDTH-1 downto 0);
 
 begin
 
 	process(pxl_clk, hs_i, vs_i)
 		variable h_counter : integer range 0 to 784 := 0;
 		variable v_counter : integer range 0 to 784 := 0;
+		variable ball_not_yet : integer := 0;
+		variable left_not_yet : integer := 0;
+		variable right_not_yet : integer := 0;
 	begin	
 		if (hs_i'event and hs_i='1') then
 			h_counter:=h_counter+1;
@@ -104,31 +117,50 @@ begin
 		end if;
 
 		if (vs_i'event and vs_i='1') then
-			v_counter:= '0';
-			ball_not_yet := '0';
-			left_not_yet := '0';
-			right_not_yet := '0';
+			v_counter:= 0;
+			ball_not_yet := 0;
+			left_not_yet :=0;
+			right_not_yet := 0;
 		end if;
 
 		if (pxl_clk'event and pxl_clk='1') then
 			h_counter:=h_counter+1;
 
-			if(r_i='1' and g_i='1' and b_i='1') then
+			if(r_i="111" and g_i="111" and b_i="111") then
 				if(h_counter=left_bar_X+C_H_BP and left_not_yet='0') then
-					left_bar_Y <= v_counter;
+					--left_bar_Y_o <= v_counter;
 					left_not_yet := 1;
 
 				elsif (h_counter=right_bar_X+C_H_BP and right_not_yet='0') then
-					right_bar_Y=v_counter;
+					--right_bar_Y_o=v_counter;
 					right_not_yet := 1;
 					
 				elsif (h_counter>left_bar_X+BAT_WIDHT and h_counter<right_bar_X and ball_not_yet='0') then
-					ballX <= h_counter;
-					ballY <= v_counter;
+					--ball_X_o <= h_counter;
+					--ball_Y_o <= v_counter;
 					ball_not_yet := 1; 
 				end if;
 			end if;
 		end if;
 	end process;
+
+	if(ball_not_yet='0') then
+		r_o <= "000";
+	else
+		r_o<= r_i;
+	end if;
+
+	if(right_not_yet='0') then
+		b_o <= "000";
+	else
+		b_o<= b_i;
+	end if;
+
+	if(left_not_yet='0') then
+		g_o <= "000";
+	else
+		g_o<= g_i;
+	end if;
+
 
 end Behavioral;
