@@ -63,7 +63,7 @@ begin
 
 		begin
 			if rising_edge(filter_clk) then
-				if(filter_reset = '1') then
+				if(filter_reset = '0') then
 					counter_black :=C_DATA_CNT;
 					counter_white :=0;
 				else

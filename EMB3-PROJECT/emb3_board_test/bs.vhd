@@ -44,7 +44,7 @@ begin
 	process(clk_i,rst_i)
 	begin
 		if rising_edge(clk_i) then
-			if rst_i = '1' then
+			if rst_i = '0' then
 				prev_pos_x <= (others => '0');
 				prev_pos_y <= (others => '0');
 			else

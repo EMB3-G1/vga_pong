@@ -9,11 +9,11 @@ Parsing VHDL file "/home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/em
 Parsing VHDL file "/home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/bs.vhd" into library work
 Parsing VHDL file "/home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/interpreter.vhd" into library work
 Parsing VHDL file "/home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/interpreter_tb.vhd" into library work
-WARNING:HDLCompiler:946 - "/home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/interpreter_tb.vhd" Line 158: Actual for formal port rgb_i is neither a static name nor a globally static expression
+WARNING:HDLCompiler:946 - "/home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/interpreter_tb.vhd" Line 157: Actual for formal port rgb_i is neither a static name nor a globally static expression
 Starting static elaboration
 Completed static elaboration
 Fuse Memory Usage: 97248 KB
-Fuse CPU Usage: 2590 ms
+Fuse CPU Usage: 1450 ms
 Compiling package standard
 Compiling package std_logic_1164
 Compiling package numeric_std
@@ -28,6 +28,6 @@ Time Resolution for simulation is 1ps.
 Waiting for 1 sub-compilation(s) to finish...
 Compiled 14 VHDL Units
 Built simulation executable /home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/interpreter_tb_isim_beh.exe
-Fuse Memory Usage: 673272 KB
-Fuse CPU Usage: 2860 ms
-GCC CPU Usage: 1140 ms
+Fuse Memory Usage: 673268 KB
+Fuse CPU Usage: 1660 ms
+GCC CPU Usage: 1080 ms

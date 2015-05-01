@@ -10,7 +10,4 @@ Simulator is doing circuit initialization process.
 at 0 ps, Instance /interpreter_tb/uut/ : Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
 at 0 ps, Instance /interpreter_tb/uut/object_tracker_instance/ : Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
 Finished circuit initialization process.
-# run 17ms
-# run all
-Stopped at time : 32397540 ns : File "/home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/pixel_ptr.vhd" Line 156
 # exit 0

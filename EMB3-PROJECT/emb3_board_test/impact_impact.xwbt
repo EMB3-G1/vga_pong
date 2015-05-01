@@ -1,8 +1,8 @@
 INTSTYLE=impact
-INFILE=/home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/impact.xsl
-OUTFILE=/home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/impact.xsl
+INFILE=/home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/impact.xsl
+OUTFILE=/home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/impact.xsl
 FAMILY=Single
 PART=Single
-WORKINGDIR=/home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test
+WORKINGDIR=/home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test
 LICENSE=iMPACT
 USER_INFO=iMPACT

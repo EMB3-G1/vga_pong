@@ -58,7 +58,7 @@ LAB2:    xsi_set_current_line(81, ng0);
     t3 = (t0 + 1192U);
     t4 = *((char **)t3);
     t5 = *((unsigned char *)t4);
-    t6 = (t5 == (unsigned char)3);
+    t6 = (t5 == (unsigned char)2);
     if (t6 != 0)
         goto LAB5;
 

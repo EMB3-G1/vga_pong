@@ -51,6 +51,10 @@ ARCHITECTURE behavior OF interpreter_tb IS
          h_sync_i : IN  std_logic;
          v_sync_i : IN  std_logic;
          rgb_i : IN  std_logic_vector(8 downto 0);
+			
+			col_counter : out std_logic_vector(9 downto 0);
+			row_counter : out std_logic_vector(9 downto 0);
+		
          bat_r_o : OUT  std_logic_vector(9 downto 0);
          bat_l_o : OUT  std_logic_vector(9 downto 0);
          ball_x_o : OUT  std_logic_vector(9 downto 0);
@@ -62,7 +66,7 @@ ARCHITECTURE behavior OF interpreter_tb IS
 
    --Inputs
    signal clk_i : std_logic := '0';
-   signal rst_i : std_logic := '0';
+   signal rst_i : std_logic := '1';
    signal h_sync_i : std_logic := '0';
    signal v_sync_i : std_logic := '0';
    signal rgb_i : std_logic_vector(8 downto 0) := (others => '0');
@@ -102,6 +106,8 @@ ARCHITECTURE behavior OF interpreter_tb IS
 	
 	signal pixel_cnt_reg : unsigned(9 downto 0) := (others=>'0');
 	signal pixel_cnt_nxt : unsigned(9 downto 0);
+	signal line_cnt_reg : unsigned(9 downto 0) := (others=>'0');
+	signal line_cnt_nxt : unsigned(9 downto 0);
 
 	-- Left bat: 20x100 pixels, centered in the left visible part of the screen at x=20
 	--
@@ -134,7 +140,10 @@ ARCHITECTURE behavior OF interpreter_tb IS
 	constant C_RBAT_X1 : integer := 600;
 	constant C_RBAT_X2 : integer := 619;
 	constant C_RBAT_Y1 : integer := 189;
-	constant C_RBAT_Y2 : integer := 288;	
+	constant C_RBAT_Y2 : integer := 288;
+
+	signal col_counter1 : std_logic_vector(9 downto 0);
+	signal row_counter1 : std_logic_vector(9 downto 0);		
 	
  
 BEGIN
@@ -146,6 +155,10 @@ BEGIN
           h_sync_i => h_sync_i,
           v_sync_i => v_sync_i,
           rgb_i => r(9 downto 7) & g(9 downto 7) & b(9 downto 7),
+			 
+			 col_counter => col_counter1,
+			 row_counter => row_counter1,
+		
           bat_r_o => bat_r_o,
           bat_l_o => bat_l_o,
           ball_x_o => ball_x_o,

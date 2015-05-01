@@ -91,7 +91,7 @@ architecture Behavioral of top is
 	signal vga_sample_g_pseudo_clk : std_logic; -- signal with a clock like waveform for the ADC's @ 100.7 Mhz	(4x oversampling)
 	signal vga_sample_b_pseudo_clk : std_logic; -- signal with a clock like waveform for the ADC's @ 100.7 Mhz	(4x oversampling)
 	
-	signal resetn	   : std_logic; -- active low reset signal
+	signal resetn: std_logic := '1'; -- active low reset signal
 
 	signal up, down, stop : std_logic;
 	
@@ -205,40 +205,9 @@ architecture Behavioral of top is
 	);
 	END COMPONENT;
 	
-	component MicroBlaze is
-    port (
-      uart_0_sout_O : out std_logic;
-      uart_0_sin_I : in std_logic;
-      reset_I : in std_logic;
-      dip_switches_4bits_I : in std_logic_vector(3 downto 0);
-      clk_I : in std_logic;
-      axi_gpio_1_GPIO_IO_I_pin : in std_logic_vector(9 downto 0);
-      axi_gpio_0_GPIO_IO_I_pin : in std_logic_vector(9 downto 0);
-      axi_gpio_2_GPIO_IO_I_pin : in std_logic_vector(9 downto 0);
-      axi_gpio_3_GPIO_IO_I_pin : in std_logic_vector(1 downto 0)
-    );
-  end component;
-
-  attribute BOX_TYPE : STRING;
-  attribute BOX_TYPE of MicroBlaze : component is "user_black_box";
-
-	
 begin
 
 	-------COMPONENTS INSTANTIATION-------
-	
-	MicroBlaze_i : MicroBlaze
-    port map (
-      uart_0_sout_O => ft232h_rs232_tx_o,
-      uart_0_sin_I => ft232h_rs232_rx_i,
-      reset_I => NOT resetn,
-      dip_switches_4bits_I => dip_sw_i,
-      clk_I => clk_200M_i,
-      axi_gpio_1_GPIO_IO_I_pin => ball_X_pos,
-      axi_gpio_0_GPIO_IO_I_pin => ball_Y_pos,
-      axi_gpio_2_GPIO_IO_I_pin => bat_l_pos,
-      axi_gpio_3_GPIO_IO_I_pin => j7_btn_i
-    );
 		
 	-- preprocessor
 	preprocessor_inst : preprocessor
@@ -274,9 +243,9 @@ begin
 	port map(
 		clk_i 	=>	clk25M,
 		rst_i 	=>	resetn,
-		h_sync_i =>	h_sync_pre_o,
-		v_sync_i =>	v_sync_pre_o,
-		rgb_i 	=>	red_filtered(9 downto 7) & green_filtered(9 downto 7) & blue_filtered(9 downto 7),
+		h_sync_i =>	hs_vga_gen,				--h_sync_pre_o,	+++for testing
+		v_sync_i =>	vs_vga_gen,				--v_sync_pre_o,
+		rgb_i 	=>	r_vga_gen & g_vga_gen & b_vga_gen,		--- For testing!!!
 		bat_r_o 	=> bat_r_pos,
 		bat_l_o 	=> bat_l_pos,
 		ball_x_o => ball_X_pos, 
@@ -371,12 +340,7 @@ begin
 			RST => 			'0'
 		);
 
-		-- 100.7MHz ADC sample clock generation
-		
-			--vga_sample_r_pseudo_clk <= clk_100M7;
-			--vga_sample_g_pseudo_clk <= clk_100M7;
-			--vga_sample_b_pseudo_clk <= clk_100M7;
-
+	
 			-- ODDR2: Output Double Data Rate Output Register with Set, Reset and Clock Enable. 
 			-- Spartan-6
 			-- Xilinx HDL Language Template, version 14.7
@@ -488,7 +452,7 @@ begin
 		ft232h_rst_o <= ft232h_acbus7_i;
 			
 		-- simple loop-through UART test logic
-		--ft232h_rs232_tx_o <= ft232h_rs232_rx_i;
+		ft232h_rs232_tx_o <= ft232h_rs232_rx_i;
 		
 		
 		process(clk_100M7)
@@ -503,12 +467,15 @@ begin
 				else
 
 					-- Multiplexer (passthrough OR vga_generator) process	
-					if j7_dip_sw_i(7) = '0' then
-						j8_vga_hsync_o <= h_sync_pre_o;
-						j8_vga_vsync_o <= v_sync_pre_o;
+					if j7_dip_sw_i(7) = '0' then		
+						j8_vga_hsync_o <= hs_vga_gen; 	--h_sync_pre_o;
+						j8_vga_vsync_o <= vs_vga_gen;		--v_sync_pre_o;
+						--j8_vga_red_o <= red_filtered(9 downto 7);
+						--j8_vga_blue_o	<= blue_filtered(9 downto 7);
+						--j8_vga_green_o <= green_filtered(9 downto 7);
 						j8_vga_red_o	<= rgb_o_colAdder(8 downto 6);
-						j8_vga_green_o <= rgb_o_colAdder(5 downto 3);
-						j8_vga_blue_o <= rgb_o_colAdder(2 downto 0);
+						j8_vga_green_o	<= rgb_o_colAdder(5 downto 3);
+						j8_vga_blue_o	<= rgb_o_colAdder(2 downto 0);
 						
 					else
 						j8_vga_hsync_o <= hs_vga_gen;

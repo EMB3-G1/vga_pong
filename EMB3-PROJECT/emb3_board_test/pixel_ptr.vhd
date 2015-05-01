@@ -78,7 +78,7 @@ begin
 	reg_proc : process(clk_i)
 	begin
 		if rising_edge(clk_i) then
-			if rst_i = '1' then
+			if rst_i = '0' then
 				cur_state <= WAIT_VSYNC;	
 				col_idx_reg <= (others => '0');
 				row_idx_reg <= (others => '0');

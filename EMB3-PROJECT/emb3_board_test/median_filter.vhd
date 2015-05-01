@@ -39,7 +39,7 @@ begin
 	filter_inst_red: sliding_average
 	port map (
 		filter_clk 			=> clk_100M_i,
-		filter_reset		=> NOT rst_i,
+		filter_reset		=> rst_i,
 		adc_i				=> red_i,		
 		dac_o				=> red_o,
 		adc_clk_o			=> open,				
@@ -50,7 +50,7 @@ begin
 	filter_inst_green: sliding_average
 	port map (
 		filter_clk 			=> clk_100M_i,
-		filter_reset		=> NOT rst_i,
+		filter_reset		=> rst_i,
 		adc_i				=> green_i,	
 		dac_o				=> green_o,
 		adc_clk_o			=> open,
@@ -61,7 +61,7 @@ begin
 	filter_inst_blue: sliding_average
 	port map (
 		filter_clk 			=> clk_100M_i,
-		filter_reset		=> NOT rst_i,
+		filter_reset		=> rst_i,
 		adc_i				=> blue_i,	
 		dac_o				=> blue_o,
 		adc_clk_o			=> open,

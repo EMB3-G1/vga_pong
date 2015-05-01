@@ -49,14 +49,8 @@ end ot;
 
 architecture Behavioral of ot is
 
-	signal clk 	:	std_logic;
-	signal rst 	:	std_logic;
 	signal is_white : std_logic := '0';
 
-	signal cnt_reg : unsigned(11 downto 0) := (others => '0');
-	signal cnt_nxt : unsigned(11 downto 0);
-	signal cnt_px_reg : unsigned(11 downto 0) := (others => '0');
-	signal cnt_px_nxt : unsigned(11 downto 0);
 	signal rgb_reg : std_logic_vector(3*COLOR_DATA_WIDTH-1 downto 0);
 	signal rgb_nxt : std_logic_vector(3*COLOR_DATA_WIDTH-1 downto 0);
 	
@@ -70,8 +64,6 @@ architecture Behavioral of ot is
 	signal state_nxt : TRACKER_STATE;
 
 begin
-	clk <= clk_i;
-	rst <= rst_i;
 	
 	track_reg : process(clk_i)
 	begin
