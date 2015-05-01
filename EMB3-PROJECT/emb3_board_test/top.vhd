@@ -205,9 +205,40 @@ architecture Behavioral of top is
 	);
 	END COMPONENT;
 	
+	component MicroBlaze is
+    port (
+      uart_0_sout_O : out std_logic;
+      uart_0_sin_I : in std_logic;
+      reset_I : in std_logic;
+      dip_switches_4bits_I : in std_logic_vector(3 downto 0);
+      clk_I : in std_logic;
+      axi_gpio_1_GPIO_IO_I_pin : in std_logic_vector(9 downto 0);
+      axi_gpio_0_GPIO_IO_I_pin : in std_logic_vector(9 downto 0);
+      axi_gpio_2_GPIO_IO_I_pin : in std_logic_vector(9 downto 0);
+      axi_gpio_3_GPIO_IO_I_pin : in std_logic_vector(1 downto 0)
+    );
+  end component;
+
+  attribute BOX_TYPE : STRING;
+  attribute BOX_TYPE of MicroBlaze : component is "user_black_box";
+
+	
 begin
 
 	-------COMPONENTS INSTANTIATION-------
+	
+	MicroBlaze_i : MicroBlaze
+    port map (
+      uart_0_sout_O => ft232h_rs232_tx_o,
+      uart_0_sin_I => ft232h_rs232_rx_i,
+      reset_I => NOT resetn,
+      dip_switches_4bits_I => dip_sw_i,
+      clk_I => clk_200M_i,
+      axi_gpio_1_GPIO_IO_I_pin => ball_X_pos,
+      axi_gpio_0_GPIO_IO_I_pin => ball_Y_pos,
+      axi_gpio_2_GPIO_IO_I_pin => bat_l_pos,
+      axi_gpio_3_GPIO_IO_I_pin => j7_btn_i
+    );
 		
 	-- preprocessor
 	preprocessor_inst : preprocessor
@@ -457,7 +488,7 @@ begin
 		ft232h_rst_o <= ft232h_acbus7_i;
 			
 		-- simple loop-through UART test logic
-		ft232h_rs232_tx_o <= ft232h_rs232_rx_i;
+		--ft232h_rs232_tx_o <= ft232h_rs232_rx_i;
 		
 		
 		process(clk_100M7)
@@ -475,9 +506,9 @@ begin
 					if j7_dip_sw_i(7) = '0' then
 						j8_vga_hsync_o <= h_sync_pre_o;
 						j8_vga_vsync_o <= v_sync_pre_o;
-						j8_vga_blue_o	<= blue_filtered(9 downto 7);
-						j8_vga_red_o <= red_filtered(9 downto 7);
-						j8_vga_green_o <= green_filtered(9 downto 7);
+						j8_vga_red_o	<= rgb_o_colAdder(8 downto 6);
+						j8_vga_green_o <= rgb_o_colAdder(5 downto 3);
+						j8_vga_blue_o <= rgb_o_colAdder(2 downto 0);
 						
 					else
 						j8_vga_hsync_o <= hs_vga_gen;
