@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <report-views version="2.0" >
  <header>
-  <DateModified>2015-04-30T11:17:41</DateModified>
+  <DateModified>2015-05-01T16:24:21</DateModified>
   <ModuleName>MicroBlaze</ModuleName>
-  <SummaryTimeStamp>2015-04-30T11:17:41</SummaryTimeStamp>
+  <SummaryTimeStamp>2015-05-01T16:24:21</SummaryTimeStamp>
   <SavedFilePath>/home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/MicroBlaze/__xps/ise/MicroBlaze.xreport</SavedFilePath>
   <FilterFile>filter.filter</FilterFile>
   <SavedFilterFilePath>/home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/MicroBlaze/__xps/ise</SavedFilterFilePath>

@@ -19,14 +19,14 @@ MicroBlaze_i : MicroBlaze
     port map (
       uart_0_sout_O => ft232h_rs232_tx_o,
       uart_0_sin_I => ft232h_rs232_rx_i,
-      reset_I => resetn,
-      dip_switches_4bits_I => ai_enable,
+      reset_I => NOT resetn, 
+      dip_switches_4bits_I => dip_sw_i,
       clk_I => clk_200M_i,
-      axi_gpio_1_GPIO_IO_I_pin => ball_X_pos,
       axi_gpio_0_GPIO_IO_I_pin => ball_Y_pos,
+      axi_gpio_1_GPIO_IO_I_pin => ball_X_pos,
       axi_gpio_2_GPIO_IO_I_pin => bat_l_pos,
-      axi_gpio_3_GPIO_IO_I_pin => usr_buttons
-    );
+      axi_gpio_3_GPIO_IO_I_pin => j7_btn_i
+   );
 
 
 *** Delete the closed-loop for the UART

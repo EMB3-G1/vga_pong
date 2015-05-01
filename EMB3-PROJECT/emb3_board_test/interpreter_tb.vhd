@@ -91,7 +91,8 @@ ARCHITECTURE behavior OF interpreter_tb IS
 	
 	
 	--
-	-- if we count lines from the falling edge of the VS then there is 35 blank lines before the first visible line.	
+	-- if we count lines from the falling edge of the VS then there is 35 blank lines before the first visible line.
+	
 	signal C_V_FP : integer := 10;
 	signal C_V_SP : integer := 2;
 	signal C_V_BP : integer := 33;

@@ -85,6 +85,7 @@ netlistclean:
 	rm -f $(WRAPPER_NGC_FILES)
 	rm -f platgen.log
 	rm -f __xps/ise/_xmsgs/platgen.xmsgs
+	touch __xps/ise/$(SYSTEM).xpssyn
 	rm -f $(BMM_FILE)
 	rm -rf implementation/cache
 
@@ -100,6 +101,7 @@ simclean:
 	rm -rf simulation/behavioral
 	rm -f simgen.log
 	rm -f __xps/ise/_xmsgs/simgen.xmsgs
+	touch __xps/ise/$(SYSTEM).xpssim
 
 #################################################################
 # BOOTLOOP ELF FILES
@@ -127,22 +129,8 @@ $(POSTSYN_NETLIST): $(WRAPPER_NGC_FILES)
 	@echo "Running synthesis..."
 	bash -c "cd synthesis; ./synthesis.sh"
 
-__xps/$(SYSTEM)_routed: $(FPGA_IMP_DEPENDENCY)
-	@echo "*********************************************"
-	@echo "Running Xilinx Implementation tools.."
-	@echo "*********************************************"
-	@cp -f $(UCF_FILE) implementation/$(SYSTEM).ucf
-	@cp -f etc/fast_runtime.opt implementation/xflow.opt
-	xflow -wd implementation -p $(DEVICE) -implement xflow.opt $(SYSTEM).ngc
-	touch __xps/$(SYSTEM)_routed
-
-$(SYSTEM_BIT): __xps/$(SYSTEM)_routed $(BITGEN_UT_FILE)
-	xilperl $(XILINX_EDK_DIR)/data/fpga_impl/observe_par.pl $(OBSERVE_PAR_OPTIONS) implementation/$(SYSTEM).par
-	@echo "*********************************************"
-	@echo "Running Bitgen.."
-	@echo "*********************************************"
-	@cp -f $(BITGEN_UT_FILE) implementation/bitgen.ut
-	cd implementation ; bitgen -w -f bitgen.ut $(SYSTEM) ; cd ..
+$(SYSTEM_BIT): 
+	@echo "This project has been instantiated in Xilinx ISE Project Navigator. Please use ProjNav to generate the bitstream. "
 
 $(DOWNLOAD_BIT): $(SYSTEM_BIT) $(BRAMINIT_ELF_IMP_FILES) __xps/bitinit.opt
 	@cp -f implementation/$(SYSTEM)_bd.bmm .
@@ -167,14 +155,6 @@ $(SYSTEM_HW_HANDOFF): $(MHSFILE) __xps/platgen.opt
 	psf2Edward -inp $(SYSTEM).xmp -exit_on_error -dont_add_loginfo -make_inst_lower -edwver 1.2 -xml $(SDK_EXPORT_DIR)/$(SYSTEM).xml $(GLOBAL_SEARCHPATHOPT)
 	xdsgen -inp $(SYSTEM).xmp -report $(SDK_EXPORT_DIR)/$(SYSTEM).html $(GLOBAL_SEARCHPATHOPT) -make_docs_local
 
-$(SYSTEM_HW_HANDOFF_BIT): $(SYSTEM_BIT)
-	@rm -rf $(SYSTEM_HW_HANDOFF_BIT)
-	@cp -f $(SYSTEM_BIT) $(SDK_EXPORT_DIR)
-
-$(SYSTEM_HW_HANDOFF_BMM): implementation/$(SYSTEM)_bd.bmm
-	@rm -rf $(SYSTEM_HW_HANDOFF_BMM)
-	@cp -f implementation/$(SYSTEM)_bd.bmm $(SDK_EXPORT_DIR)
-
 #################################################################
 # SIMULATION FLOW
 #################################################################
@@ -191,24 +171,14 @@ $(BEHAVIORAL_SIM_SCRIPT): $(MHSFILE) __xps/simgen.opt \
 
 ################## STRUCTURAL SIMULATION ##################
 
-$(STRUCTURAL_SIM_SCRIPT): $(WRAPPER_NGC_FILES) __xps/simgen.opt \
-                          $(BRAMINIT_ELF_SIM_FILES)
-	@echo "*********************************************"
-	@echo "Creating structural simulation models..."
-	@echo "*********************************************"
-	simgen $(SIMGEN_OPTIONS) -sd implementation -m structural $(MHSFILE)
+$(STRUCTURAL_SIM_SCRIPT):
+	@echo "Structural simulation of complete design (including toplevel) flow should be done in ProjNav"
 
 
 ################## TIMING SIMULATION ##################
 
-implementation/$(SYSTEM).ncd: __xps/$(SYSTEM)_routed
-
-$(TIMING_SIM_SCRIPT): implementation/$(SYSTEM).ncd __xps/simgen.opt \
-                      $(BRAMINIT_ELF_SIM_FILES)
-	@echo "*********************************************"
-	@echo "Creating timing simulation models..."
-	@echo "*********************************************"
-	simgen $(SIMGEN_OPTIONS) -sd implementation -m timing $(MHSFILE)
+$(TIMING_SIM_SCRIPT):
+	@echo "Timing simulation of complete design (including toplevel) flow should be done in ProjNav"
 
 dummy:
 	@echo ""

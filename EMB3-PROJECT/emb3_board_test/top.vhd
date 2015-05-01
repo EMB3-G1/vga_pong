@@ -61,7 +61,7 @@ entity top is
 		j8_vga_red_o			: out		std_logic_vector (2 downto 0);
 		j8_vga_green_o			: out		std_logic_vector (2 downto 0);
 		j8_vga_blue_o			: out		std_logic_vector (2 downto 0);
-		
+		 
 		-- FX2-connector: VGA ADC input board
 		fx2_vga_hsync_i		: in		std_logic;
 		fx2_vga_vsync_i		: in		std_logic;
@@ -205,6 +205,7 @@ architecture Behavioral of top is
 	);
 	END COMPONENT;
 	
+	
 begin
 
 	-------COMPONENTS INSTANTIATION-------
@@ -243,16 +244,16 @@ begin
 	port map(
 		clk_i 	=>	clk25M,
 		rst_i 	=>	resetn,
-		h_sync_i =>	hs_vga_gen,				--h_sync_pre_o,	+++for testing
-		v_sync_i =>	vs_vga_gen,				--v_sync_pre_o,
-		rgb_i 	=>	r_vga_gen & g_vga_gen & b_vga_gen,		--- For testing!!!
+		h_sync_i =>	h_sync_pre_o,	
+		v_sync_i =>	v_sync_pre_o,
+		rgb_i 	=>	red_filtered(9 downto 7) & green_filtered(9 downto 7) & blue_filtered(9 downto 7),
 		bat_r_o 	=> bat_r_pos,
 		bat_l_o 	=> bat_l_pos,
 		ball_x_o => ball_X_pos, 
 		ball_y_o => ball_Y_pos,
 		ball_speed_o => open
 	); 
-
+	--********************************
 	color_adder_inst : color_adder
 	port map(
 		clk_i 	=> clk25M,
@@ -265,6 +266,7 @@ begin
 		bat_l_i 	=> bat_l_pos,
 		rgb_output => rgb_o_colAdder
 	);
+	
 	
 	fx2_vga_red_clk_o		<= vga_sample_r_pseudo_clk;	-- RED color channel ADC "clock" output (a real clock i not used because the FPGA pin used is not a clock pin!)
 	fx2_vga_green_clk_o	<= vga_sample_g_pseudo_clk;	-- GREEN color channel ADC "clock" output (a real clock i not used because the FPGA pin used is not a clock pin!)
@@ -468,14 +470,16 @@ begin
 
 					-- Multiplexer (passthrough OR vga_generator) process	
 					if j7_dip_sw_i(7) = '0' then		
-						j8_vga_hsync_o <= hs_vga_gen; 	--h_sync_pre_o;
-						j8_vga_vsync_o <= vs_vga_gen;		--v_sync_pre_o;
-						--j8_vga_red_o <= red_filtered(9 downto 7);
-						--j8_vga_blue_o	<= blue_filtered(9 downto 7);
-						--j8_vga_green_o <= green_filtered(9 downto 7);
-						j8_vga_red_o	<= rgb_o_colAdder(8 downto 6);
-						j8_vga_green_o	<= rgb_o_colAdder(5 downto 3);
-						j8_vga_blue_o	<= rgb_o_colAdder(2 downto 0);
+						j8_vga_hsync_o <= h_sync_pre_o;
+						j8_vga_vsync_o <= v_sync_pre_o;
+						-- output from the filters
+						j8_vga_red_o <= red_filtered(9 downto 7);
+						j8_vga_blue_o	<= blue_filtered(9 downto 7);
+						j8_vga_green_o <= green_filtered(9 downto 7);
+						-- output from the color adder
+						--j8_vga_red_o	<= rgb_o_colAdder(8 downto 6);
+						--j8_vga_green_o	<= rgb_o_colAdder(5 downto 3);
+						--j8_vga_blue_o	<= rgb_o_colAdder(2 downto 0);
 						
 					else
 						j8_vga_hsync_o <= hs_vga_gen;

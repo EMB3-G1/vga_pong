@@ -1,0 +1,28 @@
+Command line:
+   color_adder_tb_isim_beh.exe
+     -simmode  gui
+     -simrunnum  1
+     -socket  58445
+
+Thu Apr 30 19:25:38 2015
+
+
+ Elaboration Time: 0.04 sec
+
+ Current Memory Usage: 225.436 Meg
+
+ Total Signals          : 78
+ Total Nets             : 348
+ Total Signal Drivers   : 47
+ Total Blocks           : 8
+ Total Primitive Blocks : 7
+ Total Processes        : 23
+ Total Traceable Variables  : 133
+ Total Scalar Nets and Variables : 1057
+
+ Total Simulation Time: 2.85 sec
+
+ Current Memory Usage: 300.937 Meg
+
+Thu Apr 30 19:27:29 2015
+

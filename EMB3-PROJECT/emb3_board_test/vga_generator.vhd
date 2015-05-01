@@ -189,6 +189,7 @@ begin
 	vs_o <= '0' when line_cnt_reg < C_V_SP else '1';
 	
 	-- left bat output
+	-- left bat output
 	g <= (others=>'1') when (pixel_cnt_reg >= (C_LBAT_X1+C_HS_OFFSET) and 
 									 pixel_cnt_reg <= (C_LBAT_X2+C_HS_OFFSET) and 
 									 line_cnt_reg  >= (C_LBAT_Y1+C_VS_OFFSET) and 

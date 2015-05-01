@@ -13,7 +13,7 @@ WARNING:HDLCompiler:946 - "/home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PR
 Starting static elaboration
 Completed static elaboration
 Fuse Memory Usage: 97248 KB
-Fuse CPU Usage: 1450 ms
+Fuse CPU Usage: 1310 ms
 Compiling package standard
 Compiling package std_logic_1164
 Compiling package numeric_std
@@ -25,9 +25,8 @@ Compiling architecture behavioral of entity bs [bs_default]
 Compiling architecture behavioral of entity interpreter [interpreter_default]
 Compiling architecture behavior of entity interpreter_tb
 Time Resolution for simulation is 1ps.
-Waiting for 1 sub-compilation(s) to finish...
 Compiled 14 VHDL Units
 Built simulation executable /home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/interpreter_tb_isim_beh.exe
 Fuse Memory Usage: 673268 KB
-Fuse CPU Usage: 1660 ms
-GCC CPU Usage: 1080 ms
+Fuse CPU Usage: 1490 ms
+GCC CPU Usage: 1020 ms
