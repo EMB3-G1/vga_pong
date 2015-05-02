@@ -129,8 +129,6 @@ architecture Behavioral of top is
 	signal ai_enable : std_logic_vector (3 downto 0);
 	
 	-- Color_adder signals
-	signal H_counter : std_logic_vector(9 downto 0);
-	signal V_counter : std_logic_vector(9 downto 0);
 	signal rgb_o_colAdder : std_logic_vector(8 downto 0);
 	
 	-- function definition (one way to implement combinatorial logic... allowing great code-reuse!!!)
@@ -196,8 +194,8 @@ architecture Behavioral of top is
 		rst_i 	: in std_logic;
 		ball_x_i : in std_logic_vector(9 downto 0);
 		ball_y_i : in std_logic_vector(9 downto 0);
-		col_counter : in std_logic_vector(9 downto 0);
-		row_counter : in std_logic_vector(9 downto 0);
+		h_sync_i : in std_logic;
+		v_sync_i : in std_logic;
 		bat_r_i 	: in std_logic_vector(9 downto 0);
 		bat_l_i 	: in std_logic_vector(9 downto 0);
 		
@@ -260,8 +258,8 @@ begin
 		rst_i 	=>	resetn,
 		ball_x_i => ball_X_pos,
 		ball_y_i =>	ball_Y_pos,
-		col_counter => H_counter,
-		row_counter => V_counter,
+		h_sync_i =>	h_sync_pre_o,	
+		v_sync_i =>	v_sync_pre_o,
 		bat_r_i 	=> bat_r_pos,
 		bat_l_i 	=> bat_l_pos,
 		rgb_output => rgb_o_colAdder
@@ -473,13 +471,13 @@ begin
 						j8_vga_hsync_o <= h_sync_pre_o;
 						j8_vga_vsync_o <= v_sync_pre_o;
 						-- output from the filters
-						j8_vga_red_o <= red_filtered(9 downto 7);
-						j8_vga_blue_o	<= blue_filtered(9 downto 7);
-						j8_vga_green_o <= green_filtered(9 downto 7);
+						--j8_vga_red_o <= red_filtered(9 downto 7);
+						--j8_vga_blue_o	<= blue_filtered(9 downto 7);
+						--j8_vga_green_o <= green_filtered(9 downto 7);
 						-- output from the color adder
-						--j8_vga_red_o	<= rgb_o_colAdder(8 downto 6);
-						--j8_vga_green_o	<= rgb_o_colAdder(5 downto 3);
-						--j8_vga_blue_o	<= rgb_o_colAdder(2 downto 0);
+						j8_vga_red_o	<= rgb_o_colAdder(8 downto 6);
+						j8_vga_green_o	<= rgb_o_colAdder(5 downto 3);
+						j8_vga_blue_o	<= rgb_o_colAdder(2 downto 0);
 						
 					else
 						j8_vga_hsync_o <= hs_vga_gen;

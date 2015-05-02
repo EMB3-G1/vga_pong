@@ -104,7 +104,7 @@ begin
 						bat_r_y_o <= std_logic_vector(c_row_i + 2);
 						state_nxt <= ASSERT_FRAME;
 					else
-						if(c_col_i > 85 and c_col_i < right_bat_offset - 40 and ball_found = '0') then
+						if(c_col_i > 55 and c_col_i < right_bat_offset - 20 and ball_found = '0') then
 							ball_found := '1';
 							ball_x_o <= std_logic_vector(c_col_i-1);
 							ball_y_o <= std_logic_vector(c_row_i+2);

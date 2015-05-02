@@ -8,8 +8,8 @@ entity color_adder is
 		rst_i 	: in std_logic;
 		ball_x_i : in std_logic_vector(9 downto 0);
 		ball_y_i : in std_logic_vector(9 downto 0);
-		col_counter : in std_logic_vector(9 downto 0);
-		row_counter : in std_logic_vector(9 downto 0);
+		h_sync_i : in std_logic;
+		v_sync_i : in std_logic;
 		bat_r_i 	: in std_logic_vector(9 downto 0);
 		bat_l_i 	: in std_logic_vector(9 downto 0);
 		
@@ -37,7 +37,10 @@ architecture Behavioral of color_adder is
 	signal r : std_logic_vector (2 downto 0) := (others=>'0');
 	signal g : std_logic_vector (2 downto 0) := (others=>'0');
 	signal b : std_logic_vector (2 downto 0) := (others=>'0');
-
+	
+	signal hs_dff1 : std_logic := '0';
+	signal vs_dff1 : std_logic := '0';
+	
 begin
 
 	process(clk_i)
@@ -46,8 +49,8 @@ begin
 			if(rst_i = '0') then
 				rgb_output <= (others => '0');
 			else
-				col_cont_reg <= unsigned(col_counter);
-				row_cont_reg <= unsigned(row_counter);
+				hs_dff1 <= h_sync_i;
+				vs_dff1 <= v_sync_i;
 				ball_x <= unsigned (ball_x_i);
 				ball_y <= unsigned (ball_y_i);
 				bat_r <= unsigned (bat_r_i);
@@ -56,7 +59,17 @@ begin
 			end if;
 		end if;
 	end process;
-
+	
+	
+	pixel_ptr_inst : entity work.pixel_ptr
+	port map (
+		clk_i => clk_i,
+		rst_i => rst_i,
+		h_sync_i => hs_dff1,
+		v_sync_i => vs_dff1,
+		cptr_o => col_cont_reg,
+		rptr_o => row_cont_reg
+	);
 
 	g <= (others => '1') when (col_cont_reg >= ball_x and col_cont_reg <= (ball_x+BALL_WIDTH) and
 										row_cont_reg >= ball_y and row_cont_reg <= (ball_y+ BALL_WIDTH))
