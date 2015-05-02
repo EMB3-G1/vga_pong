@@ -30,18 +30,18 @@ entity sr5 is
 end sr5;
 
 architecture behavioral of sr5 is
-	signal sreg : std_logic_vector(20 downto 0);
+	signal sreg : std_logic_vector(5 downto 0);
 begin
 
 	process(clk_i)	
 	begin
 		if rising_edge(clk_i) then
-			for i in 0 to 19 loop
+			for i in 0 to 4 loop
 				sreg(i+1) <= sreg(i);
 			end loop;
 			sreg(0) <= bit_i;
 		end if;
 	end process;
-	bit_o <= sreg(20);
+	bit_o <= sreg(5);
 	
 end architecture ; -- behavioral

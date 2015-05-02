@@ -12,6 +12,7 @@ entity color_adder is
 		v_sync_i : in std_logic;
 		bat_r_i 	: in std_logic_vector(9 downto 0);
 		bat_l_i 	: in std_logic_vector(9 downto 0);
+		ball_speed_i : in std_logic_vector(9 downto 0);
 		
 		rgb_output : out std_logic_vector (8 downto 0)
 	);
@@ -22,8 +23,8 @@ architecture Behavioral of color_adder is
 	constant BALL_WIDTH : integer := 20;
 	constant BAT_WIDTH : integer := 20;
 	constant BAT_LENGTH : integer := 100;
-	constant RBAT_X1 : integer := 590;
-	constant LBAT_X1 : integer := 17;
+	constant RBAT_X1 : integer := 600;
+	constant LBAT_X1 : integer := 20;
 
 	signal col_cont_reg : unsigned (9 downto 0) := (others=>'0');
 	signal row_cont_reg : unsigned (9 downto 0) := (others=>'0');
@@ -72,17 +73,23 @@ begin
 	);
 
 	g <= (others => '1') when (col_cont_reg >= ball_x and col_cont_reg <= (ball_x+BALL_WIDTH) and
-										row_cont_reg >= ball_y and row_cont_reg <= (ball_y+ BALL_WIDTH))
+										row_cont_reg >= ball_y and row_cont_reg <= (ball_y+ BALL_WIDTH))or
+										(col_cont_reg >= 0 and col_cont_reg <= 20 and 
+										 row_cont_reg >= 0 and row_cont_reg <= 20) 
 								else
 							(others => '0');
 
-	b <= (others => '1') when (col_cont_reg >= LBAT_X1 and col_cont_reg <= (LBAT_X1 + BAT_WIDTH)) and
-									  (row_cont_reg >= bat_l and row_cont_reg <= (bat_l + BAT_LENGTH)) 
-								else
+	b <= (others => '1') when (col_cont_reg >= LBAT_X1 and col_cont_reg <= (LBAT_X1 + BAT_WIDTH) and
+									  row_cont_reg >= bat_l and row_cont_reg <= (bat_l + BAT_LENGTH))or
+										(col_cont_reg >= 0 and col_cont_reg <= 20 and 
+										 row_cont_reg >= 0 and row_cont_reg <= 20) 
+								else 
 						 	(others => '0');
 
-	r <= (others => '1') when (col_cont_reg >= RBAT_X1 and col_cont_reg <= (RBAT_X1 + BAT_WIDTH)) and
-									  (row_cont_reg >= bat_r and row_cont_reg <= (bat_r + BAT_LENGTH))
+	r <= (others => '1') when (col_cont_reg >= RBAT_X1 and col_cont_reg <= (RBAT_X1 + BAT_WIDTH) and
+									   row_cont_reg >= bat_r and row_cont_reg <= (bat_r + BAT_LENGTH))or
+										(col_cont_reg >= 0 and col_cont_reg <= 20 and 
+										 row_cont_reg >= 0 and row_cont_reg <= 20) 
 								else
 						 	(others => '0');
 

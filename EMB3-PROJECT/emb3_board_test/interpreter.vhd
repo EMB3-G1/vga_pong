@@ -30,16 +30,13 @@ entity interpreter is
 		rst_i : in std_logic;
 		h_sync_i : in std_logic;
 		v_sync_i : in std_logic;
-		rgb_i : in std_logic_vector(8 downto 0);
-		
-		col_counter : out std_logic_vector(9 downto 0);
-		row_counter : out std_logic_vector(9 downto 0);
-		
+		rgb_i : in std_logic_vector(8 downto 0);	
 		bat_r_o : out std_logic_vector(9 downto 0);
 		bat_l_o : out std_logic_vector(9 downto 0);
 		ball_x_o : out std_logic_vector(9 downto 0);
 		ball_y_o : out std_logic_vector(9 downto 0);
-		ball_speed_o : out std_logic_vector(9 downto 0)
+		ball_speed_o : out std_logic_vector(9 downto 0);
+		end_frame_o : out std_logic
 	);
 end interpreter;
 
@@ -104,8 +101,6 @@ begin
 	);
 	-- end of frame signal
 	eof <= '1' when col_ptr = 639 and row_ptr = 479 else '0';
-	-- Outputs for the color_adder
-	col_counter <= std_logic_vector(resize(unsigned(col_ptr), 10));
-	row_counter <= std_logic_vector(resize(unsigned(row_ptr), 10));
+	end_frame_o <= eof;
 
 end architecture ; -- Behavioral

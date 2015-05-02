@@ -125,6 +125,8 @@ architecture Behavioral of top is
 	signal bat_r_pos : std_logic_vector (9 downto 0);
 	signal ball_X_pos : std_logic_vector(9 downto 0);
 	signal ball_Y_pos : std_logic_vector(9 downto 0);
+	signal ball_speed : std_logic_vector (9 downto 0);
+	signal new_frame : std_logic;
 	signal usr_buttons : std_logic_vector (1 downto 0);
 	signal ai_enable : std_logic_vector (3 downto 0);
 	
@@ -184,7 +186,8 @@ architecture Behavioral of top is
 		bat_l_o 	: out std_logic_vector(9 downto 0);
 		ball_x_o : out std_logic_vector(9 downto 0);
 		ball_y_o : out std_logic_vector(9 downto 0);
-		ball_speed_o : out std_logic_vector(9 downto 0)
+		ball_speed_o : out std_logic_vector(9 downto 0);
+		end_frame_o : out std_logic
 	);
 	END COMPONENT;
 	
@@ -198,7 +201,7 @@ architecture Behavioral of top is
 		v_sync_i : in std_logic;
 		bat_r_i 	: in std_logic_vector(9 downto 0);
 		bat_l_i 	: in std_logic_vector(9 downto 0);
-		
+		ball_speed_i : in std_logic_vector(9 downto 0);
 		rgb_output : out std_logic_vector (8 downto 0)
 	);
 	END COMPONENT;
@@ -249,7 +252,8 @@ begin
 		bat_l_o 	=> bat_l_pos,
 		ball_x_o => ball_X_pos, 
 		ball_y_o => ball_Y_pos,
-		ball_speed_o => open
+		ball_speed_o => ball_speed, 
+		end_frame_o => new_frame
 	); 
 	--********************************
 	color_adder_inst : color_adder
@@ -262,6 +266,7 @@ begin
 		v_sync_i =>	v_sync_pre_o,
 		bat_r_i 	=> bat_r_pos,
 		bat_l_i 	=> bat_l_pos,
+		ball_speed_i => ball_speed,
 		rgb_output => rgb_o_colAdder
 	);
 	

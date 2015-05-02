@@ -97,17 +97,17 @@ begin
 				if(rgb_reg = "111111111") then
 					if(c_col_i <= left_bat_offset+5 and batl_found = '0') then
 						batl_found := '1';
-						bat_l_y_o <= std_logic_vector(c_row_i + 2);
+						bat_l_y_o <= std_logic_vector(c_row_i);
 						state_nxt <= ASSERT_FRAME;
 					elsif(c_col_i >= right_bat_offset-5 and batr_found = '0') then
 						batr_found := '1';
-						bat_r_y_o <= std_logic_vector(c_row_i + 2);
+						bat_r_y_o <= std_logic_vector(c_row_i);
 						state_nxt <= ASSERT_FRAME;
 					else
 						if(c_col_i > 55 and c_col_i < right_bat_offset - 20 and ball_found = '0') then
 							ball_found := '1';
-							ball_x_o <= std_logic_vector(c_col_i-1);
-							ball_y_o <= std_logic_vector(c_row_i+2);
+							ball_x_o <= std_logic_vector(c_col_i);
+							ball_y_o <= std_logic_vector(c_row_i);
 						end if;
 						state_nxt <= ASSERT_FRAME;
 					end if;
