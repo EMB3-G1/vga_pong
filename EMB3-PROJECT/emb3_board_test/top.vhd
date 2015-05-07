@@ -17,6 +17,7 @@
 -- Additional Comments: 
 --
 ----------------------------------------------------------------------------------
+
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
@@ -254,7 +255,7 @@ begin
 		ball_y_o => ball_Y_pos,
 		ball_speed_o => ball_speed, 
 		end_frame_o => new_frame
-	); 
+	);  
 	--********************************
 	color_adder_inst : color_adder
 	port map(
@@ -471,25 +472,35 @@ begin
 					j8_vga_blue_o	<= (others=>'0');
 				else
 
-					-- Multiplexer (passthrough OR vga_generator) process	
-					if j7_dip_sw_i(7) = '0' then		
+					-- Multiplexer process:
+					-- Final output
+					if j7_dip_sw_i(7) = '0' and j7_dip_sw_i(6) = '0' then		
 						j8_vga_hsync_o <= h_sync_pre_o;
 						j8_vga_vsync_o <= v_sync_pre_o;
-						-- output from the filters
-						--j8_vga_red_o <= red_filtered(9 downto 7);
-						--j8_vga_blue_o	<= blue_filtered(9 downto 7);
-						--j8_vga_green_o <= green_filtered(9 downto 7);
-						-- output from the color adder
 						j8_vga_red_o	<= rgb_o_colAdder(8 downto 6);
 						j8_vga_green_o	<= rgb_o_colAdder(5 downto 3);
 						j8_vga_blue_o	<= rgb_o_colAdder(2 downto 0);
-						
-					else
+					-- VGA generated output
+					elsif j7_dip_sw_i(7) = '1' and j7_dip_sw_i(6) = '0' then
 						j8_vga_hsync_o <= hs_vga_gen;
 						j8_vga_vsync_o <= vs_vga_gen;
 						j8_vga_red_o	<= r_vga_gen;
 						j8_vga_green_o	<= g_vga_gen;
-						j8_vga_blue_o	<= b_vga_gen;					
+						j8_vga_blue_o	<= b_vga_gen;
+					elsif j7_dip_sw_i(7) = '0' and j7_dip_sw_i(6) = '1' then
+					-- Filtered input
+						j8_vga_hsync_o <=  h_sync_pre_o;
+						j8_vga_vsync_o <=  v_sync_pre_o;
+						j8_vga_red_o <= red_filtered(9 downto 7);
+						j8_vga_blue_o	<= blue_filtered(9 downto 7);
+						j8_vga_green_o <= green_filtered(9 downto 7);
+					else 
+						j8_vga_hsync_o <= hs_vga_gen;
+						j8_vga_vsync_o <= vs_vga_gen;
+						j8_vga_red_o	<= r_vga_gen;
+						j8_vga_green_o	<= g_vga_gen;
+						j8_vga_blue_o	<= b_vga_gen;
+						
 					end if;
 					
 				end if;

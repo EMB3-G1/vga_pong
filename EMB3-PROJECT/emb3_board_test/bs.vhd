@@ -1,10 +1,10 @@
 ----------------------------------------------------------------------------------
 -- Company: 
--- Engineer: Patrick Stolc
+-- Engineer: 
 -- 
 -- Create Date:    
 -- Design Name: 
--- Module Name:    bs - Behavioral
+-- Module Name:    
 -- Project Name: 
 -- Target Devices: 
 -- Tool versions: 

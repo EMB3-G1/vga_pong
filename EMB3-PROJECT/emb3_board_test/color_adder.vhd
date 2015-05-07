@@ -1,3 +1,23 @@
+----------------------------------------------------------------------------------
+-- Company: 
+-- Engineer: 
+-- 
+-- Create Date:    
+-- Design Name: 
+-- Module Name:    
+-- Project Name: 
+-- Target Devices: 
+-- Tool versions: 
+-- Description: 
+--
+-- Dependencies: 
+--
+-- Revision: 
+-- Revision 0.01 - File Created
+-- Additional Comments: 
+--
+----------------------------------------------------------------------------------
+
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
@@ -34,6 +54,8 @@ architecture Behavioral of color_adder is
 	signal ball_y : unsigned (9 downto 0) := (others=>'0');
 	signal bat_r : unsigned (9 downto 0) := (others=>'0');
 	signal bat_l : unsigned (9 downto 0) := (others=>'0');
+	signal ball_speed : unsigned (2 downto 0) :=(others=>'0');	
+	signal color_speed : std_logic_vector (2 downto 0);
 	
 	signal r : std_logic_vector (2 downto 0) := (others=>'0');
 	signal g : std_logic_vector (2 downto 0) := (others=>'0');
@@ -56,6 +78,8 @@ begin
 				ball_y <= unsigned (ball_y_i);
 				bat_r <= unsigned (bat_r_i);
 				bat_l <= unsigned (bat_l_i);
+				ball_speed <= resize(unsigned(ball_speed_i),3);
+				color_speed <= std_logic_vector(ball_speed);
 				rgb_output <= r&g&b;
 			end if;
 		end if;
@@ -72,25 +96,29 @@ begin
 		rptr_o => row_cont_reg
 	);
 
+	
+	r <= (others => '1') when (col_cont_reg >= RBAT_X1 and col_cont_reg <= (RBAT_X1 + BAT_WIDTH) and
+									   row_cont_reg >= bat_r and row_cont_reg <= (bat_r + BAT_LENGTH)) 
+										--or
+										--(col_cont_reg >= ball_x and col_cont_reg <= (ball_x+BALL_WIDTH) and
+										--row_cont_reg >= ball_y and row_cont_reg <= (ball_y+ BALL_WIDTH))
+				 
+								else
+						 	(others => '0');
+
 	g <= (others => '1') when (col_cont_reg >= ball_x and col_cont_reg <= (ball_x+BALL_WIDTH) and
-										row_cont_reg >= ball_y and row_cont_reg <= (ball_y+ BALL_WIDTH))or
-										(col_cont_reg >= 0 and col_cont_reg <= 20 and 
-										 row_cont_reg >= 0 and row_cont_reg <= 20) 
+									row_cont_reg >= ball_y and row_cont_reg <= (ball_y+ BALL_WIDTH))
+										
 								else
 							(others => '0');
 
-	b <= (others => '1') when (col_cont_reg >= LBAT_X1 and col_cont_reg <= (LBAT_X1 + BAT_WIDTH) and
-									  row_cont_reg >= bat_l and row_cont_reg <= (bat_l + BAT_LENGTH))or
-										(col_cont_reg >= 0 and col_cont_reg <= 20 and 
-										 row_cont_reg >= 0 and row_cont_reg <= 20) 
+	b <=  (others => '1') when (col_cont_reg >= LBAT_X1 and col_cont_reg <= (LBAT_X1 + BAT_WIDTH) and
+									  row_cont_reg >= bat_l and row_cont_reg <= (bat_l + BAT_LENGTH)) 
+									  --or
+									  --(col_cont_reg >= ball_x and col_cont_reg <= (ball_x+BALL_WIDTH) and
+									  --row_cont_reg >= ball_y and row_cont_reg <= (ball_y+ BALL_WIDTH))
+										
 								else 
-						 	(others => '0');
-
-	r <= (others => '1') when (col_cont_reg >= RBAT_X1 and col_cont_reg <= (RBAT_X1 + BAT_WIDTH) and
-									   row_cont_reg >= bat_r and row_cont_reg <= (bat_r + BAT_LENGTH))or
-										(col_cont_reg >= 0 and col_cont_reg <= 20 and 
-										 row_cont_reg >= 0 and row_cont_reg <= 20) 
-								else
 						 	(others => '0');
 
 end Behavioral;
