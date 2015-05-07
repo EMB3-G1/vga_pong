@@ -65,9 +65,9 @@ begin
 		bit_o => v_sync_o
 	);
 	
-	process(clk100M_i)
+	process(clk25M_i)
 	begin
-		if(rising_edge(clk100M_i)) then
+		if(rising_edge(clk25M_i)) then
 			rgb_reg <= r_i(9 downto 7) & g_i(9 downto 7) & b_i(9 downto 7);
 			rgb_o <= rgb_reg;
 		end if;

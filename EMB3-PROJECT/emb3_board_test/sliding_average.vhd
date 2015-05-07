@@ -26,8 +26,8 @@ entity sliding_average is
 	port (	
 		filter_clk			: in	std_logic;
 		filter_reset		: in	std_logic;
-		adc_i					: in	std_logic_vector(9 downto 0);
-		dac_o					: out	std_logic_vector(9 downto 0);
+		adc_i					: in	std_logic_vector(2 downto 0);
+		dac_o					: out	std_logic_vector(2 downto 0);
 		adc_clk_o			: out	std_logic;
 		dac_clk_o			: out	std_logic		
 		);
@@ -44,7 +44,7 @@ architecture Behavioral of sliding_average is
 	----------------------------------------------------------------
 	-- type declarations
 	----------------------------------------------------------------
-		type slav_array_type is array(integer range <>) of unsigned(9 downto 0);
+		type slav_array_type is array(integer range <>) of unsigned(2 downto 0);
 	----------------------------------------------------------------
 	
 	----------------------------------------------------------------
@@ -70,13 +70,13 @@ begin
 					
 					slav_delay(0) <= unsigned(adc_i);
 					
-					if(slav_delay(0)>128) then
+					if(slav_delay(0)>4) then
 						counter_white:=counter_white+1;
 					else 
 						counter_black:= counter_black+1;
 					end if;
 					
-					if(slav_delay(C_DATA_CNT-1)>128) then
+					if(slav_delay(C_DATA_CNT-1)>4) then
 						counter_white:=counter_white-1;
 					else 
 						counter_black:= counter_black-1;
@@ -87,9 +87,9 @@ begin
 					end loop;
 					
 					if (counter_white>(C_DATA_CNT+1)/2 or counter_white=(C_DATA_CNT+1)/2) then
-						dac_o <= "1111111111";
+						dac_o <= "111";
 					else
-						dac_o <= "0000000000";
+						dac_o <= "000";
 					end if;									
 
 				end if;

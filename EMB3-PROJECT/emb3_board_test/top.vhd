@@ -32,7 +32,8 @@ use utility_v01_00_a.log_pkg.all;
 
 entity top is
 	generic(
-		COL_DATA_WIDTH : integer := 10
+		constant COLOR_DATA_WIDTH : integer := 3;
+		constant COL_DATA_WIDTH : integer := 10
 	);
    port ( 
 		-- onboard clock input
@@ -93,6 +94,7 @@ architecture Behavioral of top is
 	signal vga_sample_b_pseudo_clk : std_logic; -- signal with a clock like waveform for the ADC's @ 100.7 Mhz	(4x oversampling)
 	
 	signal resetn: std_logic := '1'; -- active low reset signal
+	signal mux_signal : std_logic_vector(1 downto 0);	--output MUX aux signal
 
 	signal up, down, stop : std_logic;
 	
@@ -107,7 +109,7 @@ architecture Behavioral of top is
 	-- For the preprocessor 
 	signal h_sync_pre_o : std_logic:= '1';
 	signal v_sync_pre_o : std_logic:= '1';
-	signal rgb_pre : std_logic_vector(3*3-1 downto 0) := (others=>'0');
+	signal rgb_pre : std_logic_vector(3*COLOR_DATA_WIDTH-1 downto 0) := (others=>'0');
 	
 	-- VGA generator
 	signal hs_vga_gen : std_logic;
@@ -117,9 +119,7 @@ architecture Behavioral of top is
 	signal b_vga_gen  : std_logic_vector(2 downto 0);
 	
 	-- Signals to connect the filter module to the VGA-output
-	signal red_filtered : std_logic_vector(9 downto 0);
-	signal green_filtered : std_logic_vector(9 downto 0);
-	signal blue_filtered : std_logic_vector(9 downto 0);
+	signal colors_filtered : std_logic_vector(3*COLOR_DATA_WIDTH-1 downto 0) := (others=>'0');
 	
 	-- Interpreter-Microblaze-Color_adder connections
 	signal bat_l_pos : std_logic_vector(9 downto 0);
@@ -165,14 +165,10 @@ architecture Behavioral of top is
 	
 	COMPONENT median_filter 
 	port(
-		clk_100M_i : in std_logic;
+		clk_i : in std_logic;
 		rst_i	: in std_logic;
-		red_i	: in std_logic_vector (COL_DATA_WIDTH-1 downto 0);
-		green_i	: in std_logic_vector (COL_DATA_WIDTH-1 downto 0);
-		blue_i	: in std_logic_vector (COL_DATA_WIDTH-1 downto 0);
-		red_o	: out std_logic_vector (COL_DATA_WIDTH-1 downto 0);
-		blue_o: out std_logic_vector (COL_DATA_WIDTH-1 downto 0);
-		green_o: out std_logic_vector (COL_DATA_WIDTH-1 downto 0)
+		rgb_i : in std_logic_vector (3*COLOR_DATA_WIDTH-1 downto 0);
+		rgb_o : out std_logic_vector (3*COLOR_DATA_WIDTH-1 downto 0)
 	);
 	END COMPONENT;
 	
@@ -231,14 +227,10 @@ begin
 	-- Filters
 	filter_inst : median_filter
 	port map(
-		clk_100M_i 	=>	clk_100M7,
+		clk_i 	=>	clk_100M7,
 		rst_i			=> resetn,
-		red_i			=> fx2_vga_red_i,
-		green_i		=> fx2_vga_green_i,
-		blue_i		=> fx2_vga_blue_i, 
-		red_o			=> red_filtered,
-		blue_o		=> blue_filtered,
-		green_o		=> green_filtered
+		rgb_i => fx2_vga_red_i(9 downto 7)& fx2_vga_green_i(9 downto 7) & fx2_vga_blue_i(9 downto 7),
+		rgb_o => colors_filtered
 	);
 	
 	-- Postprocessor
@@ -248,7 +240,7 @@ begin
 		rst_i 	=>	resetn,
 		h_sync_i =>	h_sync_pre_o,	
 		v_sync_i =>	v_sync_pre_o,
-		rgb_i 	=>	red_filtered(9 downto 7) & green_filtered(9 downto 7) & blue_filtered(9 downto 7),
+		rgb_i 	=>	colors_filtered,
 		bat_r_o 	=> bat_r_pos,
 		bat_l_o 	=> bat_l_pos,
 		ball_x_o => ball_X_pos, 
@@ -459,7 +451,8 @@ begin
 			
 		-- simple loop-through UART test logic
 		ft232h_rs232_tx_o <= ft232h_rs232_rx_i;
-		
+		-- input for the output MUX
+		mux_signal <= j7_dip_sw_i(7)&j7_dip_sw_i(6);
 		
 		process(clk_100M7)
 		begin
@@ -471,37 +464,37 @@ begin
 					j8_vga_green_o	<= (others=>'0');
 					j8_vga_blue_o	<= (others=>'0');
 				else
-
 					-- Multiplexer process:
-					-- Final output
-					if j7_dip_sw_i(7) = '0' and j7_dip_sw_i(6) = '0' then		
-						j8_vga_hsync_o <= h_sync_pre_o;
-						j8_vga_vsync_o <= v_sync_pre_o;
-						j8_vga_red_o	<= rgb_o_colAdder(8 downto 6);
-						j8_vga_green_o	<= rgb_o_colAdder(5 downto 3);
-						j8_vga_blue_o	<= rgb_o_colAdder(2 downto 0);
-					-- VGA generated output
-					elsif j7_dip_sw_i(7) = '1' and j7_dip_sw_i(6) = '0' then
-						j8_vga_hsync_o <= hs_vga_gen;
-						j8_vga_vsync_o <= vs_vga_gen;
-						j8_vga_red_o	<= r_vga_gen;
-						j8_vga_green_o	<= g_vga_gen;
-						j8_vga_blue_o	<= b_vga_gen;
-					elsif j7_dip_sw_i(7) = '0' and j7_dip_sw_i(6) = '1' then
-					-- Filtered input
-						j8_vga_hsync_o <=  h_sync_pre_o;
-						j8_vga_vsync_o <=  v_sync_pre_o;
-						j8_vga_red_o <= red_filtered(9 downto 7);
-						j8_vga_blue_o	<= blue_filtered(9 downto 7);
-						j8_vga_green_o <= green_filtered(9 downto 7);
-					else 
-						j8_vga_hsync_o <= hs_vga_gen;
-						j8_vga_vsync_o <= vs_vga_gen;
-						j8_vga_red_o	<= r_vga_gen;
-						j8_vga_green_o	<= g_vga_gen;
-						j8_vga_blue_o	<= b_vga_gen;
-						
-					end if;
+					case mux_signal is
+						when "11" =>
+						-- Final output
+							j8_vga_hsync_o <= h_sync_pre_o;
+							j8_vga_vsync_o <= v_sync_pre_o;
+							j8_vga_red_o	<= rgb_o_colAdder(8 downto 6);
+							j8_vga_blue_o	<= rgb_o_colAdder(2 downto 0);
+							j8_vga_green_o	<= rgb_o_colAdder(5 downto 3);
+						when "10" =>
+						-- Filtered input
+							j8_vga_hsync_o <=  h_sync_pre_o;
+							j8_vga_vsync_o <=  v_sync_pre_o;
+							j8_vga_red_o <= colors_filtered(8 downto 6);
+			 				j8_vga_blue_o	<= colors_filtered(5 downto 3);
+							j8_vga_green_o <= colors_filtered(2 downto 0);
+						when "01" => 
+						-- Original input
+							j8_vga_hsync_o <= fx2_vga_hsync_i;
+							j8_vga_vsync_o <= fx2_vga_vsync_i;
+							j8_vga_red_o	<= fx2_vga_red_i(9 downto 7);
+							j8_vga_green_o	<= fx2_vga_green_i(9 downto 7);
+							j8_vga_blue_o	<= fx2_vga_blue_i(9 downto 7);
+						-- VGA generated output
+						when others =>
+							j8_vga_hsync_o <= hs_vga_gen;
+							j8_vga_vsync_o <= vs_vga_gen;
+							j8_vga_red_o	<= r_vga_gen;
+							j8_vga_green_o	<= g_vga_gen;
+							j8_vga_blue_o	<= b_vga_gen;
+					end case;
 					
 				end if;
 			end if;
