@@ -1,0 +1,28 @@
+Command line:
+   detector_tb_isim_beh.exe
+     -simmode  gui
+     -simrunnum  0
+     -socket  46493
+
+Sat May 23 15:36:47 2015
+
+
+ Elaboration Time: 0.03 sec
+
+ Current Memory Usage: 225.44 Meg
+
+ Total Signals          : 94
+ Total Nets             : 373
+ Total Signal Drivers   : 49
+ Total Blocks           : 9
+ Total Primitive Blocks : 7
+ Total Processes        : 21
+ Total Traceable Variables  : 135
+ Total Scalar Nets and Variables : 1084
+
+ Total Simulation Time: 22.61 sec
+
+ Current Memory Usage: 300.941 Meg
+
+Sat May 23 15:39:59 2015
+

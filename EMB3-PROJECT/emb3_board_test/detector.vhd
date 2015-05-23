@@ -1,10 +1,10 @@
 ----------------------------------------------------------------------------------
--- Company: University of Southern Denmark
--- Engineer: Anders Blaabjerg Lange
+-- Company: 
+-- Engineer: 
 -- 
--- Create Date:    10:51:02 02/10/2014 
+-- Create Date:    
 -- Design Name: 
--- Module Name:    detector - Behavioral 
+-- Module Name:    
 -- Project Name: 
 -- Target Devices: 
 -- Tool versions: 
@@ -18,149 +18,89 @@
 --
 ----------------------------------------------------------------------------------
 library ieee;
-use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
+use ieee.std_logic_1164.all;
+use ieee.math_real.all;
+use work.common.all;
+
 
 entity detector is
-	generic(
-		G_COLOR_WIDTH  : integer := 3
-		--G_PXL_CLK_PRD	: time := 39721946 fs
-	);
-	port ( 
-
-		clk_i	: in std_logic;		--25MHz
-
-		r_i  : in std_logic_vector (G_COLOR_WIDTH-1 downto 0);
-		g_i  : in std_logic_vector (G_COLOR_WIDTH-1 downto 0);
-		b_i  : in std_logic_vector (G_COLOR_WIDTH-1 downto 0);
-		hs_i : in std_logic;
-		vs_i : in std_logic;
-		
-		--left_bar_Y_o : out std_logic_vector (9 downto 0);
-		--right_bar_Y_o : out std_logic_vector (9 downto 0);
-		--ball_X_o : out std_logic_vector (9 downto 0);
-		--ball_Y_o : out std_logic_vector (9 downto 0);
-
-		r_o   : out std_logic_vector (G_COLOR_WIDTH-1 downto 0);
-		g_o   : out std_logic_vector (G_COLOR_WIDTH-1 downto 0);
-		b_o   : out std_logic_vector (G_COLOR_WIDTH-1 downto 0)
-		
+	port (
+		clk_i : in std_logic;
+		rst_i : in std_logic;
+		h_sync_i : in std_logic;
+		v_sync_i : in std_logic;
+		rgb_i : in std_logic_vector(8 downto 0);	
+		bat_r_o : out std_logic_vector(9 downto 0);
+		bat_l_o : out std_logic_vector(9 downto 0);
+		ball_x_o : out std_logic_vector(9 downto 0);
+		ball_y_o : out std_logic_vector(9 downto 0);
+		ball_speed_o : out std_logic_vector(9 downto 0);
+		end_frame_o : out std_logic
 	);
 end detector;
 
 architecture Behavioral of detector is
 
-	-- Element coordinates
-	signal ballX : integer range 0 to 800 := 320;
-	signal ballY : integer range 0 to 515 := 240;
-
-	constant left_bar_X : integer := 20;
-	signal left_bar_Y : integer range 35 to 515 := 240;
-
-	constant right_bar_X : integer := 600;
-	signal right_bar_Y : integer range 35 to 515 := 240;
-
-	constant BAT_WIDHT : integer := 20;
-	constant BAT_LENGHT : integer := 100;
-
-
-	-- if we count pixels from the falling edge of the HS then there is 144 blank pixels before the first visible pixel
-		
-	signal C_H_FP : integer := 16;
-	signal C_H_SP : integer := 96;
-	signal C_H_BP : integer := 48;
-	signal C_H_PX : integer := 640;
+	signal col_ptr : unsigned(COL_DATA_WIDTH-1 downto 0) := (others=>'0');
+	signal row_ptr : unsigned(ROW_DATA_WIDTH-1 downto 0) := (others=>'0');
+	signal ball_x_reg : std_logic_vector(9 downto 0) := (others => '0');
+	signal ball_y_reg : std_logic_vector(9 downto 0) := (others => '0');
+	signal eof : std_logic := '0';
 	
-	signal C_HS_OFFSET : integer := C_H_SP+C_H_BP;	
-	signal C_PIXEL_PR_LINE : integer := C_H_FP+C_H_SP+C_H_BP+C_H_PX;
-	
-	
-	-- if we count lines from the falling edge of the VS then there is 35 blank lines before the first visible line.
-	
-	signal C_V_FP : integer := 10;
-	signal C_V_SP : integer := 2;
-	signal C_V_BP : integer := 33;
-	signal C_V_LN : integer := 480;
-	
-	signal C_VS_OFFSET : integer := C_V_SP+C_V_BP;	
-	signal C_LINES_PR_FRAME : integer := C_V_FP+C_V_SP+C_V_BP+C_V_LN;	
-	
-	signal pxl_clk	: std_logic;
-	
-	signal pixel_cnt_reg : unsigned(9 downto 0) := (others=>'0');
-	signal pixel_cnt_nxt : unsigned(9 downto 0);
-	
-	
-	signal line_cnt_reg : unsigned(9 downto 0) := (others=>'0');
-	signal line_cnt_nxt : unsigned(9 downto 0);
-	
-	--signal right_not_yet : std_logic := '0';
-	--signal left_not_yet : std_logic := '0';
-	--signal ball_not_yet : std_logic := '0';
-
-	signal red : std_logic_vector (G_COLOR_WIDTH-1 downto 0);
-	signal green : std_logic_vector (G_COLOR_WIDTH-1 downto 0);
-	signal blue : std_logic_vector (G_COLOR_WIDTH-1 downto 0);
+	signal hs_dff0, hs_dff1 : std_logic;
+	signal vs_dff0, vs_dff1 : std_logic;
+	signal rgb_dff0, rgb_dff1 : std_logic_vector(8 downto 0);
 
 begin
 
-	process(pxl_clk, hs_i, vs_i)
-		variable h_counter : integer range 0 to 784 := 0;
-		variable v_counter : integer range 0 to 784 := 0;
-		variable ball_not_yet : integer := 0;
-		variable left_not_yet : integer := 0;
-		variable right_not_yet : integer := 0;
-	begin	
-		if (hs_i'event and hs_i='1') then
-			h_counter:=h_counter+1;
-			v_counter:=v_counter+1;
-		end if;
-
-		if (vs_i'event and vs_i='1') then
-			v_counter:= 0;
-			ball_not_yet := 0;
-			left_not_yet :=0;
-			right_not_yet := 0;
-		end if;
-
-		if (pxl_clk'event and pxl_clk='1') then
-			h_counter:=h_counter+1;
-
-			if(r_i="111" and g_i="111" and b_i="111") then
-				if(h_counter=left_bar_X+C_H_BP and left_not_yet='0') then
-					--left_bar_Y_o <= v_counter;
-					left_not_yet := 1;
-
-				elsif (h_counter=right_bar_X+C_H_BP and right_not_yet='0') then
-					--right_bar_Y_o=v_counter;
-					right_not_yet := 1;
-					
-				elsif (h_counter>left_bar_X+BAT_WIDHT and h_counter<right_bar_X and ball_not_yet='0') then
-					--ball_X_o <= h_counter;
-					--ball_Y_o <= v_counter;
-					ball_not_yet := 1; 
-				end if;
-			end if;
+	ball_x_o <= ball_x_reg;
+	ball_y_o <= ball_y_reg;
+	
+	process(clk_i)
+	begin
+		if(rising_edge(clk_i)) then
+			hs_dff0 <= h_sync_i;
+			vs_dff0 <= v_sync_i;
+			rgb_dff0 <= rgb_i;
+			hs_dff1 <= hs_dff0;
+			vs_dff1 <= vs_dff0;
+			rgb_dff1 <= rgb_dff0;
 		end if;
 	end process;
+	
+	pixel_ptr_inst : entity work.pixel_ptr
+	port map (
+		clk_i => clk_i,
+		rst_i => rst_i,
+		h_sync_i => hs_dff1,
+		v_sync_i => vs_dff1,
+		cptr_o => col_ptr,
+		rptr_o => row_ptr
+	);
+	object_tracker_instance : entity work.ot
+	port map (
+		clk_i => clk_i,
+		rst_i => rst_i,
+		rgb_i => rgb_dff1,
+		c_row_i => row_ptr,
+		c_col_i => col_ptr,
+		bat_r_y_o => bat_r_o,
+		bat_l_y_o => bat_l_o,
+		ball_x_o => ball_x_reg,
+		ball_y_o => ball_y_reg
+	);
+	ball_speed_instance : entity work.bs
+	port map (
+		clk_i	=> clk_i,
+		rst_i 	=> rst_i,
+		pos_x_i => ball_x_reg,
+		pos_y_i => ball_y_reg,
+		eof_i 	=> eof,
+		vel_o	=> ball_speed_o
+	);
+	-- end of frame signal
+	eof <= '1' when col_ptr = 639 and row_ptr = 479 else '0';
+	end_frame_o <= eof;
 
-	if(ball_not_yet='0') then
-		r_o <= "000";
-	else
-		r_o<= r_i;
-	end if;
-
-	if(right_not_yet='0') then
-		b_o <= "000";
-	else
-		b_o<= b_i;
-	end if;
-
-	if(left_not_yet='0') then
-		g_o <= "000";
-	else
-		g_o<= g_i;
-	end if;
-
-
-end Behavioral;
+end architecture ; -- Behavioral

@@ -66,7 +66,7 @@ entity top is
 		 
 		-- FX2-connector: VGA ADC input board
 		fx2_vga_hsync_i		: in		std_logic;
-		fx2_vga_vsync_i		: in		std_logic;
+		fx2_vga_vsync_i		: in		std_logic; 
 		  
 		fx2_vga_red_clk_o		: out		std_logic;
 		fx2_vga_red_i			: inout 	std_logic_vector (9 downto 0);
@@ -106,7 +106,7 @@ architecture Behavioral of top is
 	signal hsync_sreg : std_logic_vector(4 downto 0) := (others=>'0');
 	signal vsync_sreg : std_logic_vector(4 downto 0) := (others=>'0');
 	
-	-- For the preprocessor 
+	-- For the conditioner 
 	signal h_sync_pre_o : std_logic:= '1';
 	signal v_sync_pre_o : std_logic:= '1';
 	signal rgb_pre : std_logic_vector(3*COLOR_DATA_WIDTH-1 downto 0) := (others=>'0');
@@ -121,7 +121,7 @@ architecture Behavioral of top is
 	-- Signals to connect the filter module to the VGA-output
 	signal colors_filtered : std_logic_vector(3*COLOR_DATA_WIDTH-1 downto 0) := (others=>'0');
 	
-	-- Interpreter-Microblaze-Color_adder connections
+	-- Detector-Microblaze-Color_adder connections
 	signal bat_l_pos : std_logic_vector(9 downto 0);
 	signal bat_r_pos : std_logic_vector (9 downto 0);
 	signal ball_X_pos : std_logic_vector(9 downto 0);
@@ -147,7 +147,7 @@ architecture Behavioral of top is
 		return std_logic_vector(sum);
 	end one_hot_sum;
 	
-	COMPONENT preprocessor
+	COMPONENT conditioner
 	PORT(
 		clk25M_i : IN std_logic;
 		clk100M_i : IN std_logic;
@@ -172,7 +172,7 @@ architecture Behavioral of top is
 	);
 	END COMPONENT;
 	
-	COMPONENT interpreter
+	COMPONENT detector
 	port (
 		clk_i 	: in std_logic;
 		rst_i 	: in std_logic;
@@ -191,6 +191,7 @@ architecture Behavioral of top is
 	COMPONENT color_adder
 	port (
 		clk_i 	: in std_logic;
+		clk_i_100 	: in std_logic;
 		rst_i 	: in std_logic;
 		ball_x_i : in std_logic_vector(9 downto 0);
 		ball_y_i : in std_logic_vector(9 downto 0);
@@ -208,8 +209,8 @@ begin
 
 	-------COMPONENTS INSTANTIATION-------
 		
-	-- preprocessor
-	preprocessor_inst : preprocessor
+	-- Conditioner
+	conditioner_inst : conditioner
 	port map (
 		clk25M_i => clk25M,
 		clk100M_i => clk_100M7,
@@ -234,7 +235,7 @@ begin
 	);
 	
 	-- Postprocessor
-	interpreter_inst : interpreter
+	detector_inst : detector
 	port map(
 		clk_i 	=>	clk25M,
 		rst_i 	=>	resetn,
@@ -248,10 +249,11 @@ begin
 		ball_speed_o => ball_speed, 
 		end_frame_o => new_frame
 	);  
-	--********************************
+
 	color_adder_inst : color_adder
 	port map(
 		clk_i 	=> clk25M,
+		clk_i_100 => clk_100M7,
 		rst_i 	=>	resetn,
 		ball_x_i => ball_X_pos,
 		ball_y_i =>	ball_Y_pos,
@@ -475,9 +477,9 @@ begin
 							j8_vga_green_o	<= rgb_o_colAdder(5 downto 3);
 						when "10" =>
 						-- Filtered input
-							j8_vga_hsync_o <=  h_sync_pre_o;
-							j8_vga_vsync_o <=  v_sync_pre_o;
-							j8_vga_red_o <= colors_filtered(8 downto 6);
+							j8_vga_hsync_o <= h_sync_pre_o;
+							j8_vga_vsync_o <= v_sync_pre_o;
+							j8_vga_red_o   <= colors_filtered(8 downto 6);
 			 				j8_vga_blue_o	<= colors_filtered(5 downto 3);
 							j8_vga_green_o <= colors_filtered(2 downto 0);
 						when "01" => 

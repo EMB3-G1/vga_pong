@@ -22,7 +22,7 @@ use ieee.numeric_std.all;
 use ieee.std_logic_1164.all;
 --use work.common.all;
 
-entity preprocessor is
+entity conditioner is
 	generic(
 		constant COLOR_DATA_WIDTH : integer := 3;
 		constant ADC_DATA_WIDTH : integer := 10
@@ -45,9 +45,9 @@ entity preprocessor is
 		h_sync_o : out std_logic;
 		v_sync_o : out std_logic
 	);
-end preprocessor;
+end conditioner;
 
-architecture behavioral of preprocessor is
+architecture behavioral of conditioner is
 
 	signal rgb_reg : std_logic_vector(3*COLOR_DATA_WIDTH-1 downto 0);
 

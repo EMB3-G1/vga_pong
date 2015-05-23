@@ -29,7 +29,6 @@ entity median_filter is
 	port(
 		clk_i : in std_logic;
 		rst_i		: in std_logic;
-		
 		rgb_i : in std_logic_vector (3*COLOR_DATA_WIDTH-1 downto 0);
 		rgb_o : out std_logic_vector (3*COLOR_DATA_WIDTH-1 downto 0)
 	);

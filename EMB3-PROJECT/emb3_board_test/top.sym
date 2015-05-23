@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<symbol version="7" name="top">
+    <symboltype>BLOCK</symboltype>
+    <timestamp>2015-5-23T10:26:7</timestamp>
+    <pin polarity="Input" x="0" y="-992" name="clk_200M_i" />
+    <pin polarity="Input" x="0" y="-864" name="ft232h_acbus7_i" />
+    <pin polarity="Input" x="0" y="-736" name="ft232h_rs232_rx_i" />
+    <pin polarity="Input" x="0" y="-608" name="fx2_vga_hsync_i" />
+    <pin polarity="Input" x="0" y="-480" name="fx2_vga_vsync_i" />
+    <pin polarity="Input" x="0" y="-352" name="dip_sw_i(3:0)" />
+    <pin polarity="Input" x="0" y="-224" name="j7_dip_sw_i(7:0)" />
+    <pin polarity="Input" x="0" y="-96" name="j7_btn_i(1:0)" />
+    <pin polarity="Output" x="544" y="-992" name="ft232h_rst_o" />
+    <pin polarity="Output" x="544" y="-928" name="ft232h_rs232_tx_o" />
+    <pin polarity="Output" x="544" y="-864" name="j8_vga_hsync_o" />
+    <pin polarity="Output" x="544" y="-800" name="j8_vga_vsync_o" />
+    <pin polarity="Output" x="544" y="-736" name="fx2_vga_red_clk_o" />
+    <pin polarity="Output" x="544" y="-672" name="fx2_vga_green_clk_o" />
+    <pin polarity="Output" x="544" y="-608" name="fx2_vga_blue_clk_o" />
+    <pin polarity="Output" x="544" y="-544" name="led_o(6:0)" />
+    <pin polarity="Output" x="544" y="-480" name="j8_vga_red_o(2:0)" />
+    <pin polarity="Output" x="544" y="-416" name="j8_vga_green_o(2:0)" />
+    <pin polarity="Output" x="544" y="-352" name="j8_vga_blue_o(2:0)" />
+    <pin polarity="BiDirectional" x="544" y="-288" name="j7_ps2_clk_io" />
+    <pin polarity="BiDirectional" x="544" y="-224" name="j7_ps2_data_io" />
+    <pin polarity="BiDirectional" x="544" y="-160" name="fx2_vga_red_i(9:0)" />
+    <pin polarity="BiDirectional" x="544" y="-96" name="fx2_vga_green_i(9:0)" />
+    <pin polarity="BiDirectional" x="544" y="-32" name="fx2_vga_blue_i(9:0)" />
+    <graph>
+        <rect width="416" x="64" y="-1024" height="1024" />
+        <attrtext style="alignment:BCENTER;fontsize:56;fontname:Arial" attrname="SymbolName" x="272" y="-1032" type="symbol" />
+        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="72" y="-992" type="pin clk_200M_i" />
+        <line x2="0" y1="-992" y2="-992" x1="64" />
+        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="72" y="-864" type="pin ft232h_acbus7_i" />
+        <line x2="0" y1="-864" y2="-864" x1="64" />
+        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="72" y="-736" type="pin ft232h_rs232_rx_i" />
+        <line x2="0" y1="-736" y2="-736" x1="64" />
+        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="72" y="-608" type="pin fx2_vga_hsync_i" />
+        <line x2="0" y1="-608" y2="-608" x1="64" />
+        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="72" y="-480" type="pin fx2_vga_vsync_i" />
+        <line x2="0" y1="-480" y2="-480" x1="64" />
+        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="72" y="-352" type="pin dip_sw_i(3:0)" />
+        <rect width="64" x="0" y="-364" height="24" />
+        <line x2="0" y1="-352" y2="-352" x1="64" />
+        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="72" y="-224" type="pin j7_dip_sw_i(7:0)" />
+        <rect width="64" x="0" y="-236" height="24" />
+        <line x2="0" y1="-224" y2="-224" x1="64" />
+        <attrtext style="fontsize:24;fontname:Arial" attrname="PinName" x="72" y="-96" type="pin j7_btn_i(1:0)" />
+        <rect width="64" x="0" y="-108" height="24" />
+        <line x2="0" y1="-96" y2="-96" x1="64" />
+        <attrtext style="alignment:RIGHT;fontsize:24;fontname:Arial" attrname="PinName" x="472" y="-992" type="pin ft232h_rst_o" />
+        <line x2="544" y1="-992" y2="-992" x1="480" />
+        <attrtext style="alignment:RIGHT;fontsize:24;fontname:Arial" attrname="PinName" x="472" y="-928" type="pin ft232h_rs232_tx_o" />
+        <line x2="544" y1="-928" y2="-928" x1="480" />
+        <attrtext style="alignment:RIGHT;fontsize:24;fontname:Arial" attrname="PinName" x="472" y="-864" type="pin j8_vga_hsync_o" />
+        <line x2="544" y1="-864" y2="-864" x1="480" />
+        <attrtext style="alignment:RIGHT;fontsize:24;fontname:Arial" attrname="PinName" x="472" y="-800" type="pin j8_vga_vsync_o" />
+        <line x2="544" y1="-800" y2="-800" x1="480" />
+        <attrtext style="alignment:RIGHT;fontsize:24;fontname:Arial" attrname="PinName" x="472" y="-736" type="pin fx2_vga_red_clk_o" />
+        <line x2="544" y1="-736" y2="-736" x1="480" />
+        <attrtext style="alignment:RIGHT;fontsize:24;fontname:Arial" attrname="PinName" x="472" y="-672" type="pin fx2_vga_green_clk_o" />
+        <line x2="544" y1="-672" y2="-672" x1="480" />
+        <attrtext style="alignment:RIGHT;fontsize:24;fontname:Arial" attrname="PinName" x="472" y="-608" type="pin fx2_vga_blue_clk_o" />
+        <line x2="544" y1="-608" y2="-608" x1="480" />
+        <attrtext style="alignment:RIGHT;fontsize:24;fontname:Arial" attrname="PinName" x="472" y="-544" type="pin led_o(6:0)" />
+        <rect width="64" x="480" y="-556" height="24" />
+        <line x2="544" y1="-544" y2="-544" x1="480" />
+        <attrtext style="alignment:RIGHT;fontsize:24;fontname:Arial" attrname="PinName" x="472" y="-480" type="pin j8_vga_red_o(2:0)" />
+        <rect width="64" x="480" y="-492" height="24" />
+        <line x2="544" y1="-480" y2="-480" x1="480" />
+        <attrtext style="alignment:RIGHT;fontsize:24;fontname:Arial" attrname="PinName" x="472" y="-416" type="pin j8_vga_green_o(2:0)" />
+        <rect width="64" x="480" y="-428" height="24" />
+        <line x2="544" y1="-416" y2="-416" x1="480" />
+        <attrtext style="alignment:RIGHT;fontsize:24;fontname:Arial" attrname="PinName" x="472" y="-352" type="pin j8_vga_blue_o(2:0)" />
+        <rect width="64" x="480" y="-364" height="24" />
+        <line x2="544" y1="-352" y2="-352" x1="480" />
+        <attrtext style="alignment:RIGHT;fontsize:24;fontname:Arial" attrname="PinName" x="472" y="-288" type="pin j7_ps2_clk_io" />
+        <line x2="544" y1="-288" y2="-288" x1="480" />
+        <attrtext style="alignment:RIGHT;fontsize:24;fontname:Arial" attrname="PinName" x="472" y="-224" type="pin j7_ps2_data_io" />
+        <line x2="544" y1="-224" y2="-224" x1="480" />
+        <attrtext style="alignment:RIGHT;fontsize:24;fontname:Arial" attrname="PinName" x="472" y="-160" type="pin fx2_vga_red_i(9:0)" />
+        <rect width="64" x="480" y="-172" height="24" />
+        <line x2="544" y1="-160" y2="-160" x1="480" />
+        <attrtext style="alignment:RIGHT;fontsize:24;fontname:Arial" attrname="PinName" x="472" y="-96" type="pin fx2_vga_green_i(9:0)" />
+        <rect width="64" x="480" y="-108" height="24" />
+        <line x2="544" y1="-96" y2="-96" x1="480" />
+        <attrtext style="alignment:RIGHT;fontsize:24;fontname:Arial" attrname="PinName" x="472" y="-32" type="pin fx2_vga_blue_i(9:0)" />
+        <rect width="64" x="480" y="-44" height="24" />
+        <line x2="544" y1="-32" y2="-32" x1="480" />
+    </graph>
+</symbol>

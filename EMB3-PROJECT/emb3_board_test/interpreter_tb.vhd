@@ -10,7 +10,7 @@
 -- Tool versions:  
 -- Description:   
 -- 
--- VHDL Test Bench Created by ISE for module: interpreter
+-- VHDL Test Bench Created by ISE for module: detector
 -- 
 -- Dependencies:
 -- 
@@ -27,34 +27,30 @@
 --------------------------------------------------------------------------------
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
-use ieee.numeric_std.all;
+use ieee.numeric_std.all; 
  
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
 --USE ieee.numeric_std.ALL;
  
-ENTITY interpreter_tb IS
+ENTITY detector_tb IS
 	generic(
 		G_COLOR_WIDTH  : integer := 10;
 		G_CLK_DIV		: integer := 4
 		);
-END interpreter_tb;
+END detector_tb;
  
-ARCHITECTURE behavior OF interpreter_tb IS 
+ARCHITECTURE behavior OF detector_tb IS 
  
     -- Component Declaration for the Unit Under Test (UUT)
  
-    COMPONENT interpreter
+    COMPONENT detector
     PORT(
          clk_i : IN  std_logic;
          rst_i : IN  std_logic;
          h_sync_i : IN  std_logic;
          v_sync_i : IN  std_logic;
-         rgb_i : IN  std_logic_vector(8 downto 0);
-			
-			col_counter : out std_logic_vector(9 downto 0);
-			row_counter : out std_logic_vector(9 downto 0);
-		
+         rgb_i : IN  std_logic_vector(8 downto 0);	
          bat_r_o : OUT  std_logic_vector(9 downto 0);
          bat_l_o : OUT  std_logic_vector(9 downto 0);
          ball_x_o : OUT  std_logic_vector(9 downto 0);
@@ -79,7 +75,7 @@ ARCHITECTURE behavior OF interpreter_tb IS
    signal ball_speed_o : std_logic_vector(9 downto 0):= (others => '0');
 
    -- Clock period definitions
-   constant clk_i_period : time := 40 ns;
+   constant clk_i_period : time := 20 ns;
 		
 	signal C_H_FP : integer := 16;
 	signal C_H_SP : integer := 96;
@@ -106,9 +102,9 @@ ARCHITECTURE behavior OF interpreter_tb IS
 	signal b	: std_logic_vector (G_COLOR_WIDTH-1 downto 0) := (others=>'0');
 	
 	signal pixel_cnt_reg : unsigned(9 downto 0) := (others=>'0');
-	signal pixel_cnt_nxt : unsigned(9 downto 0);
+	signal pixel_cnt_nxt : unsigned(9 downto 0):= (others=>'0');
 	signal line_cnt_reg : unsigned(9 downto 0) := (others=>'0');
-	signal line_cnt_nxt : unsigned(9 downto 0);
+	signal line_cnt_nxt : unsigned(9 downto 0) := (others=>'0');
 
 	-- Left bat: 20x100 pixels, centered in the left visible part of the screen at x=20
 	--
@@ -141,25 +137,19 @@ ARCHITECTURE behavior OF interpreter_tb IS
 	constant C_RBAT_X1 : integer := 600;
 	constant C_RBAT_X2 : integer := 619;
 	constant C_RBAT_Y1 : integer := 189;
-	constant C_RBAT_Y2 : integer := 288;
-
-	signal col_counter1 : std_logic_vector(9 downto 0);
-	signal row_counter1 : std_logic_vector(9 downto 0);		
+	constant C_RBAT_Y2 : integer := 288;	
 	
  
 BEGIN
  
 	-- Instantiate the Unit Under Test (UUT)
-   uut: interpreter PORT MAP (
+   uut: detector PORT MAP (
           clk_i => clk_i,
           rst_i => rst_i,
           h_sync_i => h_sync_i,
           v_sync_i => v_sync_i,
           rgb_i => r(9 downto 7) & g(9 downto 7) & b(9 downto 7),
 			 
-			 col_counter => col_counter1,
-			 row_counter => row_counter1,
-		
           bat_r_o => bat_r_o,
           bat_l_o => bat_l_o,
           ball_x_o => ball_x_o,
