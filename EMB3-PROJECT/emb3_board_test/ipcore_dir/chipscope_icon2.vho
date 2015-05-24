@@ -7,8 +7,8 @@
 -- /___/  \  /    Vendor     : Xilinx
 -- \   \   \/     Version    : 14.7
 --  \   \         Application: Xilinx CORE Generator
---  /   /         Filename   : chipscope_icon.vho
--- /___/   /\     Timestamp  : Sun May 24 17:49:13 CEST 2015
+--  /   /         Filename   : chipscope_icon2.vho
+-- /___/   /\     Timestamp  : Sun May 24 17:53:27 CEST 2015
 -- \   \  /  \
 --  \___\/\___\
 --
@@ -18,7 +18,7 @@
 -- The following code must appear in the VHDL architecture header:
 
 ------------- Begin Cut here for COMPONENT Declaration ------ COMP_TAG
-component chipscope_icon
+component chipscope_icon2
   PORT (
     CONTROL0 : INOUT STD_LOGIC_VECTOR(35 DOWNTO 0);
     CONTROL1 : INOUT STD_LOGIC_VECTOR(35 DOWNTO 0));
@@ -30,7 +30,7 @@ end component;
 -- body. Substitute your own instance name and net names.
 ------------- Begin Cut here for INSTANTIATION Template ----- INST_TAG
 
-your_instance_name : chipscope_icon
+your_instance_name : chipscope_icon2
   port map (
     CONTROL0 => CONTROL0,
     CONTROL1 => CONTROL1);

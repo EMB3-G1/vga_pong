@@ -7,21 +7,21 @@
 -- /___/  \  /    Vendor     : Xilinx
 -- \   \   \/     Version    : 14.7
 --  \   \         Application: Xilinx CORE Generator
---  /   /         Filename   : chipscope_icon.vho
--- /___/   /\     Timestamp  : Sun May 24 17:49:13 CEST 2015
+--  /   /         Filename   : chipscope_vio.vho
+-- /___/   /\     Timestamp  : Sun May 24 17:08:58 CEST 2015
 -- \   \  /  \
 --  \___\/\___\
 --
 -- Design Name: ISE Instantiation template
--- Component Identifier: xilinx.com:ip:chipscope_icon:1.06.a
+-- Component Identifier: xilinx.com:ip:chipscope_vio:1.05.a
 -------------------------------------------------------------------------------
 -- The following code must appear in the VHDL architecture header:
 
 ------------- Begin Cut here for COMPONENT Declaration ------ COMP_TAG
-component chipscope_icon
+component chipscope_vio
   PORT (
-    CONTROL0 : INOUT STD_LOGIC_VECTOR(35 DOWNTO 0);
-    CONTROL1 : INOUT STD_LOGIC_VECTOR(35 DOWNTO 0));
+    CONTROL : INOUT STD_LOGIC_VECTOR(35 DOWNTO 0);
+    ASYNC_IN : IN STD_LOGIC_VECTOR(7 DOWNTO 0));
 
 end component;
 
@@ -30,9 +30,9 @@ end component;
 -- body. Substitute your own instance name and net names.
 ------------- Begin Cut here for INSTANTIATION Template ----- INST_TAG
 
-your_instance_name : chipscope_icon
+your_instance_name : chipscope_vio
   port map (
-    CONTROL0 => CONTROL0,
-    CONTROL1 => CONTROL1);
+    CONTROL => CONTROL,
+    ASYNC_IN => ASYNC_IN);
 
 -- INST_TAG_END ------ End INSTANTIATION Template ------------

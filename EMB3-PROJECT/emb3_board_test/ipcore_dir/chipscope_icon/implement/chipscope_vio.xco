@@ -1,7 +1,7 @@
 ##############################################################
 #
-# Xilinx Core Generator version 13.0.2
-# Date: Sun Oct  3 13:43:44 2010
+# Xilinx Core Generator version 14.7
+# Date: Sun May 24 15:07:43 2015
 #
 ##############################################################
 #
@@ -9,6 +9,10 @@
 #  Xilinx CORE Generator IP GUI. It is strongly recommended
 #  that you do not manually alter this file as it may cause
 #  unexpected and unsupported behavior.
+#
+##############################################################
+#
+#  Generated from component: xilinx.com:ip:chipscope_vio:1.05.a
 #
 ##############################################################
 #
@@ -48,6 +52,8 @@ CSET invert_clock_input=false
 CSET synchronous_input_port_width=8
 CSET synchronous_output_port_width=8
 # END Parameters
+# BEGIN Extra information
+MISC pkg_timestamp=2013-10-13T14:13:48Z
+# END Extra information
 GENERATE
-# CRC: ed8bc01c
-
+# CRC: a24d652d

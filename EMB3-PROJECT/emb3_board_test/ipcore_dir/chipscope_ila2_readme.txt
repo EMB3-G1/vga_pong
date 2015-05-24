@@ -1,50 +1,47 @@
-The following files were generated for 'chipscope_icon' in directory
+The following files were generated for 'chipscope_ila2' in directory
 /home/ignaciotb/Documents/Semester2/EMB3/VHDL/vga_pong/EMB3-PROJECT/emb3_board_test/ipcore_dir/
 
 XCO file generator:
    Generate an XCO file for compatibility with legacy flows.
 
-   * chipscope_icon.xco
+   * chipscope_ila2.xco
 
 Creates an implementation netlist:
    Creates an implementation netlist for the IP.
 
-   * chipscope_icon.constraints/chipscope_icon.ucf
-   * chipscope_icon.constraints/chipscope_icon.xdc
-   * chipscope_icon.ngc
-   * chipscope_icon.ucf
-   * chipscope_icon.vhd
-   * chipscope_icon.vho
-   * chipscope_icon.xdc
-   * chipscope_icon_xmdf.tcl
+   * chipscope_ila2.cdc
+   * chipscope_ila2.constraints/chipscope_ila2.ucf
+   * chipscope_ila2.constraints/chipscope_ila2.xdc
+   * chipscope_ila2.ncf
+   * chipscope_ila2.ngc
+   * chipscope_ila2.ucf
+   * chipscope_ila2.vhd
+   * chipscope_ila2.vho
+   * chipscope_ila2.xdc
+   * chipscope_ila2_xmdf.tcl
 
 IP Symbol Generator:
    Generate an IP symbol based on the current project options'.
 
-   * chipscope_icon.asy
-
-SYM file generator:
-   Generate a SYM file for compatibility with legacy flows
-
-   * chipscope_icon.sym
+   * chipscope_ila2.asy
 
 Generate ISE subproject:
    Create an ISE subproject for use when including this core in ISE designs
 
    * _xmsgs/pn_parser.xmsgs
-   * chipscope_icon.gise
-   * chipscope_icon.xise
+   * chipscope_ila2.gise
+   * chipscope_ila2.xise
 
 Deliver Readme:
    Readme file for the IP.
 
-   * chipscope_icon_readme.txt
+   * chipscope_ila2_readme.txt
 
 Generate FLIST file:
    Text file listing all of the output files produced when a customized core was
    generated in the CORE Generator.
 
-   * chipscope_icon_flist.txt
+   * chipscope_ila2_flist.txt
 
 Please see the Xilinx CORE Generator online help for further details on
 generated files and how to use them.

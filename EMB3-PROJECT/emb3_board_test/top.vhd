@@ -133,8 +133,13 @@ architecture Behavioral of top is
 	
 	signal j7_btn : std_logic_vector (1 downto 0);
 	signal control_icon : std_logic_vector (35 downto 0);
+	signal control_ila : std_logic_vector (35 downto 0);
 	signal cs_vio_o : std_logic_vector (1 downto 0);
-	
+
+	-- ILA 
+	signal h_sync_ila : std_logic_vector(0 downto 0);
+	signal v_sync_ila : std_logic_vector(0 downto 0);
+
 	-- Color_adder signals
 	signal rgb_o_colAdder : std_logic_vector(8 downto 0);
 	
@@ -212,6 +217,13 @@ architecture Behavioral of top is
 	port (
 		CONTROL0: inout std_logic_vector(35 downto 0));
 	END COMPONENT;
+	
+	component chipscope_icon2
+	  PORT (
+		 CONTROL0 : INOUT STD_LOGIC_VECTOR(35 DOWNTO 0);
+		 CONTROL1 : INOUT STD_LOGIC_VECTOR(35 DOWNTO 0));
+
+	end component;
 
 	COMPONENT chipscope_vio IS
 	port (
@@ -219,6 +231,16 @@ architecture Behavioral of top is
 		ASYNC_IN: in std_logic_vector(1 downto 0);
 		ASYNC_OUT: out std_logic_vector(1 downto 0));
 	END COMPONENT;
+	
+	component chipscope_ila2
+	PORT (
+		 CONTROL : INOUT STD_LOGIC_VECTOR(35 DOWNTO 0);
+		 CLK : IN STD_LOGIC;
+		 DATA : IN STD_LOGIC_VECTOR(17 DOWNTO 0);
+		 TRIG0 : IN STD_LOGIC_VECTOR(0 TO 0);
+		 TRIG1 : IN STD_LOGIC_VECTOR(0 TO 0));
+
+	end component;
 
 	COMPONENT MicroBlaze IS
     port (
@@ -255,11 +277,21 @@ begin
     	axi_gpio_3_GPIO_IO_I_pin => j7_btn,
     	axi_gpio_4_GPIO_IO_I_pin => new_frame
 	);
-
-    CS_ICON: chipscope_icon
-    port map (
-    	CONTROL0 => control_icon
-    );
+	 
+	 CS_ICON_2 : chipscope_icon2
+	  port map (
+		 CONTROL0 => control_icon,
+		 CONTROL1 => control_ila
+	 );
+	 
+	 CS_ILA : chipscope_ila2
+	  port map (
+		 CONTROL => control_ila,
+		 CLK => clk25M,
+		 DATA => fx2_vga_red_i(9 downto 7)&fx2_vga_green_i(9 downto 7)&fx2_vga_blue_i(9 downto 7)&colors_filtered,
+		 TRIG0 => h_sync_ila,
+		 TRIG1 => v_sync_ila 
+	 );
 
     CS_VIO: chipscope_vio
     port map (
@@ -267,7 +299,7 @@ begin
     	ASYNC_IN => j7_btn_i,
     	ASYNC_OUT => cs_vio_o
     );
-	
+	 
 	j7_btn(0) <= j7_btn_i(0) and cs_vio_o(0);
 	j7_btn(1) <= j7_btn_i(1) and cs_vio_o(1);
 		
@@ -521,6 +553,8 @@ begin
 		process(clk_100M7)
 		begin
 			if rising_edge(clk_100M7) then
+				h_sync_ila(0) <= fx2_vga_hsync_i;
+				v_sync_ila(0) <= fx2_vga_vsync_i;
 				if resetn='0' then
 					j8_vga_hsync_o <= '0';
 					j8_vga_vsync_o <= '0';				

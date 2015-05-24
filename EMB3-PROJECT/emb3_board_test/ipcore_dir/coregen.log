@@ -2,8 +2,8 @@ Welcome to Xilinx CORE Generator.
 Help system initialized.
 The IP Catalog has been reloaded.
 Opening project file
-/home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/ipcor
-e_dir/coregen.cgp.
+/home/ignaciotb/Documents/Semester2/EMB3/VHDL/vga_pong/EMB3-PROJECT/emb3_board_t
+est/ipcore_dir/coregen.cgp.
 WARNING:sim:991 - The project IP instance 'divider' for IP 'Divider Generator
    v3.0' was generated with a different version of the IP than is currently in
    the IP Catalog. It was originally generated using IP with the packaged
@@ -23,12 +23,50 @@ Finished Customizing.
 Generating IP...
 WARNING:sim:100 - The Simulation File Type <Behavioral> is not valid for this
    core. Overriding with File Type <structural>.
-Configuring files for chipscope_icon root...
-Gathering HDL files for chipscope_icon root...
-Creating XST project for chipscope_icon...
-Creating XST script file for chipscope_icon...
-Creating XST instantiation file for chipscope_icon...
-Running XST for chipscope_icon...
+Configuring files for chipscope_ila2 root...
+Gathering HDL files for chipscope_ila2 root...
+Creating XST project for chipscope_ila2...
+Creating XST script file for chipscope_ila2...
+Creating XST instantiation file for chipscope_ila2...
+Running XST for chipscope_ila2...
+XST: HDL Parsing
+WARNING:coreutil - 2
+       while executing
+   "cancellableExec "$SynthesisExec -ifn
+   \"${SubworkingDirectory}/${::xilinx::coreu::transientDir}/${OutputName}.scr\"
+   -ofn \"${SubworkingDirectory}/${::x..."
+       (procedure "runXST" line 78)
+       invoked from within
+   "runXST $ComponentName GenerationOptions $TopLevel"
+       (procedure "deliverXSTNetlist" line 15)
+       invoked from within
+   "deliverXSTNetlist $ComponentName {} "root" $BaseIP "
+       (procedure "components::chipscope_ila2::generate" line 31)
+       invoked from within
+   "components::${ComponentName}::generate 1"
+       (procedure "::xilinx::sim::generation::generatePsfCore" line 59)
+       invoked from within
+   "::xilinx::sim::generation::generatePsfCore {chipscope_ila_v1_05_a}
+   {chipscope_ila2} {ALL}"Removing temporary files, this may take up to 60 seconds.
+Cancelled Generation.
+Customize and GenerateINFO:sim:172 - Generating IP...
+WARNING:sim:100 - The Simulation File Type <Behavioral> is not valid for this
+   core. Overriding with File Type <structural>.
+Applying current project options...
+Finished applying current project options.
+Customizing IP...
+Release 14.7 - Xilinx CORE Generator IP GUI Launcher P.20131013 (lin64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+Finished Customizing.
+Generating IP...
+WARNING:sim:100 - The Simulation File Type <Behavioral> is not valid for this
+   core. Overriding with File Type <structural>.
+Configuring files for chipscope_ila2 root...
+Gathering HDL files for chipscope_ila2 root...
+Creating XST project for chipscope_ila2...
+Creating XST script file for chipscope_ila2...
+Creating XST instantiation file for chipscope_ila2...
+Running XST for chipscope_ila2...
 XST: HDL Parsing
 XST: HDL Elaboration
 XST: HDL Synthesis
@@ -37,43 +75,44 @@ XST: Low Level Synthesis
 XST: Design Summary
 Generating VHDL wrapper
 Not generating Verilog wrapper
-Creating ISE instantiation template for chipscope_icon...
-Skipping Verilog instantiation template for chipscope_icon...
+Creating ISE instantiation template for chipscope_ila2...
+Skipping Verilog instantiation template for chipscope_ila2...
 Finished Generation.
 Generating IP instantiation template...
 Generating ASY schematic symbol...
 INFO:sim:949 - Finished generation of ASY schematic symbol.
 Generating metadata file...
 Generating ISE project...
-XCO file found: chipscope_icon.xco
-XMDF file found: chipscope_icon_xmdf.tcl
+XCO file found: chipscope_ila2.xco
+XMDF file found: chipscope_ila2_xmdf.tcl
 Adding
-/home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/ipcor
-e_dir/tmp/_cg/chipscope_icon.asy -view all -origin_type imported
+/home/ignaciotb/Documents/Semester2/EMB3/VHDL/vga_pong/EMB3-PROJECT/emb3_board_t
+est/ipcore_dir/tmp/_cg/chipscope_ila2.asy -view all -origin_type imported
 Adding
-/home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/ipcor
-e_dir/tmp/_cg/chipscope_icon.ngc -view all -origin_type created
+/home/ignaciotb/Documents/Semester2/EMB3/VHDL/vga_pong/EMB3-PROJECT/emb3_board_t
+est/ipcore_dir/tmp/_cg/chipscope_ila2.ngc -view all -origin_type created
 Checking file
-"/home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/ipco
-re_dir/tmp/_cg/chipscope_icon.ngc" for project device match ...
+"/home/ignaciotb/Documents/Semester2/EMB3/VHDL/vga_pong/EMB3-PROJECT/emb3_board_
+test/ipcore_dir/tmp/_cg/chipscope_ila2.ngc" for project device match ...
 File
-"/home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/ipco
-re_dir/tmp/_cg/chipscope_icon.ngc" device information matches project device.
+"/home/ignaciotb/Documents/Semester2/EMB3/VHDL/vga_pong/EMB3-PROJECT/emb3_board_
+test/ipcore_dir/tmp/_cg/chipscope_ila2.ngc" device information matches project
+device.
 Adding
-/home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/ipcor
-e_dir/tmp/_cg/chipscope_icon.vhd -view all -origin_type created
+/home/ignaciotb/Documents/Semester2/EMB3/VHDL/vga_pong/EMB3-PROJECT/emb3_board_t
+est/ipcore_dir/tmp/_cg/chipscope_ila2.vhd -view all -origin_type created
 INFO:HDLCompiler:1061 - Parsing VHDL file
-   "/home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/i
-   pcore_dir/tmp/_cg/chipscope_icon.vhd" into library work
+   "/home/ignaciotb/Documents/Semester2/EMB3/VHDL/vga_pong/EMB3-PROJECT/emb3_boa
+   rd_test/ipcore_dir/tmp/_cg/chipscope_ila2.vhd" into library work
 INFO:ProjectMgmt - Parsing design hierarchy completed successfully.
 Adding
-/home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/ipcor
-e_dir/tmp/_cg/chipscope_icon.vho -view all -origin_type imported
+/home/ignaciotb/Documents/Semester2/EMB3/VHDL/vga_pong/EMB3-PROJECT/emb3_board_t
+est/ipcore_dir/tmp/_cg/chipscope_ila2.vho -view all -origin_type imported
 INFO:TclTasksC:2116 - The automatic calculation of top has been turned-off.
    Please set the new top explicitly by running the "project set top" command.
    To re-calculate the new top automatically, set the "Auto Implementation Top"
    property to true.
-Top level has been set to "/chipscope_icon"
+Top level has been set to "/chipscope_ila2"
 Generating README file...
 Generating FLIST file...
 INFO:sim:948 - Finished FLIST file generation.
