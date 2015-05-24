@@ -20,6 +20,7 @@
  PORT axi_gpio_0_GPIO_IO_I_pin = net_axi_gpio_0_GPIO_IO_I_pin, DIR = I, VEC = [9:0]
  PORT axi_gpio_2_GPIO_IO_I_pin = net_axi_gpio_2_GPIO_IO_I_pin, DIR = I, VEC = [9:0]
  PORT axi_gpio_3_GPIO_IO_I_pin = net_axi_gpio_3_GPIO_IO_I_pin, DIR = I, VEC = [1:0]
+ PORT axi_gpio_4_GPIO_IO_I_pin = net_axi_gpio_4_GPIO_IO_I_pin, DIR = I
 
 
 BEGIN axi_uartlite
@@ -201,11 +202,23 @@ BEGIN axi_gpio
  PARAMETER INSTANCE = axi_gpio_3
  PARAMETER HW_VER = 1.01.b
  PARAMETER C_GPIO_WIDTH = 2
+ PARAMETER C_ALL_INPUTS = 1
  PARAMETER C_BASEADDR = 0x40100000
  PARAMETER C_HIGHADDR = 0x4010ffff
- PARAMETER C_ALL_INPUTS = 1
  BUS_INTERFACE S_AXI = axi4lite_0
  PORT S_AXI_ACLK = clk_100_0000MHz
  PORT GPIO_IO_I = net_axi_gpio_3_GPIO_IO_I_pin
+END
+
+BEGIN axi_gpio
+ PARAMETER INSTANCE = axi_gpio_4
+ PARAMETER HW_VER = 1.01.b
+ PARAMETER C_GPIO_WIDTH = 1
+ PARAMETER C_BASEADDR = 0x40000000
+ PARAMETER C_HIGHADDR = 0x4000ffff
+ PARAMETER C_ALL_INPUTS = 1
+ BUS_INTERFACE S_AXI = axi4lite_0
+ PORT S_AXI_ACLK = clk_100_0000MHz
+ PORT GPIO_IO_I = net_axi_gpio_4_GPIO_IO_I_pin
 END
 

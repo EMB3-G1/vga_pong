@@ -6,9 +6,8 @@ xc6slx45fgg484-3 -intstyle silent -i -sd ..
 MicroBlaze_microblaze_0_dlmb_wrapper.ngc ../MicroBlaze_microblaze_0_dlmb_wrapper
 
 Reading NGO file
-"/home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/Micr
-oBlaze/implementation/microblaze_0_dlmb_wrapper/MicroBlaze_microblaze_0_dlmb_wra
-pper.ngc" ...
+"/home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MicroBlaze/implem
+entation/microblaze_0_dlmb_wrapper/MicroBlaze_microblaze_0_dlmb_wrapper.ngc" ...
 
 Partition Implementation Status
 -------------------------------
@@ -21,10 +20,10 @@ NGCBUILD Design Results Summary:
   Number of errors:     0
   Number of warnings:   0
 
-Total memory usage is 391980 kilobytes
+Total memory usage is 394992 kilobytes
 
 Writing NGC file "../MicroBlaze_microblaze_0_dlmb_wrapper.ngc" ...
-Total REAL time to NGCBUILD completion:  3 sec
-Total CPU time to NGCBUILD completion:   3 sec
+Total REAL time to NGCBUILD completion:  4 sec
+Total CPU time to NGCBUILD completion:   4 sec
 
 Writing NGCBUILD log file "../MicroBlaze_microblaze_0_dlmb_wrapper.blc"...

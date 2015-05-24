@@ -1,11 +1,11 @@
 Release 14.7 - xst P.20131013 (lin64)
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 --> 
-Parameter TMPDIR set to /home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/MicroBlaze/synthesis/xst_temp_dir/
+Parameter TMPDIR set to /home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MicroBlaze/synthesis/xst_temp_dir/
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.05 secs
+Total CPU time to Xst completion: 0.07 secs
  
 --> 
 
@@ -37,7 +37,7 @@ TABLE OF CONTENTS
 ---- Source Parameters
 Input Format                       : MIXED
 Input File Name                    : "MicroBlaze_debug_module_wrapper_xst.prj"
-Verilog Include Directory          : {"/home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/MicroBlaze/pcores/" "/opt/Xilinx/14.7/ISE_DS/EDK/hw/XilinxBFMinterface/pcores/" "/opt/Xilinx/14.7/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/" }
+Verilog Include Directory          : {"/home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MicroBlaze/pcores/" "/opt/Xilinx/14.7/ISE_DS/EDK/hw/XilinxBFMinterface/pcores/" "/opt/Xilinx/14.7/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/" }
 
 ---- Target Parameters
 Target Device                      : xc6slx45fgg484-3
@@ -275,7 +275,7 @@ Parsing architecture <IMP> of entity <mdm_core>.
 Parsing VHDL file "/opt/Xilinx/14.7/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/mdm_v2_10_a/hdl/vhdl/mdm.vhd" into library mdm_v2_10_a
 Parsing entity <MDM>.
 Parsing architecture <IMP> of entity <mdm>.
-Parsing VHDL file "/home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/MicroBlaze/hdl/MicroBlaze_debug_module_wrapper.vhd" into library work
+Parsing VHDL file "/home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MicroBlaze/hdl/MicroBlaze_debug_module_wrapper.vhd" into library work
 Parsing entity <MicroBlaze_debug_module_wrapper>.
 Parsing architecture <STRUCTURE> of entity <microblaze_debug_module_wrapper>.
 
@@ -315,7 +315,7 @@ INFO:HDLCompiler:679 - "/opt/Xilinx/14.7/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcor
 =========================================================================
 
 Synthesizing Unit <MicroBlaze_debug_module_wrapper>.
-    Related source file is "/home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/MicroBlaze/hdl/MicroBlaze_debug_module_wrapper.vhd".
+    Related source file is "/home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MicroBlaze/hdl/MicroBlaze_debug_module_wrapper.vhd".
     Summary:
 	no macro.
 Unit <MicroBlaze_debug_module_wrapper> synthesized.
@@ -939,13 +939,13 @@ debug_module/update|         |    3.825|    8.567|         |
 =========================================================================
 
 
-Total REAL time to Xst completion: 11.00 secs
-Total CPU time to Xst completion: 10.60 secs
+Total REAL time to Xst completion: 12.00 secs
+Total CPU time to Xst completion: 11.06 secs
  
 --> 
 
 
-Total memory usage is 420288 kilobytes
+Total memory usage is 423256 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :  113 (   0 filtered)

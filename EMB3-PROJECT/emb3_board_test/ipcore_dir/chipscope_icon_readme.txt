@@ -1,5 +1,5 @@
 The following files were generated for 'chipscope_icon' in directory
-/home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/ipcore_dir/
+/home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/ipcore_dir/
 
 XCO file generator:
    Generate an XCO file for compatibility with legacy flows.
@@ -9,16 +9,6 @@ XCO file generator:
 Creates an implementation netlist:
    Creates an implementation netlist for the IP.
 
-   * chipscope_icon/example_design/example_chipscope_icon.ucf
-   * chipscope_icon/example_design/example_chipscope_icon.vhd
-   * chipscope_icon/implement/chipscope_vio.xco
-   * chipscope_icon/implement/coregen.cgp
-   * chipscope_icon/implement/example_chipscope_icon.prj
-   * chipscope_icon/implement/example_chipscope_icon.xst
-   * chipscope_icon/implement/ise_implement.bat
-   * chipscope_icon/implement/ise_implement.sh
-   * chipscope_icon/implement/pa_ise_implement.tcl
-   * chipscope_icon/read_me.txt
    * chipscope_icon.constraints/chipscope_icon.ucf
    * chipscope_icon.constraints/chipscope_icon.xdc
    * chipscope_icon.ngc
@@ -36,7 +26,6 @@ IP Symbol Generator:
 Generate ISE subproject:
    Create an ISE subproject for use when including this core in ISE designs
 
-   * _xmsgs/pn_parser.xmsgs
    * chipscope_icon.gise
    * chipscope_icon.xise
 

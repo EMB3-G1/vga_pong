@@ -36,6 +36,7 @@ Running DRC Tcl procedures for OPTION IPLEVEL_DRC_PROC...
 Address Map for Processor microblaze_0
   (0000000000-0x00007fff) microblaze_0_d_bram_ctrl	microblaze_0_dlmb
   (0000000000-0x00007fff) microblaze_0_i_bram_ctrl	microblaze_0_ilmb
+  (0x40000000-0x4000ffff) axi_gpio_4	axi4lite_0
   (0x40020000-0x4002ffff) dip_switches_4bits	axi4lite_0
   (0x40040000-0x4004ffff) axi_gpio_0	axi4lite_0
   (0x40080000-0x4008ffff) axi_gpio_1	axi4lite_0

@@ -1,11 +1,11 @@
 Release 14.7 - xst P.20131013 (lin64)
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 --> 
-Parameter TMPDIR set to /home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/MicroBlaze/synthesis/xst_temp_dir/
+Parameter TMPDIR set to /home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MicroBlaze/synthesis/xst_temp_dir/
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.05 secs
+Total CPU time to Xst completion: 0.07 secs
  
 --> 
 
@@ -37,7 +37,7 @@ TABLE OF CONTENTS
 ---- Source Parameters
 Input Format                       : MIXED
 Input File Name                    : "MicroBlaze_proc_sys_reset_0_wrapper_xst.prj"
-Verilog Include Directory          : {"/home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/MicroBlaze/pcores/" "/opt/Xilinx/14.7/ISE_DS/EDK/hw/XilinxBFMinterface/pcores/" "/opt/Xilinx/14.7/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/" }
+Verilog Include Directory          : {"/home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MicroBlaze/pcores/" "/opt/Xilinx/14.7/ISE_DS/EDK/hw/XilinxBFMinterface/pcores/" "/opt/Xilinx/14.7/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/" }
 
 ---- Target Parameters
 Target Device                      : xc6slx45fgg484-3
@@ -76,7 +76,7 @@ Parsing architecture <imp> of entity <sequence>.
 Parsing VHDL file "/opt/Xilinx/14.7/ISE_DS/EDK/hw/XilinxProcessorIPLib/pcores/proc_sys_reset_v3_00_a/hdl/vhdl/proc_sys_reset.vhd" into library proc_sys_reset_v3_00_a
 Parsing entity <proc_sys_reset>.
 Parsing architecture <imp> of entity <proc_sys_reset>.
-Parsing VHDL file "/home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/MicroBlaze/hdl/MicroBlaze_proc_sys_reset_0_wrapper.vhd" into library work
+Parsing VHDL file "/home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MicroBlaze/hdl/MicroBlaze_proc_sys_reset_0_wrapper.vhd" into library work
 Parsing entity <MicroBlaze_proc_sys_reset_0_wrapper>.
 Parsing architecture <STRUCTURE> of entity <microblaze_proc_sys_reset_0_wrapper>.
 
@@ -102,7 +102,7 @@ Elaborating entity <upcnt_n> (architecture <imp>) with generics from library <pr
 =========================================================================
 
 Synthesizing Unit <MicroBlaze_proc_sys_reset_0_wrapper>.
-    Related source file is "/home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/MicroBlaze/hdl/MicroBlaze_proc_sys_reset_0_wrapper.vhd".
+    Related source file is "/home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MicroBlaze/hdl/MicroBlaze_proc_sys_reset_0_wrapper.vhd".
     Summary:
 	no macro.
 Unit <MicroBlaze_proc_sys_reset_0_wrapper> synthesized.
@@ -477,13 +477,13 @@ Slowest_sync_clk|    2.646|         |         |         |
 =========================================================================
 
 
-Total REAL time to Xst completion: 9.00 secs
-Total CPU time to Xst completion: 8.07 secs
+Total REAL time to Xst completion: 10.00 secs
+Total CPU time to Xst completion: 8.87 secs
  
 --> 
 
 
-Total memory usage is 399084 kilobytes
+Total memory usage is 402136 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :    1 (   0 filtered)

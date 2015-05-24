@@ -8,7 +8,7 @@
 -- \   \   \/     Version    : 14.7
 --  \   \         Application: Xilinx CORE Generator
 --  /   /         Filename   : chipscope_icon.vho
--- /___/   /\     Timestamp  : Wed Apr 29 20:19:40 CEST 2015
+-- /___/   /\     Timestamp  : Mon May 04 16:00:14 CEST 2015
 -- \   \  /  \
 --  \___\/\___\
 --

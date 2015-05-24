@@ -2,12 +2,12 @@ Release 14.7 - platgen Xilinx EDK 14.7 Build EDK_P.20131013
  (lin64)
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
-Command Line: platgen -p xc6slx45fgg484-3 -lang vhdl -intstyle ise -toplevel no
+Command Line: platgen -p xc6slx45fgg484-3 -lang vhdl -intstyle pa -toplevel no
 -ti MicroBlaze_i -msg __xps/ise/xmsgprops.lst MicroBlaze.mhs 
 
 Parse
-/home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/Micro
-Blaze/MicroBlaze.mhs ...
+/home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MicroBlaze/MicroBl
+aze.mhs ...
 
 Read MPD definitions ...
 
@@ -43,6 +43,7 @@ Running DRC Tcl procedures for OPTION IPLEVEL_DRC_PROC...
 Address Map for Processor microblaze_0
   (0000000000-0x00007fff) microblaze_0_d_bram_ctrl	microblaze_0_dlmb
   (0000000000-0x00007fff) microblaze_0_i_bram_ctrl	microblaze_0_ilmb
+  (0x40000000-0x4000ffff) axi_gpio_4	axi4lite_0
   (0x40020000-0x4002ffff) dip_switches_4bits	axi4lite_0
   (0x40040000-0x4004ffff) axi_gpio_0	axi4lite_0
   (0x40080000-0x4008ffff) axi_gpio_1	axi4lite_0
@@ -68,17 +69,17 @@ Checking platform address map ...
 Checking platform configuration ...
 IPNAME: lmb_v10, INSTANCE: microblaze_0_ilmb - 1 master(s) : 1 slave(s) 
 IPNAME: lmb_v10, INSTANCE: microblaze_0_dlmb - 1 master(s) : 1 slave(s) 
-IPNAME: axi_interconnect, INSTANCE: axi4lite_0 - 1 master(s) : 7 slave(s) 
+IPNAME: axi_interconnect, INSTANCE: axi4lite_0 - 1 master(s) : 8 slave(s) 
 
 Checking port drivers...
 WARNING:EDK:4181 - PORT: DBG_WAKEUP, CONNECTOR: microblaze_0_DBG_WAKEUP -
    floating connection -
-   /home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/Mi
-   croBlaze/MicroBlaze.mhs line 113 
+   /home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MicroBlaze/Micr
+   oBlaze.mhs line 114 
 WARNING:EDK:4181 - PORT: GPIO_IO_O, CONNECTOR: axi_gpio_0_GPIO_IO_O - floating
    connection -
-   /home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/Mi
-   croBlaze/MicroBlaze.mhs line 172 
+   /home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MicroBlaze/Micr
+   oBlaze.mhs line 173 
 
 Performing Clock DRCs...
 
@@ -163,11 +164,11 @@ Managing cache ...
 
 Elaborating instances ...
 IPNAME:bram_block INSTANCE:microblaze_0_bram_block -
-/home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/Micro
-Blaze/MicroBlaze.mhs line 85 - elaborating IP
+/home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MicroBlaze/MicroBl
+aze.mhs line 86 - elaborating IP
 IPNAME:clock_generator INSTANCE:clock_generator_0 -
-/home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/Micro
-Blaze/MicroBlaze.mhs line 143 - elaborating IP
+/home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MicroBlaze/MicroBl
+aze.mhs line 144 - elaborating IP
 ClkGen elaborate status: PASSED
 ----------------------------------------
 ----------------------------------------
@@ -192,74 +193,77 @@ INFO:EDK:4211 - The following instances are synthesized with XST. The MPD option
    IMP_NETLIST=TRUE indicates that a NGC file is to be produced using XST
    synthesis. IMP_NETLIST=FALSE (default) instances are not synthesized. 
 INSTANCE:uart_0 -
-/home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/Micro
-Blaze/MicroBlaze.mhs line 25 - Running XST synthesis
+/home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MicroBlaze/MicroBl
+aze.mhs line 26 - Running XST synthesis
 INSTANCE:proc_sys_reset_0 -
-/home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/Micro
-Blaze/MicroBlaze.mhs line 40 - Running XST synthesis
+/home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MicroBlaze/MicroBl
+aze.mhs line 41 - Running XST synthesis
 INSTANCE:microblaze_0_ilmb -
-/home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/Micro
-Blaze/MicroBlaze.mhs line 53 - Running XST synthesis
+/home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MicroBlaze/MicroBl
+aze.mhs line 54 - Running XST synthesis
 INSTANCE:microblaze_0_i_bram_ctrl -
-/home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/Micro
-Blaze/MicroBlaze.mhs line 60 - Running XST synthesis
+/home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MicroBlaze/MicroBl
+aze.mhs line 61 - Running XST synthesis
 INSTANCE:microblaze_0_dlmb -
-/home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/Micro
-Blaze/MicroBlaze.mhs line 69 - Running XST synthesis
+/home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MicroBlaze/MicroBl
+aze.mhs line 70 - Running XST synthesis
 INSTANCE:microblaze_0_d_bram_ctrl -
-/home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/Micro
-Blaze/MicroBlaze.mhs line 76 - Running XST synthesis
+/home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MicroBlaze/MicroBl
+aze.mhs line 77 - Running XST synthesis
 INSTANCE:microblaze_0_bram_block -
-/home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/Micro
-Blaze/MicroBlaze.mhs line 85 - Running XST synthesis
+/home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MicroBlaze/MicroBl
+aze.mhs line 86 - Running XST synthesis
 INSTANCE:microblaze_0 -
-/home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/Micro
-Blaze/MicroBlaze.mhs line 92 - Running XST synthesis
+/home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MicroBlaze/MicroBl
+aze.mhs line 93 - Running XST synthesis
 INSTANCE:dip_switches_4bits -
-/home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/Micro
-Blaze/MicroBlaze.mhs line 116 - Running XST synthesis
+/home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MicroBlaze/MicroBl
+aze.mhs line 117 - Running XST synthesis
 INSTANCE:debug_module -
-/home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/Micro
-Blaze/MicroBlaze.mhs line 130 - Running XST synthesis
+/home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MicroBlaze/MicroBl
+aze.mhs line 131 - Running XST synthesis
 INSTANCE:clock_generator_0 -
-/home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/Micro
-Blaze/MicroBlaze.mhs line 143 - Running XST synthesis
+/home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MicroBlaze/MicroBl
+aze.mhs line 144 - Running XST synthesis
 INSTANCE:axi4lite_0 -
-/home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/Micro
-Blaze/MicroBlaze.mhs line 155 - Running XST synthesis
+/home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MicroBlaze/MicroBl
+aze.mhs line 156 - Running XST synthesis
 INSTANCE:axi_gpio_0 -
-/home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/Micro
-Blaze/MicroBlaze.mhs line 163 - Running XST synthesis
+/home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MicroBlaze/MicroBl
+aze.mhs line 164 - Running XST synthesis
 INSTANCE:axi_gpio_2 -
-/home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/Micro
-Blaze/MicroBlaze.mhs line 176 - Running XST synthesis
+/home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MicroBlaze/MicroBl
+aze.mhs line 177 - Running XST synthesis
 INSTANCE:axi_gpio_1 -
-/home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/Micro
-Blaze/MicroBlaze.mhs line 188 - Running XST synthesis
+/home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MicroBlaze/MicroBl
+aze.mhs line 189 - Running XST synthesis
 INSTANCE:axi_gpio_3 -
-/home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/Micro
-Blaze/MicroBlaze.mhs line 200 - Running XST synthesis
+/home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MicroBlaze/MicroBl
+aze.mhs line 201 - Running XST synthesis
+INSTANCE:axi_gpio_4 -
+/home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MicroBlaze/MicroBl
+aze.mhs line 213 - Running XST synthesis
 
 Running NGCBUILD ...
 IPNAME:MicroBlaze_microblaze_0_ilmb_wrapper INSTANCE:microblaze_0_ilmb -
-/home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/Micro
-Blaze/MicroBlaze.mhs line 53 - Running NGCBUILD
+/home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MicroBlaze/MicroBl
+aze.mhs line 54 - Running NGCBUILD
 IPNAME:MicroBlaze_microblaze_0_dlmb_wrapper INSTANCE:microblaze_0_dlmb -
-/home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/Micro
-Blaze/MicroBlaze.mhs line 69 - Running NGCBUILD
+/home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MicroBlaze/MicroBl
+aze.mhs line 70 - Running NGCBUILD
 IPNAME:MicroBlaze_microblaze_0_wrapper INSTANCE:microblaze_0 -
-/home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/Micro
-Blaze/MicroBlaze.mhs line 92 - Running NGCBUILD
+/home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MicroBlaze/MicroBl
+aze.mhs line 93 - Running NGCBUILD
 IPNAME:MicroBlaze_clock_generator_0_wrapper INSTANCE:clock_generator_0 -
-/home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/Micro
-Blaze/MicroBlaze.mhs line 143 - Running NGCBUILD
+/home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MicroBlaze/MicroBl
+aze.mhs line 144 - Running NGCBUILD
 IPNAME:MicroBlaze_axi4lite_0_wrapper INSTANCE:axi4lite_0 -
-/home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/Micro
-Blaze/MicroBlaze.mhs line 155 - Running NGCBUILD
+/home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MicroBlaze/MicroBl
+aze.mhs line 156 - Running NGCBUILD
 INFO:EDK:3509 - NCF files should not be modified as they will be regenerated.
    If any constraint needs to be overridden, this should be done by modifying
    the data/MicroBlaze.ucf file.
 
 Rebuilding cache ...
 
-Total run time: 286.00 seconds
+Total run time: 354.00 seconds

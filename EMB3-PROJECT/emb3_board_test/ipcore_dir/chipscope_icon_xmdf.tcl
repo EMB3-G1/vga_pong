@@ -35,57 +35,6 @@ utilities_xmdf::xmdfSetData $instance FileSet $fcount type logical_library
 utilities_xmdf::xmdfSetData $instance FileSet $fcount logical_library unisim
 incr fcount
 
-utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path chipscope_icon/example_design/example_chipscope_icon.ucf
-utilities_xmdf::xmdfSetData $instance FileSet $fcount type Ignore
-incr fcount
-
-utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path chipscope_icon/example_design/example_chipscope_icon.vhd
-utilities_xmdf::xmdfSetData $instance FileSet $fcount type Ignore
-incr fcount
-
-utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path chipscope_icon/example_design/example_chipscope_icon.xdc
-utilities_xmdf::xmdfSetData $instance FileSet $fcount type Ignore
-incr fcount
-
-utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path chipscope_icon/implement/chipscope_vio.xco
-utilities_xmdf::xmdfSetData $instance FileSet $fcount type Ignore
-incr fcount
-
-utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path chipscope_icon/implement/coregen.cgp
-utilities_xmdf::xmdfSetData $instance FileSet $fcount type Ignore
-incr fcount
-
-utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path chipscope_icon/implement/example_chipscope_icon.prj
-utilities_xmdf::xmdfSetData $instance FileSet $fcount type Ignore
-incr fcount
-
-utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path chipscope_icon/implement/example_chipscope_icon.xst
-utilities_xmdf::xmdfSetData $instance FileSet $fcount type Ignore
-incr fcount
-
-utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path chipscope_icon/implement/ise_implement.bat
-utilities_xmdf::xmdfSetData $instance FileSet $fcount type Ignore
-incr fcount
-
-utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path chipscope_icon/implement/ise_implement.sh
-utilities_xmdf::xmdfSetData $instance FileSet $fcount type Ignore
-incr fcount
-
-utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path chipscope_icon/implement/pa_ise_implement.tcl
-utilities_xmdf::xmdfSetData $instance FileSet $fcount type Ignore
-incr fcount
-
-utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path chipscope_icon/implement/pa_rdi_implement.tcl
-utilities_xmdf::xmdfSetData $instance FileSet $fcount type Ignore
-incr fcount
-
-utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path chipscope_icon/implement/rdi_implement.tcl
-utilities_xmdf::xmdfSetData $instance FileSet $fcount type Ignore
-incr fcount
-
-utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path chipscope_icon/read_me.txt
-utilities_xmdf::xmdfSetData $instance FileSet $fcount type Ignore
-incr fcount
 
 utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path chipscope_icon.asy
 utilities_xmdf::xmdfSetData $instance FileSet $fcount type asy
@@ -107,9 +56,6 @@ incr fcount
 
 
 
-utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path chipscope_icon.ejp
-utilities_xmdf::xmdfSetData $instance FileSet $fcount type AnyView
-incr fcount
 
 utilities_xmdf::xmdfSetData $instance FileSet $fcount relative_path chipscope_icon.ngc
 utilities_xmdf::xmdfSetData $instance FileSet $fcount type ngc

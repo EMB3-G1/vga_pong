@@ -12,7 +12,6 @@ entity MicroBlaze_top is
     uart_0_sout_O : out std_logic;
     uart_0_sin_I : in std_logic;
     reset_I : in std_logic;
-    leds_7bits_O : inout std_logic_vector(6 downto 0);
     dip_switches_4bits_I : in std_logic_vector(3 downto 0);
     clk_I : in std_logic;
     axi_gpio_1_GPIO_IO_I_pin : in std_logic_vector(9 downto 0);
@@ -29,7 +28,6 @@ architecture STRUCTURE of MicroBlaze_top is
       uart_0_sout_O : out std_logic;
       uart_0_sin_I : in std_logic;
       reset_I : in std_logic;
-      leds_7bits_O : inout std_logic_vector(6 downto 0);
       dip_switches_4bits_I : in std_logic_vector(3 downto 0);
       clk_I : in std_logic;
       axi_gpio_1_GPIO_IO_I_pin : in std_logic_vector(9 downto 0);
@@ -49,7 +47,6 @@ begin
       uart_0_sout_O => uart_0_sout_O,
       uart_0_sin_I => uart_0_sin_I,
       reset_I => reset_I,
-      leds_7bits_O => leds_7bits_O,
       dip_switches_4bits_I => dip_switches_4bits_I,
       clk_I => clk_I,
       axi_gpio_1_GPIO_IO_I_pin => axi_gpio_1_GPIO_IO_I_pin,

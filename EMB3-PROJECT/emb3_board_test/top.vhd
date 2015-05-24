@@ -131,6 +131,10 @@ architecture Behavioral of top is
 	signal usr_buttons : std_logic_vector (1 downto 0);
 	signal ai_enable : std_logic_vector (3 downto 0);
 	
+	signal j7_btn : std_logic_vector (1 downto 0);
+	signal control_icon : std_logic_vector (35 downto 0);
+	signal cs_vio_o : std_logic_vector (1 downto 0);
+	
 	-- Color_adder signals
 	signal rgb_o_colAdder : std_logic_vector(8 downto 0);
 	
@@ -203,11 +207,69 @@ architecture Behavioral of top is
 		rgb_output : out std_logic_vector (8 downto 0)
 	);
 	END COMPONENT;
-	
+
+	COMPONENT chipscope_icon IS
+	port (
+		CONTROL0: inout std_logic_vector(35 downto 0));
+	END COMPONENT;
+
+	COMPONENT chipscope_vio IS
+	port (
+		CONTROL: inout std_logic_vector(35 downto 0);
+		ASYNC_IN: in std_logic_vector(1 downto 0);
+		ASYNC_OUT: out std_logic_vector(1 downto 0));
+	END COMPONENT;
+
+	COMPONENT MicroBlaze IS
+    port (
+    	uart_0_sout_O : out std_logic;
+    	uart_0_sin_I : in std_logic;
+    	reset_I : in std_logic;
+    	dip_switches_4bits_I : in std_logic_vector(3 downto 0);
+    	clk_I : in std_logic;
+    	axi_gpio_1_GPIO_IO_I_pin : in std_logic_vector(9 downto 0);
+    	axi_gpio_0_GPIO_IO_I_pin : in std_logic_vector(9 downto 0);
+    	axi_gpio_2_GPIO_IO_I_pin : in std_logic_vector(9 downto 0);
+    	axi_gpio_3_GPIO_IO_I_pin : in std_logic_vector(1 downto 0);
+    	axi_gpio_4_GPIO_IO_I_pin : in std_logic
+    );
+  END COMPONENT;
+
+  attribute BOX_TYPE : STRING;
+  attribute BOX_TYPE of MicroBlaze : component is "user_black_box";	
 	
 begin
 
 	-------COMPONENTS INSTANTIATION-------
+
+	MicroBlaze_i : MicroBlaze
+    port map (
+    	uart_0_sout_O => ft232h_rs232_tx_o,
+    	uart_0_sin_I => ft232h_rs232_rx_i,
+    	reset_I => NOT resetn, 
+    	dip_switches_4bits_I => dip_sw_i,
+    	clk_I => clk_200M_i,
+    	axi_gpio_0_GPIO_IO_I_pin => ball_Y_pos,
+    	axi_gpio_1_GPIO_IO_I_pin => ball_X_pos,
+    	axi_gpio_2_GPIO_IO_I_pin => bat_l_pos,
+    	axi_gpio_3_GPIO_IO_I_pin => j7_btn,
+    	axi_gpio_4_GPIO_IO_I_pin => new_frame
+	);
+
+    CS_ICON: chipscope_icon
+    port map (
+    	CONTROL0 => control_icon
+    );
+
+    CS_VIO: chipscope_vio
+    port map (
+    	CONTROL => control_icon,
+    	ASYNC_IN => j7_btn_i,
+    	ASYNC_OUT => cs_vio_o
+    );
+	
+	j7_btn(0) <= j7_btn_i(0) and cs_vio_o(0);
+	j7_btn(1) <= j7_btn_i(1) and cs_vio_o(1);
 		
 	-- Conditioner
 	conditioner_inst : conditioner
@@ -452,7 +514,7 @@ begin
 		ft232h_rst_o <= ft232h_acbus7_i;
 			
 		-- simple loop-through UART test logic
-		ft232h_rs232_tx_o <= ft232h_rs232_rx_i;
+		--ft232h_rs232_tx_o <= ft232h_rs232_rx_i;
 		-- input for the output MUX
 		mux_signal <= j7_dip_sw_i(7)&j7_dip_sw_i(6);
 		

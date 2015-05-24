@@ -17,7 +17,8 @@ entity MicroBlaze_top is
     axi_gpio_1_GPIO_IO_I_pin : in std_logic_vector(9 downto 0);
     axi_gpio_0_GPIO_IO_I_pin : in std_logic_vector(9 downto 0);
     axi_gpio_2_GPIO_IO_I_pin : in std_logic_vector(9 downto 0);
-    axi_gpio_3_GPIO_IO_I_pin : in std_logic_vector(1 downto 0)
+    axi_gpio_3_GPIO_IO_I_pin : in std_logic_vector(1 downto 0);
+    axi_gpio_4_GPIO_IO_I_pin : in std_logic
   );
 end MicroBlaze_top;
 
@@ -33,7 +34,8 @@ architecture STRUCTURE of MicroBlaze_top is
       axi_gpio_1_GPIO_IO_I_pin : in std_logic_vector(9 downto 0);
       axi_gpio_0_GPIO_IO_I_pin : in std_logic_vector(9 downto 0);
       axi_gpio_2_GPIO_IO_I_pin : in std_logic_vector(9 downto 0);
-      axi_gpio_3_GPIO_IO_I_pin : in std_logic_vector(1 downto 0)
+      axi_gpio_3_GPIO_IO_I_pin : in std_logic_vector(1 downto 0);
+      axi_gpio_4_GPIO_IO_I_pin : in std_logic
     );
   end component;
 
@@ -52,7 +54,8 @@ begin
       axi_gpio_1_GPIO_IO_I_pin => axi_gpio_1_GPIO_IO_I_pin,
       axi_gpio_0_GPIO_IO_I_pin => axi_gpio_0_GPIO_IO_I_pin,
       axi_gpio_2_GPIO_IO_I_pin => axi_gpio_2_GPIO_IO_I_pin,
-      axi_gpio_3_GPIO_IO_I_pin => axi_gpio_3_GPIO_IO_I_pin
+      axi_gpio_3_GPIO_IO_I_pin => axi_gpio_3_GPIO_IO_I_pin,
+      axi_gpio_4_GPIO_IO_I_pin => axi_gpio_4_GPIO_IO_I_pin
     );
 
 end architecture STRUCTURE;

@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <report-views version="2.0" >
  <header>
-  <DateModified>2015-05-01T16:24:21</DateModified>
+  <DateModified>2015-05-02T16:05:50</DateModified>
   <ModuleName>MicroBlaze</ModuleName>
-  <SummaryTimeStamp>2015-05-01T16:24:21</SummaryTimeStamp>
-  <SavedFilePath>/home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/MicroBlaze/__xps/ise/MicroBlaze.xreport</SavedFilePath>
+  <SummaryTimeStamp>2015-05-02T16:05:50</SummaryTimeStamp>
+  <SavedFilePath>/home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MicroBlaze/__xps/ise/MicroBlaze.xreport</SavedFilePath>
   <FilterFile>filter.filter</FilterFile>
-  <SavedFilterFilePath>/home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/MicroBlaze/__xps/ise</SavedFilterFilePath>
+  <SavedFilterFilePath>/home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MicroBlaze/__xps/ise</SavedFilterFilePath>
   <DateInitialized>2015-04-30T10:25:45</DateInitialized>
   <EnableMessageFiltering>false</EnableMessageFiltering>
  </header>

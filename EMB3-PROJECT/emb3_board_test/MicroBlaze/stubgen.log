@@ -3,12 +3,12 @@ Release 14.7 - platgen Xilinx EDK 14.7 Build EDK_P.20131013
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
 Command Line: platgen -p xc6slx45fgg484-3 -lang vhdl -intstyle ise -stubgen
-/home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/Micro
-Blaze/MicroBlaze.mhs 
+/home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MicroBlaze/MicroBl
+aze.mhs 
 
 Parse
-/home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/Micro
-Blaze/MicroBlaze.mhs ...
+/home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MicroBlaze/MicroBl
+aze.mhs ...
 
 Create merged mhs ...
 
@@ -44,6 +44,7 @@ Running DRC Tcl procedures for OPTION IPLEVEL_DRC_PROC...
 Address Map for Processor microblaze_0
   (0000000000-0x00007fff) microblaze_0_d_bram_ctrl	microblaze_0_dlmb
   (0000000000-0x00007fff) microblaze_0_i_bram_ctrl	microblaze_0_ilmb
+  (0x40000000-0x4000ffff) axi_gpio_4	axi4lite_0
   (0x40020000-0x4002ffff) dip_switches_4bits	axi4lite_0
   (0x40040000-0x4004ffff) axi_gpio_0	axi4lite_0
   (0x40080000-0x4008ffff) axi_gpio_1	axi4lite_0
@@ -72,8 +73,8 @@ Creating stub ...
 
 Elaborating instances ...
 IPNAME:bram_block INSTANCE:microblaze_0_bram_block -
-/home/ignaciotb/Documents/Semester2/EMB3/VHDL/EMB3-PROJECT/emb3_board_test/Micro
-Blaze/MicroBlaze.mhs line 85 - elaborating IP
+/home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MicroBlaze/MicroBl
+aze.mhs line 86 - elaborating IP
 
 Inserting wrapper level ...
 
@@ -81,4 +82,4 @@ Writing (stub) BMM ...
 
 Writing top-level HDL ...
 
-Total run time: 3.00 seconds
+Total run time: 4.00 seconds
