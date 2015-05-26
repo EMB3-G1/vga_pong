@@ -1,0 +1,12 @@
+16:08:57 **** Auto Build of configuration Release for project test ****
+make all 
+../src/testperiph.c: In function 'main':
+Building file: ../src/testperiph.c
+Invoking: MicroBlaze gcc compiler
+../src/testperiph.c:115:1: error: expected declaration or statement at end of input
+mb-gcc -Wall -O2 -c -fmessage-length=0 -I../../standalone_bsp_0/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v8.50.c -mno-xl-soft-mul -mhard-float -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/testperiph.d" -MT"src/testperiph.d" -o "src/testperiph.o" "../src/testperiph.c"
+../src/testperiph.c:53:8: warning: variable 'statusBatY' set but not used [-Wunused-but-set-variable]
+make: *** [src/testperiph.o] Error 1
+
+16:08:57 Build Finished (took 234ms)
+

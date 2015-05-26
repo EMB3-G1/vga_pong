@@ -1,0 +1,15 @@
+/*
+ * Empty C++ Application
+ */
+
+#include <cstdlib>
+#include <cstdio>
+#include <cmath>
+#include <cfloat>
+#include <cstdint>
+
+int main()
+{
+	std::cout << "Hi world!!" << std::endl;
+	return 0;
+}

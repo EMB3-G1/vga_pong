@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item value="/home/moro/Apuntes/Electronics/vga_pong/EMB3-PROJECT/emb3_board_test/top.bit" key="MicroBlaze_hw_platform-bitFile"/>
+	<item value="/home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/top.bit" key="MB_AI_hw_platform-bitFile"/>
+	<item value="/home/moro/Apuntes/Electronics/vga_pong/EMB3-PROJECT/emb3_board_test/edkBmmFile_bd.bmm" key="MicroBlaze_hw_platform-bmmFile"/>
+	<item value="/home/moro/workspace_mb/test/Debug/test.elf" key="MB_AI_hw_platform-microblaze_0-initElf"/>
+	<item value="/home/moro/workspace_mb/Microblaze_AI/Release/Microblaze_AI.elf" key="MicroBlaze_hw_platform-microblaze_0-initElf"/>
+	<item value="/home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/edkBmmFile_bd.bmm" key="MB_AI_hw_platform-bmmFile"/>
+</section>

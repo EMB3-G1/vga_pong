@@ -1,0 +1,12 @@
+/*
+ * Empty C++ Application
+ */
+#include <stdio>
+#include <iostream>
+
+int main()
+{
+	print("Hi world!");
+
+	return 0;
+}

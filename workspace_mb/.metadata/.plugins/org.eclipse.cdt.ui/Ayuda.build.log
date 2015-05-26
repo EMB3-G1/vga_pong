@@ -1,0 +1,16 @@
+16:08:57 **** Auto Build of configuration Debug for project Ayuda ****
+make all 
+Building file: ../src/testperiph.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -I../../standalone_bsp_0/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v8.50.c -mno-xl-soft-mul -mhard-float -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/testperiph.d" -MT"src/testperiph.d" -o "src/testperiph.o" "../src/testperiph.c"
+In file included from ../src/testperiph.c:40:0:
+../src/gpio_intr_header.h:51:21: error: unknown type name 'XIntc'
+../src/testperiph.c: In function 'main':
+../src/testperiph.c:146:7: warning: implicit declaration of function 'GpioIntrExample' [-Wimplicit-function-declaration]
+../src/testperiph.c:146:32: error: lvalue required as unary '&' operand
+../src/testperiph.c:148:32: error: 'XPAR__DIP_SWITCHES_4BITS_IP2INTC_IRPT_INTR' undeclared (first use in this function)
+../src/testperiph.c:148:32: note: each undeclared identifier is reported only once for each function it appears in
+make: *** [src/testperiph.o] Error 1
+
+16:08:57 Build Finished (took 267ms)
+

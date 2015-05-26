@@ -1,0 +1,10 @@
+/*
+ * Empty C++ Application
+ */
+
+int main()
+{
+	print("Hi world!");
+
+	return 0;
+}

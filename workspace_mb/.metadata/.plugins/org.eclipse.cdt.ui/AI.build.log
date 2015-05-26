@@ -1,0 +1,14 @@
+17:35:13 **** Incremental Build of configuration Debug for project AI ****
+make all 
+Building file: ../src/main.cc
+Invoking: MicroBlaze g++ compiler
+mb-g++ -Wall -O0 -g3 -c -fmessage-length=0 -I../../standalone_bsp_0/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v8.50.c -mno-xl-soft-mul -mhard-float -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/main.d" -MT"src/main.d" -o "src/main.o" "../src/main.cc"
+In file included from /opt/Xilinx/14.7/ISE_DS/EDK/gnu/microblaze/lin/bin/../lib/gcc/microblaze-xilinx-elf/4.6.4/../../../../microblaze-xilinx-elf/include/c++/4.6.4/cstdint:35:0,
+                 from ../src/main.cc:9:
+/opt/Xilinx/14.7/ISE_DS/EDK/gnu/microblaze/lin/bin/../lib/gcc/microblaze-xilinx-elf/4.6.4/../../../../microblaze-xilinx-elf/include/c++/4.6.4/bits/c++0x_warning.h:32:2: error: #error This file requires compiler and library support for the upcoming ISO C++ standard, C++0x. This support is currently experimental, and must be enabled with the -std=c++0x or -std=gnu++0x compiler options.
+../src/main.cc: In function 'int main()':
+../src/main.cc:13:20: warning: deprecated conversion from string constant to 'char*' [-Wwrite-strings]
+make: *** [src/main.o] Error 1
+
+17:35:14 Build Finished (took 356ms)
+

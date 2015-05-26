@@ -1,0 +1,337 @@
+14:22:44.478 INFO  - Processing command line option -hwspec /home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MB_AI/SDK/SDK_Export/hw/MB_AI.xml. 
+15:34:51.811 INFO  - Processing command line option -hwspec /home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MB_AI/SDK/SDK_Export/hw/MB_AI.xml. 
+15:34:55.199 INFO  - The hardware specification for project 'MB_AI_hw_platform' is different from /home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MB_AI/SDK/SDK_Export/hw/MB_AI.xml. 
+15:34:55.502 INFO  - Copied contents of /home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MB_AI/SDK/SDK_Export/hw/MB_AI.xml into /MB_AI_hw_platform/system.xml. 
+15:34:56.361 INFO  - Synchronizing projects in the workspace with the hardware platform specification changes. 
+15:34:58.411 INFO  - Updating hardware inferred compiler options for AI. 
+15:34:58.787 INFO  - Clearing existing target manager status. 
+15:39:01.141 INFO  - FPGA configured successfully with bitstream "/home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/top.bit" 
+15:57:07.903 ERROR - Unexpected error while parsing XMD response ￿: com.google.gson.JsonSyntaxException: com.google.gson.stream.MalformedJsonException: invalid number or unquoted string near  
+17:02:22.835 INFO  - Processing command line option -hwspec /home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MB_AI/SDK/SDK_Export/hw/MB_AI.xml. 
+17:12:27.959 INFO  - FPGA configured successfully with bitstream "/home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/top.bit" 
+17:14:12.025 INFO  - FPGA configured successfully with bitstream "/home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/top.bit" 
+17:16:21.561 INFO  - FPGA configured successfully with bitstream "/home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/top.bit" 
+17:20:44.557 INFO  - FPGA configured successfully with bitstream "/home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/top.bit" 
+17:34:57.752 INFO  - FPGA configured successfully with bitstream "/home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/top.bit" 
+17:35:16.291 INFO  - System reset is completed. 
+17:35:17.627 ERROR - Unexpected error while launching program. java.lang.RuntimeException: Error creating session
+	at com.xilinx.sdk.debug.core.XilinxAppLaunchConfigurationDelegate.debugApplication(Unknown Source)
+	at com.xilinx.sdk.debug.core.XilinxAppLaunchConfigurationDelegate.launch(Unknown Source)
+
+17:37:21.321 INFO  - FPGA configured successfully with bitstream "/home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/top.bit" 
+17:38:32.936 INFO  - Processor reset is completed for microblaze_0 
+17:38:33.718 INFO  - Application is downloaded for microblaze_0. (/home/moro/workspace_mb/test/Debug/test.elf) 
+17:44:17.729 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MB_AI_hw_platform/download.bit" 
+17:44:57.009 INFO  - Processor reset is completed for microblaze_0 
+17:44:57.362 INFO  - Application is downloaded for microblaze_0. (/home/moro/workspace_mb/test/Debug/test.elf) 
+17:46:05.257 INFO  - Processor reset is completed for microblaze_0 
+17:46:05.554 INFO  - Application is downloaded for microblaze_0. (/home/moro/workspace_mb/test/Debug/test.elf) 
+17:51:05.619 INFO  - Processing command line option -hwspec /home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MB_AI/SDK/SDK_Export/hw/MB_AI.xml. 
+17:52:11.923 INFO  - FPGA configured successfully with bitstream "/home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/top.bit" 
+17:52:48.017 INFO  - Processor reset is completed for microblaze_0 
+17:52:48.389 INFO  - Application is downloaded for microblaze_0. (/home/moro/workspace_mb/test/Debug/test.elf) 
+17:58:37.408 INFO  - Processing command line option -hwspec /home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MB_AI/SDK/SDK_Export/hw/MB_AI.xml. 
+17:59:51.678 INFO  - Processing command line option -hwspec /home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MB_AI/SDK/SDK_Export/hw/MB_AI.xml. 
+18:01:46.972 INFO  - Processor reset is completed for microblaze_0 
+18:01:47.469 INFO  - Application is downloaded for microblaze_0. (/home/moro/workspace_mb/test/Debug/test.elf) 
+18:06:46.316 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MB_AI_hw_platform/download.bit" 
+18:07:09.430 INFO  - Processor reset is completed for microblaze_0 
+18:07:09.763 INFO  - Application is downloaded for microblaze_0. (/home/moro/workspace_mb/test/Debug/test.elf) 
+18:22:10.124 ERROR - FPGA Configuration failed.Connection to Board Failed
+
+
+    Failed to Open JTAG Cable
+    Cable target is not connected to the host
+ 
+18:23:21.614 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MB_AI_hw_platform/download.bit" 
+18:24:41.036 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MB_AI_hw_platform/download.bit" 
+18:25:51.666 INFO  - Processing command line option -hwspec /home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MB_AI/SDK/SDK_Export/hw/MB_AI.xml. 
+18:26:37.003 INFO  - Processor reset is completed for microblaze_0 
+18:26:37.578 INFO  - Application is downloaded for microblaze_0. (/home/moro/workspace_mb/test/Debug/test.elf) 
+18:27:23.436 INFO  - FPGA configured successfully with bitstream "/home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/top.bit" 
+18:27:39.143 INFO  - Processor reset is completed for microblaze_0 
+18:27:39.456 INFO  - Application is downloaded for microblaze_0. (/home/moro/workspace_mb/test/Debug/test.elf) 
+18:28:33.820 INFO  - Processing command line option -hwspec /home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MB_AI/SDK/SDK_Export/hw/MB_AI.xml. 
+18:29:56.820 INFO  - FPGA configured successfully with bitstream "/home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/top.bit" 
+18:30:56.600 INFO  - System reset is completed. 
+18:30:57.782 ERROR - Unexpected error while launching program. java.lang.RuntimeException: Error creating session
+	at com.xilinx.sdk.debug.core.XilinxAppLaunchConfigurationDelegate.debugApplication(Unknown Source)
+	at com.xilinx.sdk.debug.core.XilinxAppLaunchConfigurationDelegate.launch(Unknown Source)
+
+18:31:14.894 INFO  - Processor reset is completed for microblaze_0 
+18:31:15.301 INFO  - Application is downloaded for microblaze_0. (/home/moro/workspace_mb/test/Debug/test.elf) 
+18:33:31.939 INFO  - Processing command line option -hwspec /home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MB_AI/SDK/SDK_Export/hw/MB_AI.xml. 
+18:34:42.889 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MB_AI_hw_platform/download.bit" 
+18:34:51.154 INFO  - Processor reset is completed for microblaze_0 
+18:34:51.541 INFO  - Application is downloaded for microblaze_0. (/home/moro/workspace_mb/test/Debug/test.elf) 
+18:35:23.616 INFO  - Processor reset is completed for microblaze_0 
+18:35:23.937 INFO  - Application is downloaded for microblaze_0. (/home/moro/workspace_mb/test/Debug/test.elf) 
+18:37:11.005 INFO  - Processor reset is completed for microblaze_0 
+18:37:11.205 INFO  - Application is downloaded for microblaze_0. (/home/moro/workspace_mb/test/Debug/test.elf) 
+18:37:30.108 INFO  - Processor reset is completed for microblaze_0 
+18:37:30.315 INFO  - Application is downloaded for microblaze_0. (/home/moro/workspace_mb/test/Debug/test.elf) 
+18:38:03.745 INFO  - Processor reset is completed for microblaze_0 
+18:38:04.239 INFO  - Application is downloaded for microblaze_0. (/home/moro/workspace_mb/test/Debug/test.elf) 
+18:38:47.268 INFO  - Processor reset is completed for microblaze_0 
+18:38:47.568 INFO  - Application is downloaded for microblaze_0. (/home/moro/workspace_mb/test/Debug/test.elf) 
+18:39:14.816 ERROR - Unexpected error while parsing XMD response ￿: com.google.gson.JsonSyntaxException: com.google.gson.stream.MalformedJsonException: invalid number or unquoted string near  
+15:28:50.895 INFO  - Processing command line option -hwspec /home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MB_AI/SDK/SDK_Export/hw/MB_AI.xml. 
+15:29:35.662 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MB_AI_hw_platform/download.bit" 
+15:29:44.679 INFO  - Processor reset is completed for microblaze_0 
+15:29:45.115 INFO  - Application is downloaded for microblaze_0. (/home/moro/workspace_mb/test/Debug/test.elf) 
+15:30:43.751 INFO  - Processor reset is completed for microblaze_0 
+15:30:44.057 INFO  - Application is downloaded for microblaze_0. (/home/moro/workspace_mb/test/Debug/test.elf) 
+16:36:53.195 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MB_AI_hw_platform/download.bit" 
+16:42:47.717 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MB_AI_hw_platform/download.bit" 
+16:45:21.214 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MB_AI_hw_platform/download.bit" 
+16:45:37.988 INFO  - System reset is completed. 
+16:45:39.377 ERROR - Unexpected error while launching program. java.lang.RuntimeException: Error creating session
+	at com.xilinx.sdk.debug.core.XilinxAppLaunchConfigurationDelegate.debugApplication(Unknown Source)
+	at com.xilinx.sdk.debug.core.XilinxAppLaunchConfigurationDelegate.launch(Unknown Source)
+
+16:53:11.155 INFO  - System reset is completed. 
+16:53:12.292 ERROR - Unexpected error while launching program. java.lang.RuntimeException: Error creating session
+	at com.xilinx.sdk.debug.core.XilinxAppLaunchConfigurationDelegate.debugApplication(Unknown Source)
+	at com.xilinx.sdk.debug.core.XilinxAppLaunchConfigurationDelegate.launch(Unknown Source)
+
+16:55:16.784 INFO  - Processing command line option -hwspec /home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MB_AI/SDK/SDK_Export/hw/MB_AI.xml. 
+16:58:37.956 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MB_AI_hw_platform/download.bit" 
+17:40:52.440 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MB_AI_hw_platform/download.bit" 
+15:21:00.988 INFO  - Processing command line option -hwspec /home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MB_AI/SDK/SDK_Export/hw/MB_AI.xml. 
+16:20:56.718 INFO  - Processing command line option -hwspec /home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MicroBlaze/SDK/SDK_Export/hw/MicroBlaze.xml. 
+16:20:57.482 INFO  - The hardware specification for project 'MB_AI_hw_platform' is different from /home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MicroBlaze/SDK/SDK_Export/hw/MicroBlaze.xml. 
+16:20:58.713 INFO  - Copied contents of /home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MicroBlaze/SDK/SDK_Export/hw/MicroBlaze.xml into /MB_AI_hw_platform/system.xml. 
+16:20:59.179 INFO  - Synchronizing projects in the workspace with the hardware platform specification changes. 
+16:21:03.045 INFO  - Updating hardware inferred compiler options for Ayudita. 
+16:21:04.605 INFO  - Updating hardware inferred compiler options for test. 
+16:21:04.647 INFO  - Clearing existing target manager status. 
+16:21:08.205 INFO  - Closing and re-opening the MSS file of ther project standalone_bsp_0 
+16:21:11.226 INFO  - Workspace synchronized with the new hardware specification file. Cleaning dependent projects... 
+16:24:26.757 INFO  - Project standalone_bsp_0 was a BSP project. Please update references. 
+16:24:26.758 ERROR - SDK has detected that project standalone_bsp_0 has been deleted (or renamed).
+If this project was a BSP referenced by other C/C++ applications, then those applications will fail to build now. Please right click on those applications and click 'Change Referenced BSP' to update those projects' BSP references. 
+16:28:39.175 INFO  - Project standalone_bsp_0 was a BSP project. Please update references. 
+16:28:39.176 ERROR - SDK has detected that project standalone_bsp_0 has been deleted (or renamed).
+If this project was a BSP referenced by other C/C++ applications, then those applications will fail to build now. Please right click on those applications and click 'Change Referenced BSP' to update those projects' BSP references. 
+16:28:57.392 ERROR - Unexpected error while parsing XMD response ￿: com.google.gson.JsonSyntaxException: com.google.gson.stream.MalformedJsonException: invalid number or unquoted string near  
+16:29:42.440 INFO  - Processing command line option -hwspec /home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MicroBlaze/SDK/SDK_Export/hw/MicroBlaze.xml. 
+16:49:17.691 INFO  - Processing command line option -hwspec /home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MB_AI/SDK/SDK_Export/hw/MB_AI.xml. 
+16:49:20.489 INFO  - The hardware specification for project 'MicroBlaze_hw_platform' is different from /home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MB_AI/SDK/SDK_Export/hw/MB_AI.xml. 
+16:49:20.815 INFO  - Copied contents of /home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MB_AI/SDK/SDK_Export/hw/MB_AI.xml into /MicroBlaze_hw_platform/system.xml. 
+16:49:21.253 INFO  - Synchronizing projects in the workspace with the hardware platform specification changes. 
+16:49:23.571 INFO  - Updating hardware inferred compiler options for test. 
+16:49:23.866 INFO  - Clearing existing target manager status. 
+16:50:56.557 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+16:52:17.832 ERROR - Unexpected error while launching program. com.xilinx.sdk.targetmanager.TMException: MicroBlaze is under RESET. Check if the Reset input to MicroBlaze and its Bus Interfaces are connected properly
+    UNABLE to STOP MicroBlaze
+
+	at com.xilinx.sdk.targetmanager.internal.TM.connectToProcessor(Unknown Source)
+	at com.xilinx.sdk.debug.core.internal.AppRunner.run(Unknown Source)
+
+17:01:36.535 ERROR - FPGA Configuration failed.Connection to Board Failed
+
+
+    Failed to Open JTAG Cable
+    Cable target is not connected to the host
+ 
+17:02:01.336 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+17:16:03.044 ERROR - FPGA Configuration failed.Connection to Board Failed
+
+
+    Failed to Open JTAG Cable
+    Cable target is not connected to the host
+ 
+17:16:46.736 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+18:34:29.482 ERROR - Unexpected error while launching program. com.xilinx.sdk.targetmanager.TMException: Could not detect MDM peripheral on hardware. Please check:
+    1. If FPGA is configured correctly
+    2. MDM Core is instantiated in the design
+    3. If the correct FPGA is referred, in case of multiple FPGAs
+    4. If the correct MDM is referred, in case of a multiple MDM system
+    
+
+	at com.xilinx.sdk.targetmanager.internal.TM.connectToProcessor(Unknown Source)
+	at com.xilinx.sdk.debug.core.internal.AppRunner.run(Unknown Source)
+
+18:34:46.353 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+18:51:05.064 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+18:54:17.965 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+19:21:54.050 INFO  - microblaze_0 Processor is in use. Please stop existing Run or Debug sessions before launching. 
+19:41:31.460 ERROR - Unexpected error while parsing XMD response ￿: com.google.gson.JsonSyntaxException: com.google.gson.stream.MalformedJsonException: invalid number or unquoted string near  
+13:20:44.304 INFO  - Processing command line option -hwspec /home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MicroBlaze/SDK/SDK_Export/hw/MicroBlaze.xml. 
+13:20:48.142 INFO  - The hardware specification for project 'MicroBlaze_hw_platform' is different from /home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MicroBlaze/SDK/SDK_Export/hw/MicroBlaze.xml. 
+13:20:48.516 INFO  - Copied contents of /home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MicroBlaze/SDK/SDK_Export/hw/MicroBlaze.xml into /MicroBlaze_hw_platform/system.xml. 
+13:20:48.892 INFO  - Synchronizing projects in the workspace with the hardware platform specification changes. 
+13:20:51.907 INFO  - Updating hardware inferred compiler options for Ayuda. 
+13:20:52.733 INFO  - Updating hardware inferred compiler options for test. 
+13:20:52.787 INFO  - Clearing existing target manager status. 
+13:21:15.493 ERROR - FPGA Configuration failed.Connection to Board Failed
+
+
+    Failed to Open JTAG Cable
+    Cable target is not connected to the host
+ 
+13:21:52.278 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+13:36:01.453 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+13:49:18.530 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+11:09:52.903 INFO  - Processing command line option -hwspec /home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MicroBlaze/SDK/SDK_Export/hw/MicroBlaze.xml. 
+11:57:47.793 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+12:32:54.300 INFO  - Project MicroBlaze_hw_platform's source hardware specification located at /home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MicroBlaze/SDK/SDK_Export/hw/MicroBlaze.xml is now different from the local copy.
+		 The local copy will be replaced with the source specification and your workspace will be updated. 
+12:33:07.202 INFO  - Copied contents of /home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MicroBlaze/SDK/SDK_Export/hw/MicroBlaze.xml into /MicroBlaze_hw_platform/system.xml. 
+12:33:07.586 INFO  - Synchronizing projects in the workspace with the hardware platform specification changes. 
+12:33:09.906 INFO  - Updating hardware inferred compiler options for Ayuda. 
+12:33:10.693 INFO  - Updating hardware inferred compiler options for test. 
+12:33:10.719 INFO  - Clearing existing target manager status. 
+12:42:55.546 ERROR - FPGA Configuration failed.Connection to Board Failed
+
+
+    Failed to Open JTAG Cable
+    Cable target is not connected to the host
+ 
+12:43:37.656 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+12:45:14.107 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+14:00:53.432 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+14:04:10.655 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+14:05:56.958 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+15:49:05.697 ERROR - FPGA Configuration failed.Connection to Board Failed
+
+
+    Failed to Open JTAG Cable
+    Cable target is not connected to the host
+ 
+15:50:30.280 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+16:00:25.120 ERROR - Unexpected error while parsing XMD response ￿: com.google.gson.JsonSyntaxException: com.google.gson.stream.MalformedJsonException: invalid number or unquoted string near  
+16:01:43.341 INFO  - Processing command line option -hwspec /home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MicroBlaze/SDK/SDK_Export/hw/MicroBlaze.xml. 
+16:01:47.681 INFO  - The hardware specification for project 'MicroBlaze_hw_platform' is different from /home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MicroBlaze/SDK/SDK_Export/hw/MicroBlaze.xml. 
+16:01:48.534 INFO  - Copied contents of /home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MicroBlaze/SDK/SDK_Export/hw/MicroBlaze.xml into /MicroBlaze_hw_platform/system.xml. 
+16:01:48.936 INFO  - Synchronizing projects in the workspace with the hardware platform specification changes. 
+16:01:51.065 INFO  - Updating hardware inferred compiler options for Ayuda. 
+16:01:51.865 INFO  - Updating hardware inferred compiler options for test. 
+16:01:51.891 INFO  - Clearing existing target manager status. 
+16:07:44.341 INFO  - Project standalone_bsp_0 was a BSP project. Please update references. 
+16:07:44.341 ERROR - SDK has detected that project standalone_bsp_0 has been deleted (or renamed).
+If this project was a BSP referenced by other C/C++ applications, then those applications will fail to build now. Please right click on those applications and click 'Change Referenced BSP' to update those projects' BSP references. 
+16:08:00.895 ERROR - Unexpected error while parsing XMD response ￿: com.google.gson.JsonSyntaxException: com.google.gson.stream.MalformedJsonException: invalid number or unquoted string near  
+16:08:24.487 INFO  - Processing command line option -hwspec /home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MicroBlaze/SDK/SDK_Export/hw/MicroBlaze.xml. 
+16:10:43.219 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+16:12:59.770 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+16:16:29.546 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+16:29:00.437 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+16:30:27.332 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+16:34:35.921 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+16:36:10.840 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+16:56:15.505 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+16:57:47.038 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+16:58:47.074 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+16:59:57.400 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+17:01:39.180 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+17:09:10.589 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+17:14:24.847 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+17:19:37.436 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+17:21:30.550 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+17:23:46.249 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+17:34:38.691 ERROR - FPGA Configuration failed.Connection to Board Failed
+
+
+    Failed to Open JTAG Cable
+    Cable target is not connected to the host
+ 
+17:35:01.570 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+17:35:51.547 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+17:37:23.497 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+17:39:19.432 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+17:41:00.800 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+17:48:52.573 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+17:50:29.176 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+17:53:24.781 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+17:55:05.459 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+18:44:55.782 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+18:45:41.346 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+18:46:39.015 ERROR - Unexpected error while parsing XMD response ￿: com.google.gson.JsonSyntaxException: com.google.gson.stream.MalformedJsonException: invalid number or unquoted string near  
+17:09:58.354 INFO  - Processing command line option -hwspec /home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MicroBlaze/SDK/SDK_Export/hw/MicroBlaze.xml. 
+17:10:59.828 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+17:13:11.358 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+17:17:10.242 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+17:19:40.753 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+17:24:04.861 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+17:25:05.802 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+17:25:44.285 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+17:34:48.412 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+17:36:13.377 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+17:39:33.008 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+17:40:21.333 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+17:43:18.556 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+17:44:10.917 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+17:48:51.903 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+17:49:52.534 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+17:51:33.444 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+17:53:04.075 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+17:57:54.358 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+18:00:06.913 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+18:00:52.760 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+18:01:51.007 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+18:02:51.223 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+18:05:45.611 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+18:08:24.152 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+18:08:41.490 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+18:09:54.646 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+18:11:29.092 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+18:12:03.671 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+18:14:02.237 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+18:15:04.501 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+18:16:18.597 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+18:18:29.735 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+18:21:15.500 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+18:22:17.337 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+18:23:20.532 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+18:25:43.092 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+18:32:36.846 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+18:34:07.641 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+18:40:14.159 ERROR - Unexpected error while parsing XMD response ￿: com.google.gson.JsonSyntaxException: com.google.gson.stream.MalformedJsonException: invalid number or unquoted string near  
+15:29:32.928 INFO  - Processing command line option -hwspec /home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MicroBlaze/SDK/SDK_Export/hw/MicroBlaze.xml. 
+15:29:52.966 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+15:31:07.405 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+15:32:13.292 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+16:23:43.661 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+16:26:01.231 ERROR - Unexpected error while parsing XMD response ￿: com.google.gson.JsonSyntaxException: com.google.gson.stream.MalformedJsonException: invalid number or unquoted string near  
+16:54:29.667 INFO  - Processing command line option -hwspec /home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MicroBlaze/SDK/SDK_Export/hw/MicroBlaze.xml. 
+16:55:07.803 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+16:59:52.373 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+17:04:31.340 ERROR - FPGA Configuration failed.Failed to download the bit file
+
+    Failed to program device 1 with bitstream /home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit
+ 
+17:05:04.999 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+17:13:04.802 ERROR - Unexpected error while parsing XMD response ￿: com.google.gson.JsonSyntaxException: com.google.gson.stream.MalformedJsonException: invalid number or unquoted string near  
+18:08:14.578 INFO  - Processing command line option -hwspec /home/moro/Apuntes/Emb3/vga_pong/EMB3-PROJECT/emb3_board_test/MicroBlaze/SDK/SDK_Export/hw/MicroBlaze.xml. 
+18:09:53.576 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+18:14:07.654 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+18:59:29.243 ERROR - Unexpected error while parsing XMD response ￿: com.google.gson.JsonSyntaxException: com.google.gson.stream.MalformedJsonException: invalid number or unquoted string near  
+18:20:02.090 INFO  - Processing command line option -hwspec /home/moro/Apuntes/Electronics/vga_pong/EMB3-PROJECT/emb3_board_test/MicroBlaze/SDK/SDK_Export/hw/MicroBlaze.xml. 
+18:23:24.812 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+18:33:35.855 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+18:46:02.591 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+18:51:54.675 ERROR - Unexpected error while parsing XMD response ￿: com.google.gson.JsonSyntaxException: com.google.gson.stream.MalformedJsonException: invalid number or unquoted string near  
+10:33:08.083 INFO  - Processing command line option -hwspec /home/moro/Apuntes/Electronics/vga_pong/EMB3-PROJECT/emb3_board_test/MicroBlaze/SDK/SDK_Export/hw/MicroBlaze.xml. 
+10:33:33.651 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+10:40:57.386 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+10:58:11.167 ERROR - FPGA Configuration failed.Failed to download the bit file
+
+    Failed to program device 1 with bitstream /home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit
+ 
+10:58:54.656 ERROR - FPGA Configuration failed.Connection to Board Failed
+
+
+    Failed to Open JTAG Cable
+    Cable target is not connected to the host
+ 
+10:59:36.007 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+11:01:14.647 ERROR - Unexpected error while parsing XMD response ￿: com.google.gson.JsonSyntaxException: com.google.gson.stream.MalformedJsonException: invalid number or unquoted string near  
+15:12:08.439 INFO  - Processing command line option -hwspec /home/moro/Apuntes/Electronics/vga_pong/EMB3-PROJECT/emb3_board_test/MicroBlaze/SDK/SDK_Export/hw/MicroBlaze.xml. 
+15:12:51.253 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+15:12:57.540 ERROR - Unexpected error while parsing XMD response ￿: com.google.gson.JsonSyntaxException: com.google.gson.stream.MalformedJsonException: invalid number or unquoted string near  
+15:54:05.047 INFO  - Processing command line option -hwspec /home/moro/Apuntes/Electronics/vga_pong/EMB3-PROJECT/emb3_board_test/MicroBlaze/SDK/SDK_Export/hw/MicroBlaze.xml. 
+15:54:31.992 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+16:13:06.160 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+16:27:29.357 INFO  - FPGA configured successfully with bitstream "/home/moro/workspace_mb/MicroBlaze_hw_platform/download.bit" 
+16:28:12.775 ERROR - Unexpected error while parsing XMD response ￿: com.google.gson.JsonSyntaxException: com.google.gson.stream.MalformedJsonException: invalid number or unquoted string near  

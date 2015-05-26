@@ -1,0 +1,39 @@
+18:38:02 **** Auto Build of configuration Release for project Microblaze_AI ****
+make all 
+Building file: ../src/testperiph.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O2 -c -fmessage-length=0 -I../../standalone_bsp_0/microblaze_0/include -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v8.50.c -mno-xl-soft-mul -mhard-float -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/testperiph.d" -MT"src/testperiph.d" -o "src/testperiph.o" "../src/testperiph.c"
+../src/testperiph.c: In function 'main':
+../src/testperiph.c:55:8: warning: unused variable 'syncBuffer' [-Wunused-variable]
+../src/testperiph.c:54:20: warning: unused variable 'DataReadSync' [-Wunused-variable]
+../src/testperiph.c:54:8: warning: unused variable 'statusSync' [-Wunused-variable]
+Finished building: ../src/testperiph.c
+ 
+Building target: Microblaze_AI.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../standalone_bsp_0/microblaze_0/lib -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mcpu=v8.50.c -mno-xl-soft-mul -mhard-float -Wl,--no-relax -Wl,--gc-sections -o "Microblaze_AI.elf"  ./src/testperiph.o ./src/xgpio_tapp_example.o ./src/xuartlite_selftest_example.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+../src/testperiph.c:53:8: warning: variable 'statusBatY' set but not used [-Wunused-but-set-variable]
+Finished building target: Microblaze_AI.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size Microblaze_AI.elf  |tee "Microblaze_AI.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+   9470	    368	   2120	  11958	   2eb6	Microblaze_AI.elf
+Finished building: Microblaze_AI.elf.size
+ 
+Invoking: Xilinx ELF Check
+elfcheck Microblaze_AI.elf -hw ../../MicroBlaze_hw_platform/system.xml -pe microblaze_0  |tee "Microblaze_AI.elf.elfcheck"
+elfcheck
+Xilinx EDK 14.7 Build EDK_P.20131013
+Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
+
+Command Line: elfcheck -hw ../../MicroBlaze_hw_platform/system.xml -pe
+microblaze_0 Microblaze_AI.elf 
+
+ELF file	: Microblaze_AI.elf
+elfcheck passed.
+Finished building: Microblaze_AI.elf.elfcheck
+ 
+
+18:38:05 Build Finished (took 2s.425ms)
+
